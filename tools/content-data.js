@@ -438,27 +438,27 @@ const SUB_GRAN_FORMATO = [
   }
 ];
 
-const CATEGORY_CONTENT = { serigrafia: SERIGRAFIA, rotulacion: ROTULACION, "gran-formato": GRAN_FORMATO };
-const ALL_SUBSERVICES = SUB_SERIGRAFIA.concat(SUB_ROTULACION, SUB_GRAN_FORMATO);
+const CATEGORY_CONTENT = { rotulacion: ROTULACION, serigrafia: SERIGRAFIA, "gran-formato": GRAN_FORMATO };
+const ALL_SUBSERVICES = SUB_ROTULACION.concat(SUB_SERIGRAFIA, SUB_GRAN_FORMATO);
 
 const CATEGORY_BENEFITS = {
   serigrafia: [
     { icon: "shield", title: "Tintas resistentes", desc: "Aguantan lavados y uso diario sin perder color." },
     { icon: "layers", title: "Tiradas cortas y largas", desc: "Nos adaptamos al volumen real de tu pedido." },
     { icon: "clock", title: "Plazos claros", desc: "Sabes desde el presupuesto cuándo estará listo." },
-    { icon: "spark", title: "20+ años de oficio", desc: "Un taller físico que controla cada fase del proceso." }
+    { icon: "spark", title: "Desde 2002", desc: "Un taller físico que controla cada fase del proceso." }
   ],
   rotulacion: [
     { icon: "shield", title: "Materiales de exterior", desc: "Pensados para aguantar sol, lluvia y uso diario." },
-    { icon: "ruler", title: "Diseño a medida", desc: "Adaptado a la fachada, el vehículo o el espacio real." },
+    { icon: "ruler", title: "Diseño a medida", desc: "Medimos y adaptamos el diseño al soporte real." },
     { icon: "truck", title: "Instalación incluida", desc: "Fabricamos e instalamos, no solo entregamos." },
-    { icon: "spark", title: "20+ años de oficio", desc: "Experiencia en proyectos de todos los tamaños." }
+    { icon: "spark", title: "Desde 2002", desc: "Experiencia en proyectos de todos los tamaños." }
   ],
   "gran-formato": [
     { icon: "layers", title: "Impresión propia", desc: "Producción en nuestro taller, sin intermediarios." },
     { icon: "clock", title: "Plazos ajustados", desc: "Útil para eventos y campañas con fecha fija." },
     { icon: "ruler", title: "Grandes formatos", desc: "Desde un roll-up hasta una lona de fachada." },
-    { icon: "spark", title: "20+ años de oficio", desc: "Un único taller para todo el proyecto gráfico." }
+    { icon: "spark", title: "Desde 2002", desc: "Un único taller para todo el proyecto gráfico." }
   ]
 };
 

@@ -1,0 +1,149 @@
+{
+  "about-team.jpg": {
+    "w": 960,
+    "h": 640,
+    "widths": [
+      640,
+      960
+    ]
+  },
+  "blank-shopfront.jpg": {
+    "w": 1024,
+    "h": 679,
+    "widths": [
+      640,
+      1024
+    ]
+  },
+  "blank-tshirt.jpg": {
+    "w": 678,
+    "h": 1024,
+    "widths": [
+      640,
+      678
+    ]
+  },
+  "car-wrap-detail.jpg": {
+    "w": 1024,
+    "h": 683,
+    "widths": [
+      640,
+      1024
+    ]
+  },
+  "channel-letters.jpg": {
+    "w": 2400,
+    "h": 2400,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "hero-vehicle-wrap.jpg": {
+    "w": 1024,
+    "h": 670,
+    "widths": [
+      640,
+      1024
+    ]
+  },
+  "large-format-banner.jpg": {
+    "w": 1023,
+    "h": 652,
+    "widths": [
+      640,
+      1023
+    ]
+  },
+  "merch-items.jpg": {
+    "w": 3056,
+    "h": 3056,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "outdoor-banner.jpg": {
+    "w": 1024,
+    "h": 576,
+    "widths": [
+      640,
+      1024
+    ]
+  },
+  "poster-display.jpg": {
+    "w": 1024,
+    "h": 640,
+    "widths": [
+      640,
+      1024
+    ]
+  },
+  "screen-printing-process.jpg": {
+    "w": 1024,
+    "h": 768,
+    "widths": [
+      640,
+      1024
+    ]
+  },
+  "shop-storefront.jpg": {
+    "w": 2263,
+    "h": 2263,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "shop-window-vinyl.jpg": {
+    "w": 1890,
+    "h": 1890,
+    "widths": [
+      640,
+      1280,
+      1890
+    ]
+  },
+  "tshirt-stack.jpg": {
+    "w": 1024,
+    "h": 717,
+    "widths": [
+      640,
+      1024
+    ]
+  },
+  "van-signage.jpg": {
+    "w": 1024,
+    "h": 607,
+    "widths": [
+      640,
+      1024
+    ]
+  },
+  "workshop-machine.jpg": {
+    "w": 2448,
+    "h": 2448,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "workwear.jpeg": {
+    "w": 2048,
+    "h": 2048,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "logo-trim.png": {
+    "w": 177,
+    "h": 160,
+    "widths": []
+  }
+}

@@ -1,432 +1,479 @@
-/* SERIART — main.js. Classic script, IIFE pattern. No modules, no imports. */
+/* SERIART — main.js. Classic script, no dependencies.
+   Every feature is optional: if one fails the rest still boot, and the HTML is
+   fully usable without JavaScript. */
 (function () {
   "use strict";
 
-  var data = window.__BRAND__ || {};
+  var cfg = window.__SERIART__ || {};
   var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var fineHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   function $(sel, scope) { return (scope || document).querySelector(sel); }
   function $$(sel, scope) { return Array.prototype.slice.call((scope || document).querySelectorAll(sel)); }
   function safe(fn, name) { try { fn(); } catch (e) { console.warn("[" + name + "]", e); } }
 
-  /* ---------------------------------------------------------------------
-     WhatsApp float — build href from brand data
-     --------------------------------------------------------------------- */
-  function initWhatsapp() {
-    var links = $$("[data-whatsapp-link]");
-    if (!links.length || !data.whatsappNumber) return;
-    var text = encodeURIComponent(data.whatsappDefaultText || "");
-    var href = "https://wa.me/" + data.whatsappNumber + "?text=" + text;
-    links.forEach(function (link) { link.href = href; });
+  /* Show an element that uses [hidden] + an .is-open class for its transition */
+  function openPanel(el) {
+    el.hidden = false;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add("is-open"); }); });
+  }
+  function closePanel(el) {
+    el.classList.remove("is-open");
+    var done = false;
+    function finish() { if (done) return; done = true; if (!el.classList.contains("is-open")) el.hidden = true; }
+    el.addEventListener("transitionend", finish, { once: true });
+    setTimeout(finish, 350);
   }
 
   /* ---------------------------------------------------------------------
-     Header scroll state
+     Header: shadow on scroll, solid background once past the home hero
      --------------------------------------------------------------------- */
-  function initHeaderScroll() {
-    var header = $(".site-header");
+  var header = $("[data-header]");
+  function setSolid() {
     if (!header) return;
-    function update() {
-      if (window.scrollY > 12) header.classList.add("is-scrolled");
-      else header.classList.remove("is-scrolled");
-    }
-    update();
-    window.addEventListener("scroll", update, { passive: true });
+    var megaOpen = $("[data-mega-trigger]") && $("[data-mega-trigger]").getAttribute("aria-expanded") === "true";
+    var navOpen = document.body.classList.contains("nav-open");
+    var scrolled = window.scrollY > 24;
+    header.classList.toggle("is-scrolled", scrolled);
+    header.classList.toggle("is-solid", scrolled || megaOpen || navOpen);
+  }
+  function initHeader() {
+    if (!header) return;
+    setSolid();
+    window.addEventListener("scroll", setSolid, { passive: true });
   }
 
   /* ---------------------------------------------------------------------
-     Mega menu (desktop) — hover with delay + click for touch/keyboard
+     Mega menu (desktop): hover with small delays, click / keyboard toggle
      --------------------------------------------------------------------- */
-  function initMegaMenu() {
+  function initMega() {
     var trigger = $("[data-mega-trigger]");
-    var menu = $("[data-mega-menu]");
+    var menu = $("[data-mega]");
     if (!trigger || !menu) return;
-    var closeTimer = null;
+    var openTimer, closeTimer;
+    var canHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
     function open() {
       clearTimeout(closeTimer);
-      menu.classList.add("is-open");
+      if (trigger.getAttribute("aria-expanded") === "true") return;
       trigger.setAttribute("aria-expanded", "true");
+      openPanel(menu);
+      setSolid();
     }
-    function close() {
-      menu.classList.remove("is-open");
+    function close(returnFocus) {
+      clearTimeout(openTimer);
+      if (trigger.getAttribute("aria-expanded") !== "true") return;
       trigger.setAttribute("aria-expanded", "false");
+      closePanel(menu);
+      setSolid();
+      if (returnFocus) trigger.focus();
     }
-    function scheduleClose() {
-      closeTimer = setTimeout(close, 220);
+    trigger.addEventListener("click", function () {
+      if (trigger.getAttribute("aria-expanded") === "true") close(); else open();
+    });
+    if (canHover) {
+      [trigger, menu].forEach(function (el) {
+        el.addEventListener("mouseenter", function () { clearTimeout(closeTimer); openTimer = setTimeout(open, 80); });
+        el.addEventListener("mouseleave", function () { clearTimeout(openTimer); closeTimer = setTimeout(close, 220); });
+      });
     }
-
-    trigger.addEventListener("mouseover", function (e) {
-      if (!trigger.contains(e.relatedTarget)) open();
-    });
-    trigger.addEventListener("mouseout", function (e) {
-      if (!trigger.contains(e.relatedTarget) && !menu.contains(e.relatedTarget)) scheduleClose();
-    });
-    menu.addEventListener("mouseover", function () { clearTimeout(closeTimer); });
-    menu.addEventListener("mouseout", function (e) {
-      if (!menu.contains(e.relatedTarget) && !trigger.contains(e.relatedTarget)) scheduleClose();
-    });
-    trigger.addEventListener("click", function (e) {
-      e.preventDefault();
-      if (menu.classList.contains("is-open")) close(); else open();
-    });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape" && trigger.getAttribute("aria-expanded") === "true") close(true);
     });
     document.addEventListener("click", function (e) {
       if (!trigger.contains(e.target) && !menu.contains(e.target)) close();
     });
+    menu.addEventListener("focusout", function (e) {
+      if (e.relatedTarget && !menu.contains(e.relatedTarget) && e.relatedTarget !== trigger) close();
+    });
   }
 
   /* ---------------------------------------------------------------------
-     Mobile nav panel
+     Mobile menu
      --------------------------------------------------------------------- */
   function initMobileNav() {
     var toggle = $("[data-nav-toggle]");
-    var panel = $("[data-nav-mobile]");
+    var panel = $("[data-mnav]");
     if (!toggle || !panel) return;
-    toggle.addEventListener("click", function () {
-      var isOpen = panel.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      document.body.style.overflow = isOpen ? "hidden" : "";
+
+    function set(open) {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      document.body.classList.toggle("nav-open", open);
+      if (open) {
+        openPanel(panel);
+        var first = $("a, button", panel);
+        if (first) setTimeout(function () { first.focus(); }, 60);
+      } else {
+        closePanel(panel);
+      }
+      setSolid();
+    }
+    toggle.addEventListener("click", function () { set(toggle.getAttribute("aria-expanded") !== "true"); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") { set(false); toggle.focus(); }
     });
-    $$("[data-nav-mobile-sub-toggle]", panel).forEach(function (btn) {
+    $$("[data-mnav-sub]", panel).forEach(function (btn) {
       btn.addEventListener("click", function () {
         var sub = document.getElementById(btn.getAttribute("aria-controls"));
-        if (!sub) return;
-        var isOpen = sub.classList.toggle("is-open");
-        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        var open = btn.getAttribute("aria-expanded") !== "true";
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (sub) sub.hidden = !open;
       });
     });
-    $$("a", panel).forEach(function (a) {
-      a.addEventListener("click", function () {
-        panel.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
-    });
+    $$("a", panel).forEach(function (a) { a.addEventListener("click", function () { set(false); }); });
+    matchMedia("(min-width: 960px)").addEventListener("change", function (e) { if (e.matches) set(false); });
   }
 
   /* ---------------------------------------------------------------------
-     Scroll reveals — threshold low + 6s safety net
+     Scroll reveals. Content is only hidden once this runs (html.reveal-on),
+     so a JS failure never leaves the page blank. Stagger resets per grid.
      --------------------------------------------------------------------- */
   function initReveals() {
-    var targets = $$(".reveal");
-    if (!targets.length) return;
-    if (typeof IntersectionObserver === "undefined") {
-      targets.forEach(function (el) { el.classList.add("is-visible"); });
-      return;
-    }
+    var targets = $$(".reveal, .reveal-wipe, .step");
+    if (!targets.length || reduced || typeof IntersectionObserver === "undefined") return;
+    var groups = new Map();
+    targets.forEach(function (el) {
+      var parent = el.parentElement;
+      var i = groups.get(parent) || 0;
+      groups.set(parent, i + 1);
+      if (i) el.style.setProperty("--d", Math.min(i, 5) * 90 + "ms");
+    });
+    document.documentElement.classList.add("reveal-on");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add("is-visible");
+        io.unobserve(el);
+        // Drop the stagger delay afterwards so hover transitions stay instant
+        setTimeout(function () { el.style.removeProperty("--d"); }, 1600);
       });
-    }, { threshold: 0.01, rootMargin: "0px 0px -2% 0px" });
-    targets.forEach(function (el, i) {
-      el.style.transitionDelay = Math.min(i % 6, 5) * 60 + "ms";
-      io.observe(el);
-    });
-    setTimeout(function () {
-      $$(".reveal:not(.is-visible)").forEach(function (el) {
-        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("is-visible");
-      });
-    }, 6000);
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(function (el) { io.observe(el); });
   }
 
   /* ---------------------------------------------------------------------
-     Card tilt — subtle, pointer-fine only, never gated by reduced-motion
+     Hero timelapse video: autoplay muted (unless reduced motion), pause
+     button, and pause while off-screen to save battery.
      --------------------------------------------------------------------- */
-  function initTilt() {
-    if (!fineHover) return;
-    $$("[data-tilt]").forEach(function (card) {
-      var raf = null;
-      card.addEventListener("mousemove", function (e) {
-        var rect = card.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width - 0.5;
-        var py = (e.clientY - rect.top) / rect.height - 0.5;
-        if (raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(function () {
-          card.style.transform = "perspective(900px) rotateX(" + (py * -5) + "deg) rotateY(" + (px * 5) + "deg) translateY(-4px)";
-        });
-      });
-      card.addEventListener("mouseleave", function () {
-        if (raf) cancelAnimationFrame(raf);
-        card.style.transform = "";
-      });
-    });
-  }
+  function initHeroVideo() {
+    var video = $("[data-hero-video]");
+    var btn = $("[data-hero-video-toggle]");
+    if (!video) return;
+    var userPaused = reduced;
 
-  /* ---------------------------------------------------------------------
-     Magnetic buttons — subtle strength
-     --------------------------------------------------------------------- */
-  function initMagnetic() {
-    if (!fineHover) return;
-    $$("[data-magnetic]").forEach(function (btn) {
-      btn.addEventListener("mousemove", function (e) {
-        var rect = btn.getBoundingClientRect();
-        var x = (e.clientX - rect.left - rect.width / 2) * 0.25;
-        var y = (e.clientY - rect.top - rect.height / 2) * 0.35;
-        btn.style.transform = "translate(" + x + "px," + y + "px)";
-      });
-      btn.addEventListener("mouseleave", function () { btn.style.transform = ""; });
-    });
-  }
-
-  /* ---------------------------------------------------------------------
-     Count-up stats
-     --------------------------------------------------------------------- */
-  function initCountUp() {
-    var items = $$("[data-count-to]");
-    if (!items.length || typeof IntersectionObserver === "undefined") return;
-    function run(el) {
-      var target = parseFloat(el.getAttribute("data-count-to"));
-      var suffix = el.getAttribute("data-count-suffix") || "";
-      var duration = reduced ? 400 : 1400;
-      var start = null;
-      function step(ts) {
-        if (!start) start = ts;
-        var p = Math.min((ts - start) / duration, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * eased) + suffix;
-        if (p < 1) requestAnimationFrame(step);
-        else el.textContent = target + suffix;
-      }
-      requestAnimationFrame(step);
+    function play() {
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { setState(false); });
     }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { run(entry.target); io.unobserve(entry.target); }
-      });
-    }, { threshold: 0.3 });
-    items.forEach(function (el) { io.observe(el); });
-  }
-
-  /* ---------------------------------------------------------------------
-     FAQ accordion
-     --------------------------------------------------------------------- */
-  function initFaq() {
-    $$(".faq-item").forEach(function (item) {
-      var btn = $(".faq-question", item);
+    function setState(playing) {
       if (!btn) return;
-      btn.addEventListener("click", function () {
-        var wasOpen = item.classList.contains("is-open");
-        item.parentElement.querySelectorAll(".faq-item").forEach(function (i) { i.classList.remove("is-open"); });
-        if (!wasOpen) item.classList.add("is-open");
-      });
+      btn.classList.toggle("is-paused", !playing);
+      btn.setAttribute("aria-label", playing ? "Pausar vídeo" : "Reproducir vídeo");
+    }
+    video.addEventListener("playing", function () { video.classList.add("is-playing"); setState(true); });
+    video.addEventListener("pause", function () { setState(false); });
+
+    if (btn) btn.addEventListener("click", function () {
+      if (video.paused) { userPaused = false; video.preload = "auto"; play(); }
+      else { userPaused = true; video.pause(); }
     });
+    setState(false);
+    if (userPaused) return;
+
+    video.preload = "auto";
+    if (typeof IntersectionObserver !== "undefined") {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !userPaused) play(); else if (!entry.isIntersecting) video.pause();
+        });
+      }, { threshold: 0.2 }).observe(video);
+    } else {
+      play();
+    }
   }
 
   /* ---------------------------------------------------------------------
      Portfolio filter
      --------------------------------------------------------------------- */
-  function initPortfolioFilter() {
+  function initFilter() {
     var bar = $("[data-filter-bar]");
-    var items = $$("[data-filter-item]");
-    if (!bar || !items.length) return;
-    $$(".filter-btn", bar).forEach(function (btn) {
+    var grid = $("[data-filter-grid]");
+    if (!bar || !grid) return;
+    var items = $$("[data-filter-item]", grid);
+    var empty = $("[data-filter-empty]");
+    $$("[data-filter]", bar).forEach(function (btn) {
       btn.addEventListener("click", function () {
-        $$(".filter-btn", bar).forEach(function (b) { b.classList.remove("is-active"); b.setAttribute("aria-pressed", "false"); });
+        $$("[data-filter]", bar).forEach(function (b) { b.classList.remove("is-active"); b.setAttribute("aria-pressed", "false"); });
         btn.classList.add("is-active");
         btn.setAttribute("aria-pressed", "true");
-        var filter = btn.getAttribute("data-filter");
+        var key = btn.getAttribute("data-filter");
+        var shown = 0;
         items.forEach(function (item) {
-          var cats = (item.getAttribute("data-filter-item") || "").split(" ");
-          var show = filter === "all" || cats.indexOf(filter) !== -1;
+          var show = key === "all" || item.getAttribute("data-filter-item").split(" ").indexOf(key) !== -1;
           item.classList.toggle("is-hidden", !show);
+          if (show) { shown++; item.classList.add("is-visible"); }
         });
+        if (empty) empty.hidden = shown > 0;
       });
     });
   }
 
   /* ---------------------------------------------------------------------
-     Lightbox
+     Lightbox with prev / next, keyboard, swipe and focus handling.
+     Items: <a data-lightbox-item="group" href="big.webp" data-caption="…">
      --------------------------------------------------------------------- */
   function initLightbox() {
-    var lightbox = $("[data-lightbox]");
-    if (!lightbox) return;
-    var img = $("[data-lightbox-img]", lightbox);
-    var compareBox = $("[data-lightbox-compare]", lightbox);
-    var compareBeforeImg = compareBox && $(".compare-before-img", compareBox);
-    var compareAfterImg = compareBox && $(".compare-after-img", compareBox);
-    var compareHandle = compareBox && $(".compare-handle", compareBox);
-    var triggers = $$("[data-lightbox-src], [data-compare-before]");
-    if (!triggers.length) return;
+    var box = $("[data-lightbox]");
+    var all = $$("[data-lightbox-item]");
+    if (!box || !all.length) return;
+    var img = $("[data-lb-img]", box);
+    var caption = $("[data-lb-caption]", box);
+    var count = $("[data-lb-count]", box);
+    var prevBtn = $("[data-lb-prev]", box);
+    var nextBtn = $("[data-lb-next]", box);
+    var list = [], index = 0, opener = null;
 
-    function openImage(src, alt) {
-      img.src = src;
-      img.alt = alt || "";
-      img.style.display = "";
-      if (compareBox) compareBox.hidden = true;
-      lightbox.classList.add("is-open");
-      document.body.style.overflow = "hidden";
+    function visibleGroup(group) {
+      return all.filter(function (a) {
+        return a.getAttribute("data-lightbox-item") === group && !a.classList.contains("is-hidden");
+      });
     }
-    function openCompare(beforeSrc, beforeAlt, afterSrc, afterAlt) {
-      if (!compareBox) return;
-      compareBeforeImg.src = beforeSrc;
-      compareBeforeImg.alt = beforeAlt || "";
-      compareAfterImg.src = afterSrc;
-      compareAfterImg.alt = afterAlt || "";
-      compareAfterImg.style.clipPath = "inset(0 0 0 50%)";
-      if (compareHandle) compareHandle.style.left = "50%";
-      img.style.display = "none";
-      compareBox.hidden = false;
-      lightbox.classList.add("is-open");
-      document.body.style.overflow = "hidden";
+    function show(i) {
+      index = (i + list.length) % list.length;
+      var a = list[index];
+      var thumb = $("img", a);
+      img.classList.add("is-loading");
+      img.onload = function () { img.classList.remove("is-loading"); };
+      img.src = a.getAttribute("href");
+      img.alt = thumb ? thumb.alt : "";
+      caption.textContent = a.getAttribute("data-caption") || "";
+      count.textContent = list.length > 1 ? (index + 1) + " / " + list.length : "";
+      prevBtn.hidden = nextBtn.hidden = list.length < 2;
+    }
+    function open(a) {
+      opener = a;
+      list = visibleGroup(a.getAttribute("data-lightbox-item"));
+      show(list.indexOf(a));
+      document.body.classList.add("lb-open");
+      openPanel(box);
+      setTimeout(function () { $("[data-lb-close]", box).focus(); }, 30);
     }
     function close() {
-      lightbox.classList.remove("is-open");
-      document.body.style.overflow = "";
+      document.body.classList.remove("lb-open");
+      closePanel(box);
+      if (opener) opener.focus();
     }
-    triggers.forEach(function (el) {
-      el.addEventListener("click", function (e) {
+    all.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
         e.preventDefault();
-        if (el.hasAttribute("data-compare-before")) {
-          openCompare(
-            el.getAttribute("data-compare-before"), el.getAttribute("data-compare-before-alt"),
-            el.getAttribute("data-compare-after"), el.getAttribute("data-compare-after-alt")
-          );
-        } else {
-          openImage(el.getAttribute("data-lightbox-src"), el.getAttribute("data-lightbox-alt"));
-        }
+        open(a);
       });
     });
-    $(".lightbox-close", lightbox).addEventListener("click", close);
-    lightbox.addEventListener("click", function (e) { if (e.target === lightbox) close(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
-  }
-
-  /* ---------------------------------------------------------------------
-     Before / after compare slider
-     --------------------------------------------------------------------- */
-  function initCompare() {
-    $$("[data-compare]").forEach(function (wrap) {
-      var after = $(".compare-after", wrap);
-      var handle = $(".compare-handle", wrap);
-      var btn = $(".compare-handle-btn", wrap);
-      if (!after || !handle) return;
-      var dragging = false;
-
-      function setPos(clientX) {
-        var rect = wrap.getBoundingClientRect();
-        var pct = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1) * 100;
-        after.style.clipPath = "inset(0 0 0 " + pct + "%)";
-        handle.style.left = pct + "%";
+    prevBtn.addEventListener("click", function () { show(index - 1); });
+    nextBtn.addEventListener("click", function () { show(index + 1); });
+    $("[data-lb-close]", box).addEventListener("click", close);
+    box.addEventListener("click", function (e) { if (e.target === box) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (box.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") show(index - 1);
+      else if (e.key === "ArrowRight") show(index + 1);
+      else if (e.key === "Tab") {
+        var f = $$("button:not([hidden])", box);
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
-      function onMove(e) {
-        if (!dragging) return;
-        var x = e.touches ? e.touches[0].clientX : e.clientX;
-        setPos(x);
-      }
-      function start(e) { dragging = true; onMove(e); }
-      function stop() { dragging = false; }
-
-      (btn || handle).addEventListener("mousedown", start);
-      window.addEventListener("mousemove", onMove);
-      window.addEventListener("mouseup", stop);
-      (btn || handle).addEventListener("touchstart", start, { passive: true });
-      window.addEventListener("touchmove", onMove, { passive: true });
-      window.addEventListener("touchend", stop);
+    });
+    var startX = null;
+    box.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener("touchend", function (e) {
+      if (startX === null || list.length < 2) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+      startX = null;
     });
   }
 
   /* ---------------------------------------------------------------------
-     Forms — mailto-based (static site, no backend). Progressive enhancement:
-     native reportValidity + friendly success note. Works with JS disabled too
-     since <form action="mailto:..." method="get"> is native browser behavior.
+     Forms: inline validation + Web3Forms. Without an access key, fall back
+     to the visitor's mail app with the message already written.
      --------------------------------------------------------------------- */
+  var MESSAGES = {
+    valueMissing: "Este campo es obligatorio.",
+    typeMismatch: "Revisa el formato (por ejemplo, nombre@correo.com).",
+    checkbox: "Necesitamos tu aceptación para poder responderte."
+  };
+  function fieldError(input) {
+    if (input.validity.valid) return "";
+    if (input.type === "checkbox") return MESSAGES.checkbox;
+    if (input.validity.typeMismatch) return MESSAGES.typeMismatch;
+    return MESSAGES.valueMissing;
+  }
+  function showError(input) {
+    var wrap = input.closest(".field");
+    if (!wrap) return;
+    var msg = fieldError(input);
+    var el = $(".field-error", wrap);
+    input.setAttribute("aria-invalid", msg ? "true" : "false");
+    if (msg && !el) {
+      el = document.createElement("p");
+      el.className = "field-error";
+      el.id = input.id + "-error";
+      wrap.appendChild(el);
+      input.setAttribute("aria-describedby", el.id);
+    }
+    if (el) el.textContent = msg;
+    if (!msg && el) { el.remove(); input.removeAttribute("aria-describedby"); }
+  }
+  function formToText(form) {
+    var lines = [];
+    new FormData(form).forEach(function (value, key) {
+      if (["access_key", "subject", "from_name", "botcheck"].indexOf(key) !== -1 || !String(value).trim()) return;
+      lines.push(key + ": " + value);
+    });
+    return lines.join("\n");
+  }
   function initForms() {
-    $$("form[data-mailto-form]").forEach(function (form) {
+    $$("[data-form]").forEach(function (form) {
+      var status = $("[data-form-status]", form);
+      var submit = $("[data-submit]", form);
+      var inputs = $$("input[required], select[required], textarea[required]", form);
+      var tried = false;
+      inputs.forEach(function (input) {
+        input.addEventListener(input.type === "checkbox" || input.tagName === "SELECT" ? "change" : "blur", function () { if (tried || input.value) showError(input); });
+        input.addEventListener("input", function () { if (input.getAttribute("aria-invalid") === "true") showError(input); });
+      });
+
+      function setStatus(kind, html) {
+        status.className = "form-status" + (kind ? " is-" + kind : "");
+        status.innerHTML = html || "";
+      }
+
       form.addEventListener("submit", function (e) {
-        if (!form.reportValidity()) { e.preventDefault(); return; }
-        var success = $("[data-form-success]", form.parentElement) || $("[data-form-success]");
-        if (success) success.classList.add("is-visible");
+        e.preventDefault();
+        tried = true;
+        var invalid = inputs.filter(function (i) { showError(i); return !i.validity.valid; });
+        if (invalid.length) {
+          invalid[0].focus();
+          setStatus("error", "Revisa los campos marcados.");
+          return;
+        }
+        var kind = form.getAttribute("data-form-kind") || "contacto";
+        var key = cfg.web3formsKey;
+
+        if (!key) {
+          var subject = $("input[name=subject]", form).value;
+          var href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(formToText(form));
+          window.location.href = href;
+          setStatus("ok", "Se ha abierto tu programa de correo con el mensaje ya escrito: solo tienes que darle a enviar. Si no se ha abierto, escríbenos a <a href=\"mailto:" + cfg.email + "\">" + cfg.email + "</a> o por WhatsApp.");
+          return;
+        }
+
+        submit.setAttribute("aria-busy", "true");
+        var label = submit.textContent;
+        submit.textContent = "Enviando…";
+        setStatus("", "");
+        var data = new FormData(form);
+        data.set("access_key", key);
+        var replyTo = $("input[type=email]", form);
+        if (replyTo) data.set("replyto", replyTo.value);
+        fetch("https://api.web3forms.com/submit", { method: "POST", body: data, headers: { Accept: "application/json" } })
+          .then(function (r) { return r.json(); })
+          .then(function (json) {
+            if (!json.success) throw new Error(json.message || "error");
+            window.location.href = (form.getAttribute("data-thanks") || "gracias.html") + "?tipo=" + kind;
+          })
+          .catch(function () {
+            submit.removeAttribute("aria-busy");
+            submit.textContent = label;
+            setStatus("error", "No hemos podido enviar el mensaje. Inténtalo de nuevo o escríbenos por <a href=\"https://wa.me/" + cfg.whatsappNumber + "\" target=\"_blank\" rel=\"noopener\">WhatsApp</a>.");
+          });
       });
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Preselect service in budget form from ?servicio=slug in the URL
-     --------------------------------------------------------------------- */
+  /* Preselect the service from ?servicio=slug */
   function initServicePreselect() {
     var select = $("[data-service-select]");
     if (!select) return;
-    var params = new URLSearchParams(window.location.search);
-    var slug = params.get("servicio");
+    var slug = new URLSearchParams(window.location.search).get("servicio");
     if (!slug) return;
     var match = $$("option[data-slug]", select).filter(function (o) { return o.getAttribute("data-slug") === slug; })[0];
     if (match) select.value = match.value;
   }
 
-  /* ---------------------------------------------------------------------
-     Cookie / RGPD banner
-     --------------------------------------------------------------------- */
-  function initCookieBanner() {
-    var banner = $("[data-cookie-banner]");
-    if (!banner) return;
-    var whatsapp = $(".whatsapp-float");
-    var KEY = "seriart-cookie-consent";
-    try {
-      if (localStorage.getItem(KEY)) return;
-    } catch (e) { /* localStorage unavailable — show banner anyway */ }
-    setTimeout(function () {
-      banner.classList.add("is-visible");
-      if (whatsapp) whatsapp.classList.add("is-raised");
-    }, 600);
-    $$("[data-cookie-action]", banner).forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        try { localStorage.setItem(KEY, btn.getAttribute("data-cookie-action")); } catch (e) {}
-        banner.classList.remove("is-visible");
-        if (whatsapp) whatsapp.classList.remove("is-raised");
-      });
+  /* Thank-you page copy depends on which form was sent */
+  function initThanks() {
+    var title = $("[data-thanks-title]");
+    if (!title) return;
+    var tipo = new URLSearchParams(window.location.search).get("tipo");
+    if (tipo === "presupuesto") {
+      title.textContent = "Solicitud recibida";
+      $("[data-thanks-text]").textContent = "Gracias. Revisamos tu proyecto y te enviamos el presupuesto lo antes posible. Si tienes logo o diseño, puedes mandárnoslo ya por WhatsApp o email.";
+    }
+  }
+
+  /* Google Maps only loads after an explicit click (no third-party cookies before) */
+  function initMap() {
+    var wrap = $("[data-map]");
+    if (!wrap) return;
+    var btn = $("[data-map-load]", wrap);
+    btn.addEventListener("click", function () {
+      var iframe = document.createElement("iframe");
+      iframe.src = wrap.getAttribute("data-map-src");
+      iframe.title = "Ubicación del taller de Seriart en Dénia";
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      wrap.appendChild(iframe);
+      $(".map-facade-inner", wrap).hidden = true;
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Credits page — fetch + render (progressive: only on creditos.html)
-     --------------------------------------------------------------------- */
+  /* Credits page */
   function initCredits() {
     var list = $("[data-credits]");
     if (!list) return;
-    var base = list.getAttribute("data-credits-base") || "assets/credits.json";
-    fetch(base).then(function (r) { return r.json(); }).then(function (credits) {
-      var html = Object.keys(credits).map(function (id) {
+    fetch(list.getAttribute("data-credits-base")).then(function (r) { return r.json(); }).then(function (credits) {
+      list.innerHTML = "";
+      Object.keys(credits).forEach(function (id) {
         var c = credits[id];
-        return "<li><strong>" + (c.title || id) + "</strong> — " +
-          (c.creator_url ? "<a href=\"" + c.creator_url + "\" target=\"_blank\" rel=\"noopener\">" + c.creator + "</a>" : c.creator) +
-          " (" + c.source + ") · <a href=\"" + c.license_url + "\" target=\"_blank\" rel=\"noopener\">" + c.license.toUpperCase() + "</a>" +
-          " · <a href=\"" + c.foreign_landing_url + "\" target=\"_blank\" rel=\"noopener\">Ver original ↗</a></li>";
-      }).join("");
-      list.innerHTML = html;
+        var li = document.createElement("li");
+        var strong = document.createElement("strong");
+        strong.textContent = c.title || id;
+        li.appendChild(strong);
+        li.appendChild(document.createTextNode(" — " + c.creator + " (" + c.source + ") · "));
+        var lic = document.createElement("a");
+        lic.href = c.license_url; lic.target = "_blank"; lic.rel = "noopener";
+        lic.textContent = String(c.license).toUpperCase();
+        li.appendChild(lic);
+        li.appendChild(document.createTextNode(" · "));
+        var orig = document.createElement("a");
+        orig.href = c.foreign_landing_url; orig.target = "_blank"; orig.rel = "noopener";
+        orig.textContent = "Ver original";
+        li.appendChild(orig);
+        list.appendChild(li);
+      });
     }).catch(function () { list.innerHTML = "<li>No se pudieron cargar los créditos.</li>"; });
   }
 
   function boot() {
-    safe(initWhatsapp, "initWhatsapp");
-    safe(initHeaderScroll, "initHeaderScroll");
-    safe(initMegaMenu, "initMegaMenu");
-    safe(initMobileNav, "initMobileNav");
-    safe(initReveals, "initReveals");
-    safe(initTilt, "initTilt");
-    safe(initMagnetic, "initMagnetic");
-    safe(initCountUp, "initCountUp");
-    safe(initFaq, "initFaq");
-    safe(initPortfolioFilter, "initPortfolioFilter");
-    safe(initLightbox, "initLightbox");
-    safe(initCompare, "initCompare");
-    safe(initForms, "initForms");
-    safe(initServicePreselect, "initServicePreselect");
-    safe(initCookieBanner, "initCookieBanner");
-    safe(initCredits, "initCredits");
-    document.documentElement.classList.add("is-ready");
+    safe(initHeader, "header");
+    safe(initMega, "mega");
+    safe(initMobileNav, "mobileNav");
+    safe(initReveals, "reveals");
+    safe(initHeroVideo, "heroVideo");
+    safe(initFilter, "filter");
+    safe(initLightbox, "lightbox");
+    safe(initForms, "forms");
+    safe(initServicePreselect, "servicePreselect");
+    safe(initThanks, "thanks");
+    safe(initMap, "map");
+    safe(initCredits, "credits");
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
-  } else {
-    boot();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
 })();

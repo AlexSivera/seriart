@@ -9,24 +9,26 @@
   <meta name="robots" content="index, follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Seriart">
+  <meta property="og:url" content="https://www.seriart.es/serigrafia/textil.html">
   <meta property="og:title" content="Serigrafía textil en Denia | Camisetas y ropa personalizada — Seriart">
   <meta property="og:description" content="Estampación serigráfica sobre camisetas, sudaderas y textil para empresas, comercios y eventos en Denia, Alicante. Tiradas cortas y grandes.">
-  <meta property="og:image" content="../assets/img/screen-printing-process.jpg">
+  <meta property="og:image" content="https://www.seriart.es/assets/img/screen-printing-process.jpg">
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#2b98d8">
+  <meta name="theme-color" content="#0d1822">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="preload" as="image" href="../assets/img/screen-printing-process.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="../styles.css?v=20260731">
+  <link rel="preload" href="../assets/fonts/barlow-sc-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" type="image/webp" imagesrcset="../assets/img/opt/screen-printing-process-640.webp 640w, ../assets/img/opt/screen-printing-process-1024.webp 1024w" imagesizes="(min-width: 960px) 46vw, 100vw" fetchpriority="high">
+  <link rel="stylesheet" href="../styles.css?v=20260926">
+  <script>document.documentElement.classList.add("js")</script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Seriart",
   "image": "https://www.seriart.es/assets/img/hero-vehicle-wrap.jpg",
+  "logo": "https://www.seriart.es/assets/img/logo-trim.png",
   "url": "https://www.seriart.es/",
   "telephone": "+34966433033",
   "email": "alexitosivera@gmail.com",
@@ -55,178 +57,211 @@
       "closes": "14:00"
     }
   ],
-  "description": "Taller de serigrafía, personalización textil, ropa laboral, merchandising, rotulación y gran formato en Denia, Alicante. Más de 20 años de experiencia, clientes en toda España."
+  "description": "Rotulación de vehículos y negocios, vinilo, serigrafía textil, ropa laboral e impresión de gran formato en Dénia, Alicante. Diseño, fabricación e instalación desde 2002."
 }
   </script>
 </head>
-<body class="">
+<body>
   <a class="skip-link" href="#main">Ir al contenido</a>
   <header class="site-header" data-header>
-    <div class="nav-inner">
-      <a class="brand" href="../index.html" aria-label="Seriart — inicio">
-        <img class="brand-logo" src="../assets/img/logo.png" alt="Seriart — taller de serigrafía" width="160" height="160">
-        <span class="brand-sub">Denia · Alicante</span>
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Seriart, ir al inicio">
+        <img class="brand-logo brand-logo--color" src="../assets/img/logo-trim.png" alt="" width="177" height="160">
+        <img class="brand-logo brand-logo--white" src="../assets/img/logo-white.png" alt="" width="177" height="160">
+        <span class="brand-text"><strong>Rotulación y serigrafía</strong><span>Dénia · desde 2002</span></span>
       </a>
       <nav class="nav-primary" aria-label="Principal">
-        <a class="nav-link" href="../index.html">Inicio</a>
-        <a class="nav-link" href="../servicios.html" data-mega-trigger aria-haspopup="true" aria-expanded="false">Servicios <span class="nav-link-caret" aria-hidden="true">▾</span></a>
+        <button class="nav-link" type="button" data-mega-trigger aria-expanded="false" aria-controls="mega" data-current="true">Servicios <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <a class="nav-link" href="../trabajos.html">Trabajos</a>
         <a class="nav-link" href="../nosotros.html">Nosotros</a>
         <a class="nav-link" href="../contacto.html">Contacto</a>
       </nav>
-      <div class="nav-actions">
-        <a class="btn btn-primary nav-cta" data-magnetic href="../presupuesto.html">Pedir presupuesto</a>
-        <button class="nav-toggle" data-nav-toggle aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+34966433033"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z" stroke-linejoin="round"/></svg><span>966 43 30 33</span></a>
+        <a class="btn btn-primary btn-sm" href="../presupuesto.html"><span class="hide-sm">Pedir presupuesto</span><span class="show-sm">Presupuesto</span></a>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav">
+          <span></span><span></span>
         </button>
       </div>
     </div>
-    <div class="mega-menu" data-mega-menu>
-      <div class="mega-menu-inner"><div class="mega-col">
-            <p class="mega-col-title">Serigrafía</p>
-            <ul><li><a class="mega-link" href="../serigrafia/textil.html">Serigrafía textil</a></li><li><a class="mega-link" href="../serigrafia/ropa-laboral.html">Ropa laboral personalizada</a></li><li><a class="mega-link" href="../serigrafia/merchandising.html">Merchandising</a></li></ul>
-            <div class="mega-col-all"><a class="btn-ghost" href="../servicios/serigrafia.html">Ver serigrafía</a></div>
-          </div><div class="mega-col">
-            <p class="mega-col-title">Rotulación</p>
-            <ul><li><a class="mega-link" href="../rotulacion/vehiculos.html">Vehículos</a></li><li><a class="mega-link" href="../rotulacion/rotulos-negocios.html">Rótulos para negocios</a></li><li><a class="mega-link" href="../rotulacion/letras-corporeas.html">Letras corpóreas</a></li><li><a class="mega-link" href="../rotulacion/escaparates.html">Escaparates</a></li><li><a class="mega-link" href="../rotulacion/vinilos.html">Vinilos decorativos</a></li></ul>
-            <div class="mega-col-all"><a class="btn-ghost" href="../servicios/rotulacion.html">Ver rotulación</a></div>
-          </div><div class="mega-col">
-            <p class="mega-col-title">Gran formato</p>
-            <ul><li><a class="mega-link" href="../gran-formato/lonas.html">Lonas publicitarias</a></li><li><a class="mega-link" href="../gran-formato/banners.html">Banners y pancartas</a></li><li><a class="mega-link" href="../gran-formato/roll-ups.html">Roll-ups</a></li><li><a class="mega-link" href="../gran-formato/carteleria.html">Cartelería</a></li></ul>
-            <div class="mega-col-all"><a class="btn-ghost" href="../servicios/gran-formato.html">Ver gran formato</a></div>
-          </div></div>
+    <div class="mega" id="mega" data-mega hidden>
+      <div class="mega-inner">
+        <div class="mega-col">
+          <a class="mega-title" href="../servicios/rotulacion.html">Rotulación y vinilo <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul><li><a href="../rotulacion/vehiculos.html">Vehículos</a></li><li><a href="../rotulacion/rotulos-negocios.html">Rótulos para negocios</a></li><li><a href="../rotulacion/letras-corporeas.html">Letras corpóreas</a></li><li><a href="../rotulacion/escaparates.html">Escaparates</a></li><li><a href="../rotulacion/vinilos.html">Vinilos decorativos</a></li></ul>
+        </div><div class="mega-col">
+          <a class="mega-title" href="../servicios/serigrafia.html">Serigrafía <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul><li><a href="../serigrafia/textil.html">Serigrafía textil</a></li><li><a href="../serigrafia/ropa-laboral.html">Ropa laboral personalizada</a></li><li><a href="../serigrafia/merchandising.html">Merchandising</a></li></ul>
+        </div><div class="mega-col">
+          <a class="mega-title" href="../servicios/gran-formato.html">Gran formato <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul><li><a href="../gran-formato/lonas.html">Lonas publicitarias</a></li><li><a href="../gran-formato/banners.html">Banners y pancartas</a></li><li><a href="../gran-formato/roll-ups.html">Roll-ups</a></li><li><a href="../gran-formato/carteleria.html">Cartelería</a></li></ul>
+        </div>
+        <a class="mega-promo" href="../servicios.html">
+          <img src="../assets/img/opt/workshop-machine-640.webp" srcset="../assets/img/opt/workshop-machine-640.webp 640w, ../assets/img/opt/workshop-machine-1280.webp 1280w, ../assets/img/opt/workshop-machine-1920.webp 1920w" sizes="320px" width="2448" height="2448" alt="" loading="lazy" decoding="async">
+          <span class="mega-promo-body"><strong>Todos los servicios</strong><span>Rotulación, vinilo, serigrafía y gran formato desde un mismo taller.</span></span>
+        </a>
+      </div>
     </div>
   </header>
-  <div class="nav-mobile" data-nav-mobile>
-    <a class="nav-mobile-link" href="../index.html">Inicio</a>
-    <button class="nav-mobile-link" data-nav-mobile-sub-toggle aria-expanded="false" aria-controls="mob-sub-0">Serigrafía <span class="nav-mobile-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-        <div class="nav-mobile-sub" id="mob-sub-0">
-          <a href="../servicios/serigrafia.html">Ver todo serigrafía</a>
-          <a href="../serigrafia/textil.html">Serigrafía textil</a><a href="../serigrafia/ropa-laboral.html">Ropa laboral personalizada</a><a href="../serigrafia/merchandising.html">Merchandising</a>
-        </div><button class="nav-mobile-link" data-nav-mobile-sub-toggle aria-expanded="false" aria-controls="mob-sub-1">Rotulación <span class="nav-mobile-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-        <div class="nav-mobile-sub" id="mob-sub-1">
-          <a href="../servicios/rotulacion.html">Ver todo rotulación</a>
-          <a href="../rotulacion/vehiculos.html">Vehículos</a><a href="../rotulacion/rotulos-negocios.html">Rótulos para negocios</a><a href="../rotulacion/letras-corporeas.html">Letras corpóreas</a><a href="../rotulacion/escaparates.html">Escaparates</a><a href="../rotulacion/vinilos.html">Vinilos decorativos</a>
-        </div><button class="nav-mobile-link" data-nav-mobile-sub-toggle aria-expanded="false" aria-controls="mob-sub-2">Gran formato <span class="nav-mobile-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-        <div class="nav-mobile-sub" id="mob-sub-2">
-          <a href="../servicios/gran-formato.html">Ver todo gran formato</a>
-          <a href="../gran-formato/lonas.html">Lonas publicitarias</a><a href="../gran-formato/banners.html">Banners y pancartas</a><a href="../gran-formato/roll-ups.html">Roll-ups</a><a href="../gran-formato/carteleria.html">Cartelería</a>
+  <div class="mnav" id="mnav" data-mnav hidden>
+    <nav class="mnav-inner" aria-label="Menú móvil">
+      <div class="mnav-group">
+        <button class="mnav-link" type="button" data-mnav-sub aria-expanded="false" aria-controls="mnav-sub-0">Rotulación y vinilo <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="mnav-sub" id="mnav-sub-0" hidden>
+          <a href="../servicios/rotulacion.html">Todo rotulación y vinilo</a><a href="../rotulacion/vehiculos.html">Vehículos</a><a href="../rotulacion/rotulos-negocios.html">Rótulos para negocios</a><a href="../rotulacion/letras-corporeas.html">Letras corpóreas</a><a href="../rotulacion/escaparates.html">Escaparates</a><a href="../rotulacion/vinilos.html">Vinilos decorativos</a>
         </div>
-    <a class="nav-mobile-link" href="../servicios.html">Todos los servicios</a>
-    <a class="nav-mobile-link" href="../trabajos.html">Trabajos</a>
-    <a class="nav-mobile-link" href="../nosotros.html">Nosotros</a>
-    <a class="nav-mobile-link" href="../contacto.html">Contacto</a>
-    <a class="btn btn-primary btn-block nav-mobile-cta" href="../presupuesto.html">Pedir presupuesto</a>
+      </div><div class="mnav-group">
+        <button class="mnav-link" type="button" data-mnav-sub aria-expanded="false" aria-controls="mnav-sub-1">Serigrafía <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="mnav-sub" id="mnav-sub-1" hidden>
+          <a href="../servicios/serigrafia.html">Todo serigrafía</a><a href="../serigrafia/textil.html">Serigrafía textil</a><a href="../serigrafia/ropa-laboral.html">Ropa laboral personalizada</a><a href="../serigrafia/merchandising.html">Merchandising</a>
+        </div>
+      </div><div class="mnav-group">
+        <button class="mnav-link" type="button" data-mnav-sub aria-expanded="false" aria-controls="mnav-sub-2">Gran formato <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="mnav-sub" id="mnav-sub-2" hidden>
+          <a href="../servicios/gran-formato.html">Todo gran formato</a><a href="../gran-formato/lonas.html">Lonas publicitarias</a><a href="../gran-formato/banners.html">Banners y pancartas</a><a href="../gran-formato/roll-ups.html">Roll-ups</a><a href="../gran-formato/carteleria.html">Cartelería</a>
+        </div>
+      </div>
+      <a class="mnav-link" href="../servicios.html">Todos los servicios</a>
+      <a class="mnav-link" href="../trabajos.html">Trabajos</a>
+      <a class="mnav-link" href="../nosotros.html">Nosotros</a>
+      <a class="mnav-link" href="../contacto.html">Contacto</a>
+      <div class="mnav-actions">
+        <a class="btn btn-primary btn-block" href="../presupuesto.html">Pedir presupuesto</a>
+        <a class="btn btn-outline btn-block" href="tel:+34966433033"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z" stroke-linejoin="round"/></svg> Llamar al 966 43 30 33</a>
+      </div>
+    </nav>
   </div>
   <main id="main">
-  <section class="page-hero">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Migas de pan"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="../servicios.html">Servicios</a><span aria-hidden="true">/</span><a href="../servicios/serigrafia.html">Serigrafía</a><span aria-hidden="true">/</span><span class="current">Serigrafía textil</span></nav>
-      <p class="eyebrow">Serigrafía · Textil</p>
-      <h1 class="reveal">Serigrafía textil</h1>
-      <p class="lead reveal">Estampamos camisetas, sudaderas, polos y textil promocional con tintas de calidad que aguantan el lavado y el uso diario.</p>
-      <div class="page-hero-actions reveal">
-        <a class="btn btn-primary" data-magnetic href="../presupuesto.html?servicio=textil">Solicita presupuesto</a>
-        <a class="btn btn-secondary" href="../trabajos.html">Ver trabajos realizados</a>
+  <section class="page-hero has-media">
+    <div class="container page-hero-grid">
+      <div class="page-hero-text">
+        <nav class="breadcrumb" aria-label="Migas de pan"><ol><li><a href="../index.html">Inicio</a></li><li><a href="../servicios.html">Servicios</a></li><li><a href="../servicios/serigrafia.html">Serigrafía</a></li><li><span aria-current="page">Serigrafía textil</span></li></ol></nav>
+        <p class="kicker">Serigrafía</p>
+        <h1>Serigrafía textil</h1>
+        <p class="page-hero-lead">Estampamos camisetas, sudaderas, polos y textil promocional con tintas de calidad que aguantan el lavado y el uso diario.</p>
+        <div class="page-hero-actions"><a class="btn btn-primary" href="../presupuesto.html?servicio=textil">Pedir presupuesto</a><a class="btn btn-outline" href="../trabajos.html">Ver trabajos</a></div>
       </div>
+      <div class="page-hero-media"><img src="../assets/img/opt/screen-printing-process-640.webp" srcset="../assets/img/opt/screen-printing-process-640.webp 640w, ../assets/img/opt/screen-printing-process-1024.webp 1024w" sizes="(min-width: 960px) 46vw, 100vw" width="1024" height="768" alt="Serigrafía textil" fetchpriority="high" decoding="async"></div>
     </div>
   </section>
   <section class="section">
-    <div class="container intro-grid">
-      <img class="reveal" src="../assets/img/screen-printing-process.jpg" alt="Serigrafía textil" loading="lazy" decoding="async">
-      <div class="intro-text reveal">
-        <p class="eyebrow">En qué consiste</p>
-        <h2 style="font-size:1.7rem;margin-bottom:1rem;">Serigrafía textil</h2>
+    <div class="container intro-split">
+      <div class="intro-copy reveal">
+        <p class="kicker">En qué consiste</p>
+        <h2>Cómo lo hacemos</h2>
         <p>La serigrafía textil sigue siendo, después de más de veinte años, la técnica que mejor resultado da en prendas de uso continuo: el color queda integrado en la fibra y aguanta muchos más lavados que un vinilo o una impresión digital directa.</p><p>Preparamos cada pedido a medida: elegimos el tipo de tinta según el tejido, hacemos una prueba de color si el pedido lo requiere y ajustamos el número de pantallas al diseño, desde un logotipo a una tinta hasta ilustraciones más complejas.</p>
       </div>
+      <div class="intro-list reveal">
+        <h3>Tipos de trabajo</h3>
+        <ul class="checklist"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Camisetas de algodón y técnicas</strong><span>Para eventos, comercios, asociaciones y regalo de empresa.</span></div></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Sudaderas y chaquetas</strong><span>Estampado grande en espalda o detalle en pecho y manga.</span></div></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Polos</strong><span>Logotipo discreto en pecho, ideal para imagen de empresa.</span></div></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Textil deportivo</strong><span>Equipaciones con nombres y dorsales numerados.</span></div></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Bolsas y totebags</strong><span>Para tiendas, ferias y campañas de comunicación.</span></div></li></ul>
+      </div>
     </div>
   </section>
-  <section class="section section-tint">
+  <section class="section section-alt">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Qué hacemos</p><h2>Tipos de trabajo</h2></div>
-      <div class="types-grid"><div class="type-card reveal"><h3>Camisetas de algodón y técnicas</h3><p>Para eventos, comercios, asociaciones y regalo de empresa.</p></div><div class="type-card reveal"><h3>Sudaderas y chaquetas</h3><p>Estampado grande en espalda o detalle en pecho y manga.</p></div><div class="type-card reveal"><h3>Polos</h3><p>Logotipo discreto en pecho, ideal para imagen de empresa.</p></div><div class="type-card reveal"><h3>Textil deportivo</h3><p>Equipaciones con nombres y dorsales numerados.</p></div><div class="type-card reveal"><h3>Bolsas y totebags</h3><p>Para tiendas, ferias y campañas de comunicación.</p></div></div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="section-head"><p class="eyebrow">Por qué Seriart</p><h2>Por qué elegir Seriart</h2></div>
-      <div class="feature-grid"><div class="card feature-card card-lift reveal" data-tilt>
-      <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6l-8-3Z" stroke-linejoin="round"/></svg></div>
-      <h3>Tintas resistentes</h3><p>Aguantan lavados y uso diario sin perder color.</p>
-    </div><div class="card feature-card card-lift reveal" data-tilt>
-      <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 9 5-9 5-9-5 9-5Z" stroke-linejoin="round"/><path d="m3 13 9 5 9-5M3 8l9 5 9-5" stroke-linejoin="round"/></svg></div>
-      <h3>Tiradas cortas y largas</h3><p>Nos adaptamos al volumen real de tu pedido.</p>
-    </div><div class="card feature-card card-lift reveal" data-tilt>
-      <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
-      <h3>Plazos claros</h3><p>Sabes desde el presupuesto cuándo estará listo.</p>
-    </div><div class="card feature-card card-lift reveal" data-tilt>
-      <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" stroke-linecap="round"/></svg></div>
-      <h3>20+ años de oficio</h3><p>Un taller físico que controla cada fase del proceso.</p>
-    </div></div>
-    </div>
-  </section>
-  <section class="section section-tint">
-    <div class="container">
-      <div class="section-head"><p class="eyebrow">Galería</p><h2>Serigrafía textil</h2></div>
-      <div class="gallery-grid"><a class="gallery-item reveal" href="../trabajos.html" data-lightbox-src="../assets/img/tshirt-stack.jpg" data-lightbox-alt="Camisetas estampadas en serigrafía">
-      <img src="../assets/img/tshirt-stack.jpg" alt="Camisetas estampadas en serigrafía" loading="lazy" decoding="async">
-      <div class="gallery-item-overlay"><span>Camisetas estampadas en serigrafía</span></div>
-    </a><a class="gallery-item reveal" href="../trabajos.html" data-lightbox-src="../assets/img/screen-printing-process.jpg" data-lightbox-alt="Diseño serigrafiado sobre textil">
-      <img src="../assets/img/screen-printing-process.jpg" alt="Diseño serigrafiado sobre textil" loading="lazy" decoding="async">
-      <div class="gallery-item-overlay"><span>Diseño serigrafiado sobre textil</span></div>
-    </a><a class="gallery-item reveal" href="../trabajos.html" data-lightbox-src="../assets/img/workshop-machine.jpg" data-lightbox-alt="Preparación de pantallas de serigrafía">
-      <img src="../assets/img/workshop-machine.jpg" alt="Preparación de pantallas de serigrafía" loading="lazy" decoding="async">
-      <div class="gallery-item-overlay"><span>Preparación de pantallas de serigrafía</span></div>
-    </a></div>
-      <div style="margin-top:2rem;"><a class="btn-ghost" href="../trabajos.html">Ver todos los trabajos</a></div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="section-head"><p class="eyebrow">Cómo trabajamos</p><h2>De la idea a la instalación</h2></div>
-      <div class="process-grid"><div class="process-step reveal">
-      <span class="process-num">01</span>
-      <h3>Idea</h3><p>Nos cuentas qué necesitas, en qué cantidad y para cuándo. Te asesoramos sobre materiales y acabados.</p>
-    </div><div class="process-step reveal">
-      <span class="process-num">02</span>
-      <h3>Diseño</h3><p>Preparamos o ajustamos el diseño y te mostramos una prueba antes de producir nada.</p>
-    </div><div class="process-step reveal">
-      <span class="process-num">03</span>
-      <h3>Fabricación</h3><p>Producimos en nuestro taller de Denia, con control de calidad en cada pieza.</p>
-    </div><div class="process-step reveal">
-      <span class="process-num">04</span>
-      <h3>Instalación</h3><p>Entregamos o instalamos, en Denia o donde haga falta, y revisamos el resultado contigo.</p>
-    </div></div>
-    </div>
-  </section>
-  <section class="section section-tint">
-    <div class="container">
-      <div class="section-head"><p class="eyebrow">Preguntas frecuentes</p><h2>Resolvemos tus dudas</h2></div>
-      <div class="faq-list"><div class="faq-item">
-      <button class="faq-question">¿Cuál es la cantidad mínima para un pedido?<span class="plus" aria-hidden="true"></span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">Trabajamos tanto tiradas cortas como pedidos grandes. Cuéntanos la cantidad que necesitas y te decimos la técnica y el precio que mejor se ajustan.</div></div>
-    </div><div class="faq-item">
-      <button class="faq-question">¿Puedo llevar mis propias prendas?<span class="plus" aria-hidden="true"></span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">Sí, puedes traer tus propias camisetas o sudaderas para que las estampemos, o pedirnos que te las suministremos nosotros.</div></div>
-    </div><div class="faq-item">
-      <button class="faq-question">¿Cuánto tarda un pedido de serigrafía textil?<span class="plus" aria-hidden="true"></span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">Depende del volumen y del número de colores del diseño. Te damos un plazo concreto al confirmar el presupuesto.</div></div>
-    </div><div class="faq-item">
-      <button class="faq-question">¿Aguanta la impresión muchos lavados?<span class="plus" aria-hidden="true"></span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">Sí, es una de las ventajas principales de la serigrafía frente a otras técnicas de impresión textil.</div></div>
-    </div></div>
-    </div>
-  </section>
-  <section class="section-tight">
-    <div class="container">
-      <div class="cta-band reveal">
+      <div class="section-head">
         <div>
-          <h2>¿Empezamos con tu proyecto de serigrafía textil?</h2>
-          <p>Cuéntanos qué necesitas y te enviamos un presupuesto sin compromiso.</p>
+          <p class="kicker">Por qué Seriart</p>
+          <h2>Un solo taller, de principio a fin</h2>
         </div>
-        <div class="cta-band-actions">
-          <a class="btn btn-primary" data-magnetic href="../presupuesto.html?servicio=textil">Solicita presupuesto</a>
-          <a class="btn btn-secondary" data-whatsapp-link href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+        
+      </div>
+      <div class="benefits"><div class="benefit reveal">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6l-8-3Z" stroke-linejoin="round"/></svg></span>
+        <h3>Tintas resistentes</h3>
+        <p>Aguantan lavados y uso diario sin perder color.</p>
+      </div><div class="benefit reveal">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z" stroke-linejoin="round"/><path d="m3 13 9 5 9-5" stroke-linejoin="round"/></svg></span>
+        <h3>Tiradas cortas y largas</h3>
+        <p>Nos adaptamos al volumen real de tu pedido.</p>
+      </div><div class="benefit reveal">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></span>
+        <h3>Plazos claros</h3>
+        <p>Sabes desde el presupuesto cuándo estará listo.</p>
+      </div><div class="benefit reveal">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" stroke-linecap="round"/></svg></span>
+        <h3>Desde 2002</h3>
+        <p>Un taller físico que controla cada fase del proceso.</p>
+      </div></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Galería</p>
+          <h2>Trabajos de serigrafía textil</h2>
+        </div>
+        <a class="link-arrow section-head-link" href="../trabajos.html">Ver todos los trabajos <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="gallery-grid"><a class="gallery-item reveal-wipe" href="../assets/img/opt/tshirt-stack-1024.webp" data-lightbox-item="textil" data-caption="Camisetas estampadas en serigrafía">
+        <img src="../assets/img/opt/tshirt-stack-640.webp" srcset="../assets/img/opt/tshirt-stack-640.webp 640w, ../assets/img/opt/tshirt-stack-1024.webp 1024w" sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="1024" height="717" alt="Camisetas estampadas en serigrafía" loading="lazy" decoding="async">
+      </a><a class="gallery-item reveal-wipe" href="../assets/img/opt/screen-printing-process-1024.webp" data-lightbox-item="textil" data-caption="Diseño serigrafiado sobre textil">
+        <img src="../assets/img/opt/screen-printing-process-640.webp" srcset="../assets/img/opt/screen-printing-process-640.webp 640w, ../assets/img/opt/screen-printing-process-1024.webp 1024w" sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="1024" height="768" alt="Diseño serigrafiado sobre textil" loading="lazy" decoding="async">
+      </a><a class="gallery-item reveal-wipe" href="../assets/img/opt/workshop-machine-1920.webp" data-lightbox-item="textil" data-caption="Preparación de pantallas de serigrafía">
+        <img src="../assets/img/opt/workshop-machine-640.webp" srcset="../assets/img/opt/workshop-machine-640.webp 640w, ../assets/img/opt/workshop-machine-1280.webp 1280w, ../assets/img/opt/workshop-machine-1920.webp 1920w" sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="2448" height="2448" alt="Preparación de pantallas de serigrafía" loading="lazy" decoding="async">
+      </a></div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container faq-split">
+      <div class="faq-aside">
+        <p class="kicker">Preguntas frecuentes</p>
+        <h2>Lo que suelen preguntarnos</h2>
+        <p>¿Tienes otra duda? Escríbenos y te contestamos lo antes posible.</p>
+        <a class="btn btn-outline" href="https://wa.me/34651358822?text=Hola%2C%20tengo%20una%20duda%20sobre%20un%20trabajo." target="_blank" rel="noopener"><svg viewBox="0 0 32 32" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3 9 3 16c0 2.4.7 4.7 1.9 6.7L3 29l6.5-1.8A13 13 0 0 0 16 29c7 0 13-6 13-13S23 3 16 3Zm0 23.6c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 26.6 16 10.6 10.6 0 0 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C10 11 9.5 12 9.5 13.4S10.6 16.3 10.8 16.6c.1.2 2.2 3.4 5.4 4.7 2 .8 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg> Preguntar por WhatsApp</a>
+      </div>
+      <div class="faq-list"><details class="faq-item">
+          <summary>¿Cuál es la cantidad mínima para un pedido?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <div class="faq-answer"><p>Trabajamos tanto tiradas cortas como pedidos grandes. Cuéntanos la cantidad que necesitas y te decimos la técnica y el precio que mejor se ajustan.</p></div>
+        </details><details class="faq-item">
+          <summary>¿Puedo llevar mis propias prendas?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <div class="faq-answer"><p>Sí, puedes traer tus propias camisetas o sudaderas para que las estampemos, o pedirnos que te las suministremos nosotros.</p></div>
+        </details><details class="faq-item">
+          <summary>¿Cuánto tarda un pedido de serigrafía textil?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <div class="faq-answer"><p>Depende del volumen y del número de colores del diseño. Te damos un plazo concreto al confirmar el presupuesto.</p></div>
+        </details><details class="faq-item">
+          <summary>¿Aguanta la impresión muchos lavados?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <div class="faq-answer"><p>Sí, es una de las ventajas principales de la serigrafía frente a otras técnicas de impresión textil.</p></div>
+        </details></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Relacionado</p>
+          <h2>Otros servicios de serigrafía</h2>
+        </div>
+        
+      </div>
+      <div class="related-grid"><a class="related-card" href="../serigrafia/ropa-laboral.html">
+        <img src="../assets/img/opt/workwear-640.webp" srcset="../assets/img/opt/workwear-640.webp 640w, ../assets/img/opt/workwear-1280.webp 1280w, ../assets/img/opt/workwear-1920.webp 1920w" sizes="(min-width: 960px) 22vw, 50vw" width="2048" height="2048" alt="" loading="lazy" decoding="async">
+        <span>Ropa laboral personalizada <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a><a class="related-card" href="../serigrafia/merchandising.html">
+        <img src="../assets/img/opt/merch-items-640.webp" srcset="../assets/img/opt/merch-items-640.webp 640w, ../assets/img/opt/merch-items-1280.webp 1280w, ../assets/img/opt/merch-items-1920.webp 1920w" sizes="(min-width: 960px) 22vw, 50vw" width="3056" height="3056" alt="" loading="lazy" decoding="async">
+        <span>Merchandising <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a></div>
+    </div>
+  </section>
+  <section class="section section-cta">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="cta-copy">
+          <p class="kicker">Presupuesto sin compromiso</p>
+          <h2>¿Hablamos de tu proyecto de serigrafía textil?</h2>
+          <p>Te respondemos con un presupuesto claro, detallado y sin compromiso.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="cta-action is-primary" href="../presupuesto.html?servicio=textil">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4Z" stroke-linejoin="round"/><path d="m13.5 6.5 4 4"/></svg><span><strong>Pedir presupuesto</strong><small>Formulario, 2 minutos</small></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="cta-action" href="https://wa.me/34651358822?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto%20para%20un%20proyecto." target="_blank" rel="noopener">
+            <svg viewBox="0 0 32 32" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3 9 3 16c0 2.4.7 4.7 1.9 6.7L3 29l6.5-1.8A13 13 0 0 0 16 29c7 0 13-6 13-13S23 3 16 3Zm0 23.6c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 26.6 16 10.6 10.6 0 0 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C10 11 9.5 12 9.5 13.4S10.6 16.3 10.8 16.6c.1.2 2.2 3.4 5.4 4.7 2 .8 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg><span><strong>WhatsApp</strong><small>651 35 88 22</small></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="cta-action" href="tel:+34966433033">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z" stroke-linejoin="round"/></svg><span><strong>Llamar</strong><small>966 43 30 33 · L–V, 8:00–14:00</small></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -236,65 +271,55 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img class="footer-logo" src="../assets/img/logo.png" alt="Seriart" width="140" height="140">
-          <p class="footer-about">Taller de serigrafía, rotulación e impresión de gran formato en Denia. Trabajamos para empresas, comercios y particulares de toda España desde 2002.</p>
-          <div class="badge-row">
-            <a class="btn btn-secondary" href="../presupuesto.html" style="font-size:.85rem;padding:.6rem 1.1rem;">Pedir presupuesto</a>
-          </div>
+          <img class="footer-logo" src="../assets/img/logo-white.png" alt="Seriart" width="177" height="160" loading="lazy">
+          <p>Rotulación, vinilo, serigrafía e impresión de gran formato. Diseñamos, fabricamos e instalamos desde nuestro taller de Dénia desde 2002.</p>
         </div>
-        <div class="footer-col"><h4>Serigrafía</h4><ul><li><a href="../serigrafia/textil.html">Serigrafía textil</a></li><li><a href="../serigrafia/ropa-laboral.html">Ropa laboral personalizada</a></li><li><a href="../serigrafia/merchandising.html">Merchandising</a></li></ul></div><div class="footer-col"><h4>Rotulación</h4><ul><li><a href="../rotulacion/vehiculos.html">Vehículos</a></li><li><a href="../rotulacion/rotulos-negocios.html">Rótulos para negocios</a></li><li><a href="../rotulacion/letras-corporeas.html">Letras corpóreas</a></li><li><a href="../rotulacion/escaparates.html">Escaparates</a></li><li><a href="../rotulacion/vinilos.html">Vinilos decorativos</a></li></ul></div><div class="footer-col"><h4>Gran formato</h4><ul><li><a href="../gran-formato/lonas.html">Lonas publicitarias</a></li><li><a href="../gran-formato/banners.html">Banners y pancartas</a></li><li><a href="../gran-formato/roll-ups.html">Roll-ups</a></li><li><a href="../gran-formato/carteleria.html">Cartelería</a></li></ul></div>
         <div class="footer-col">
-          <h4>Contacto</h4>
+          <h2>Servicios</h2>
+          <ul><li><a href="../servicios/rotulacion.html">Rotulación y vinilo</a></li><li><a href="../servicios/serigrafia.html">Serigrafía</a></li><li><a href="../servicios/gran-formato.html">Gran formato</a></li><li><a href="../rotulacion/vehiculos.html">Rotulación de vehículos</a></li><li><a href="../serigrafia/ropa-laboral.html">Ropa laboral</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h2>Seriart</h2>
           <ul>
-            <li><a href="https://www.google.com/maps?q=Ronda%20de%20les%20Muralles%2C%2020%2C%2003700%20D%C3%A9nia%20(Alicante)" target="_blank" rel="noopener">Ronda de les Muralles, 20, 03700 Dénia (Alicante)</a></li>
-            <li><a href="mailto:alexitosivera@gmail.com">alexitosivera@gmail.com</a></li>
-            <li><a href="tel:+34966433033">966 43 30 33</a></li>
-            <li><a href="../nosotros.html">Sobre el taller</a></li>
-            <li><a href="../contacto.html">Cómo llegar</a></li>
+            <li><a href="../trabajos.html">Trabajos</a></li>
+            <li><a href="../nosotros.html">Nosotros</a></li>
+            <li><a href="../presupuesto.html">Pedir presupuesto</a></li>
+            <li><a href="../contacto.html">Contacto y cómo llegar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Contacto</h2>
+          <ul class="footer-contact">
+            <li><a href="tel:+34966433033"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z" stroke-linejoin="round"/></svg> 966 43 30 33</a></li>
+            <li><a href="https://wa.me/34651358822?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto%20para%20un%20proyecto." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z" stroke-linejoin="round"/></svg> WhatsApp 651 35 88 22</a></li>
+            <li><a href="mailto:alexitosivera@gmail.com"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg> alexitosivera@gmail.com</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Ronda%20de%20les%20Muralles%2C%2020%2C%2003700%20D%C3%A9nia%20(Alicante)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg> Ronda de les Muralles, 20, Dénia</a></li>
+            <li class="footer-hours"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg> Lunes a viernes, 8:00–14:00</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Seriart · Denia, Alicante</span>
-        <div class="footer-bottom-links">
-          <a href="../creditos.html">Créditos fotográficos</a>
+        <span>© 2026 Seriart · Dénia, Alicante</span>
+        <nav class="footer-legal" aria-label="Legal">
           <a href="../legal.html#aviso-legal">Aviso legal</a>
           <a href="../legal.html#privacidad">Privacidad</a>
           <a href="../legal.html#cookies">Cookies</a>
-        </div>
+          <a href="../creditos.html">Créditos</a>
+        </nav>
       </div>
     </div>
   </footer>
-  <a class="whatsapp-float" data-whatsapp-link href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
-    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3 9 3 16c0 2.4.7 4.7 1.9 6.7L3 29l6.5-1.8A13 13 0 0 0 16 29c7 0 13-6 13-13S23 3 16 3Zm0 23.6c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 26.6 16 10.6 10.6 0 0 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C10 11 9.5 12 9.5 13.4S10.6 16.3 10.8 16.6c.1.2 2.2 3.4 5.4 4.7 2 .8 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg>
-  </a>
-  <div class="cookie-banner" data-cookie-banner role="dialog" aria-label="Aviso de cookies">
-    <p>Usamos cookies propias y de terceros para el funcionamiento de la web y para medir la audiencia. Puedes aceptarlas, rechazarlas o leer más en nuestra <a href="../legal.html#cookies">política de cookies</a>.</p>
-    <div class="cookie-actions">
-      <button class="btn btn-primary" data-cookie-action="accepted">Aceptar</button>
-      <button class="btn btn-secondary" data-cookie-action="rejected">Rechazar</button>
-    </div>
+  <a class="wa-float" href="https://wa.me/34651358822?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto%20para%20un%20proyecto." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 32 32" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3 9 3 16c0 2.4.7 4.7 1.9 6.7L3 29l6.5-1.8A13 13 0 0 0 16 29c7 0 13-6 13-13S23 3 16 3Zm0 23.6c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 26.6 16 10.6 10.6 0 0 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C10 11 9.5 12 9.5 13.4S10.6 16.3 10.8 16.6c.1.2 2.2 3.4 5.4 4.7 2 .8 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg></a>
+  <div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Imagen ampliada" hidden>
+    <button class="lb-btn lb-close" type="button" data-lb-close aria-label="Cerrar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    <button class="lb-btn lb-prev" type="button" data-lb-prev aria-label="Imagen anterior"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m15 6-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <figure class="lb-figure">
+      <img data-lb-img src="" alt="">
+      <figcaption><span data-lb-caption></span><span class="lb-count" data-lb-count></span></figcaption>
+    </figure>
+    <button class="lb-btn lb-next" type="button" data-lb-next aria-label="Imagen siguiente"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
-  <div class="lightbox" data-lightbox>
-    <button class="lightbox-close" aria-label="Cerrar">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/></svg>
-    </button>
-    <img data-lightbox-img src="" alt="">
-    <div class="compare lightbox-compare" data-compare data-lightbox-compare hidden>
-      <img class="compare-before-img" src="" alt="">
-      <img class="compare-after compare-after-img" src="" alt="">
-      <span class="compare-label label-before">Antes</span>
-      <span class="compare-label label-after">Después</span>
-      <div class="compare-handle">
-        <div class="compare-handle-btn" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7 4 12l4 5M16 7l4 5-4 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script defer src="../lib/gsap.min.js"></script>
-  <script defer src="../lib/ScrollTrigger.min.js"></script>
-  <script defer src="../lib/manifest.js"></script>
-  <script defer src="../main.js?v=20260731"></script>
+  <script defer src="../lib/manifest.js?v=20260926"></script>
+  <script defer src="../main.js?v=20260926"></script>
 </body>
 </html>
