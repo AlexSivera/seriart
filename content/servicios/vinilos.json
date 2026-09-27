@@ -1,0 +1,61 @@
+{
+  "nombre": "Vinilos decorativos",
+  "titulo": "Vinilos decorativos",
+  "entradilla": "Vinilo para paredes y superficies interiores: logotipos de recepción, frases corporativas o elementos decorativos a medida.",
+  "foto": "/assets/uploads/shop-window-vinyl.jpg",
+  "texto": "Un vinilo bien colocado en una pared puede sustituir a un cuadro, un mural o un rótulo de recepción, con un coste y un tiempo de instalación mucho menores. Lo usamos tanto en oficinas como en comercios y espacios de trabajo.\n\nTrabajamos a partir de tu logotipo o de un diseño que preparamos a medida, adaptado al tamaño y al color de la pared o superficie donde se va a instalar.",
+  "tipos": [
+    {
+      "titulo": "Logotipo de recepción",
+      "texto": "Presencia de marca en la entrada de oficinas y locales."
+    },
+    {
+      "titulo": "Frases y mensajes corporativos",
+      "texto": "Espacios de trabajo, salas de reuniones y zonas comunes."
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "texto": "Motivos gráficos para dar personalidad a un espacio."
+    },
+    {
+      "titulo": "Señalética interior",
+      "texto": "Identificación de salas y zonas dentro de un edificio."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/shop-window-vinyl.jpg",
+      "pie": "Vinilo decorativo en pared de oficina"
+    },
+    {
+      "imagen": "/assets/uploads/shop-window-vinyl.jpg",
+      "pie": "Vinilo aplicado en interior"
+    },
+    {
+      "imagen": "/assets/uploads/channel-letters.jpg",
+      "pie": "Logotipo en vinilo para recepción"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Puedo pedir un vinilo con mi propio diseño?",
+      "respuesta": "Sí, podemos trabajar sobre un diseño que ya tengas o preparar uno nuevo."
+    },
+    {
+      "pregunta": "¿En qué superficies se puede instalar?",
+      "respuesta": "En paredes lisas, cristal y otras superficies interiores. Si tienes dudas sobre la superficie, consúltanos antes de pedir presupuesto."
+    },
+    {
+      "pregunta": "¿Se puede retirar sin dañar la pared?",
+      "respuesta": "En superficies pintadas en buen estado, sí, aunque depende del tiempo que lleve instalado."
+    },
+    {
+      "pregunta": "¿Instaláis vosotros el vinilo?",
+      "respuesta": "Sí, nos desplazamos para instalar en Denia y alrededores, y coordinamos instalaciones en otras zonas cuando el proyecto lo requiere."
+    }
+  ],
+  "seo": {
+    "titulo": "Vinilos decorativos en Denia | Interiores de oficina y comercio — Seriart",
+    "descripcion": "Vinilos decorativos para interiores de oficinas, comercios y espacios de trabajo en Denia, Alicante. Diseño a medida."
+  }
+}

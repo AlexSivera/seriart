@@ -1,0 +1,74 @@
+[
+  {
+    "imagen": "/assets/uploads/hero-vehicle-wrap.jpg",
+    "titulo": "Rotulación integral de camión de reparto",
+    "categoria": "vehiculos",
+    "inicio": true
+  },
+  {
+    "imagen": "/assets/uploads/shop-storefront.jpg",
+    "titulo": "Rótulo de fachada para comercio",
+    "categoria": "fachadas",
+    "inicio": true
+  },
+  {
+    "imagen": "/assets/uploads/workwear.jpeg",
+    "titulo": "Ropa laboral con logotipo",
+    "categoria": "serigrafia",
+    "inicio": true
+  },
+  {
+    "imagen": "/assets/uploads/channel-letters.jpg",
+    "titulo": "Letras corpóreas iluminadas",
+    "categoria": "fachadas",
+    "inicio": true
+  },
+  {
+    "imagen": "/assets/uploads/outdoor-banner.jpg",
+    "titulo": "Pancarta para exterior",
+    "categoria": "gran-formato",
+    "inicio": true
+  },
+  {
+    "imagen": "/assets/uploads/car-wrap-detail.jpg",
+    "titulo": "Vinilo de color en turismo",
+    "categoria": "vehiculos",
+    "inicio": false
+  },
+  {
+    "imagen": "/assets/uploads/van-signage.jpg",
+    "titulo": "Rotulación parcial con logotipo",
+    "categoria": "vehiculos",
+    "inicio": false
+  },
+  {
+    "imagen": "/assets/uploads/shop-window-vinyl.jpg",
+    "titulo": "Vinilo decorativo en escaparate",
+    "categoria": "escaparates",
+    "inicio": false
+  },
+  {
+    "imagen": "/assets/uploads/tshirt-stack.jpg",
+    "titulo": "Camisetas serigrafiadas para evento",
+    "categoria": "serigrafia",
+    "inicio": false
+  },
+  {
+    "imagen": "/assets/uploads/screen-printing-process.jpg",
+    "titulo": "Estampación textil a una tinta",
+    "categoria": "serigrafia",
+    "inicio": false
+  },
+  {
+    "imagen": "/assets/uploads/merch-items.jpg",
+    "titulo": "Merchandising personalizado",
+    "categoria": "serigrafia",
+    "inicio": false
+  },
+  {
+    "imagen": "/assets/uploads/large-format-banner.jpg",
+    "titulo": "Lona publicitaria de gran formato",
+    "categoria": "gran-formato",
+    "inicio": false
+  }
+]

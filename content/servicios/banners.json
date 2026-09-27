@@ -1,0 +1,61 @@
+{
+  "nombre": "Banners y pancartas",
+  "titulo": "Banners y pancartas",
+  "entradilla": "Banners y pancartas para eventos, competiciones y campañas puntuales, listos para colgar o instalar el mismo día.",
+  "foto": "/assets/uploads/outdoor-banner.jpg",
+  "texto": "Para un evento, una carrera popular o una campaña de pocos días, un banner o una pancarta resuelven la comunicación sin necesidad de una instalación permanente. Los preparamos con materiales ligeros, fáciles de transportar y de montar.\n\nAjustamos el acabado (ojales, dobladillo, varilla) al tipo de instalación que vayas a hacer, para que el montaje sea sencillo el día del evento.",
+  "tipos": [
+    {
+      "titulo": "Banners para exterior",
+      "texto": "Con ojales para atar o colgar en vallas y estructuras."
+    },
+    {
+      "titulo": "Pancartas de gran tamaño",
+      "texto": "Para actos, competiciones deportivas y celebraciones."
+    },
+    {
+      "titulo": "Banners para interior",
+      "texto": "Ferias, salas de conferencias y puntos de venta."
+    },
+    {
+      "titulo": "Banderolas con varilla",
+      "texto": "Fácil montaje en soportes verticales."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/outdoor-banner.jpg",
+      "pie": "Pancarta de gran formato instalada"
+    },
+    {
+      "imagen": "/assets/uploads/large-format-banner.jpg",
+      "pie": "Impresión de banner en taller"
+    },
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Banner para evento"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Puedo pedir un banner con urgencia para un evento próximo?",
+      "respuesta": "Cuéntanos la fecha del evento al pedir presupuesto y te confirmamos si el plazo es viable."
+    },
+    {
+      "pregunta": "¿Qué acabado lleva el banner, ojales o varilla?",
+      "respuesta": "Depende de cómo lo vayas a instalar. Te lo preguntamos al preparar el presupuesto para ajustar el acabado."
+    },
+    {
+      "pregunta": "¿Se pueden reutilizar en varios eventos?",
+      "respuesta": "Sí, si el diseño no lleva fechas concretas, el banner se puede reutilizar mientras el material aguante."
+    },
+    {
+      "pregunta": "¿Hacéis pancartas de gran longitud?",
+      "respuesta": "Sí, trabajamos formatos grandes; indícanos las medidas exactas en el formulario de presupuesto."
+    }
+  ],
+  "seo": {
+    "titulo": "Banners y pancartas en Denia | Impresión para eventos — Seriart",
+    "descripcion": "Impresión de banners y pancartas en Denia, Alicante para eventos, exteriores y campañas publicitarias puntuales."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "telefono": "966 43 30 33",
+  "whatsapp": "651 35 88 22",
+  "email": "alexitosivera@gmail.com",
+  "direccion": {
+    "calle": "Ronda de les Muralles, 20",
+    "codigoPostal": "03700",
+    "ciudad": "Dénia",
+    "provincia": "Alicante"
+  },
+  "horario": "Lunes a viernes, 8:00–14:00",
+  "horarioNota": "Tardes con cita previa",
+  "portada": {
+    "video": "",
+    "imagen": "/assets/uploads/hero-vehicle-wrap.jpg",
+    "textoVideo": "Timelapse: rotulación de una furgoneta en el taller"
+  },
+  "empresa": {
+    "nombreFiscal": "",
+    "nif": ""
+  },
+  "web3formsKey": ""
+}

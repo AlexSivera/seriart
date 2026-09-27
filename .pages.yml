@@ -1,0 +1,349 @@
+# Pages CMS — panel de edición de la web de Seriart (https://app.pagescms.org)
+# Cada vez que se guarda algo, GitHub regenera y publica la web en 1–2 minutos
+# (.github/workflows/deploy.yml). La estructura de páginas y servicios es fija;
+# desde aquí se editan textos, fotos y datos.
+
+media:
+  - name: fotos
+    label: Fotos
+    input: assets/uploads
+    output: /assets/uploads
+    rename: safe
+    extensions: [jpg, jpeg, png, webp]
+  - name: videos
+    label: Vídeos
+    input: assets/video
+    output: /assets/video
+    rename: safe
+    extensions: [mp4, webm]
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "Panel: añade {path}"
+      update: "Panel: actualiza {path}"
+      delete: "Panel: borra {path}"
+      rename: "Panel: renombra {oldPath} → {newPath}"
+
+components:
+  seo:
+    type: object
+    label: Google (título y descripción)
+    description: Lo que sale en los resultados de Google. Si no sabes qué poner, déjalo como está.
+    fields:
+      - name: titulo
+        label: Título en Google
+        type: string
+        options: { maxlength: 70 }
+      - name: descripcion
+        label: Descripción en Google
+        type: text
+        options: { maxlength: 170 }
+  tipos:
+    type: object
+    label: Tipos de trabajo
+    description: La lista con ✓ que aparece junto al texto principal.
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{titulo}"
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+      - name: texto
+        label: Explicación corta
+        type: string
+  galeria:
+    type: object
+    label: Galería de fotos
+    description: Fotos de trabajos de este servicio. Se pueden ampliar al pulsarlas. Arrastra para cambiar el orden.
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{pie}"
+    fields:
+      - name: imagen
+        label: Foto
+        type: image
+        required: true
+        options: { media: fotos }
+      - name: pie
+        label: Qué se ve en la foto
+        type: string
+        description: Una frase corta, por ejemplo "Furgoneta de reparto rotulada".
+  foto:
+    type: image
+    label: Foto principal
+    description: Aparece arriba del todo. Mejor en horizontal.
+    options: { media: fotos }
+  texto:
+    type: text
+    label: Texto principal
+    description: Deja una línea en blanco entre párrafos.
+
+content:
+  # ---------------------------------------------------------------- Trabajos
+  - name: trabajos
+    label: Trabajos
+    type: file
+    path: content/trabajos.json
+    format: json
+    list: true
+    operations: { delete: false }
+    fields:
+      - name: imagen
+        label: Foto
+        type: image
+        required: true
+        options: { media: fotos }
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+        description: Qué es el trabajo, por ejemplo "Rotulación integral de furgoneta de reparto".
+      - name: categoria
+        label: Categoría
+        type: select
+        required: true
+        description: Sirve para los filtros de la página Trabajos.
+        options:
+          values:
+            - { name: vehiculos, label: "Vehículos" }
+            - { name: fachadas, label: "Fachadas, rótulos y letras corpóreas" }
+            - { name: escaparates, label: "Escaparates y vinilos" }
+            - { name: serigrafia, label: "Serigrafía, ropa laboral y merchandising" }
+            - { name: gran-formato, label: "Gran formato (lonas, banners, carteles)" }
+      - name: inicio
+        label: Mostrar en la página de inicio
+        type: boolean
+        description: En el inicio salen como máximo 5 trabajos, en el orden de esta lista.
+
+  # ---------------------------------------------------------------- Servicios
+  - name: servicios
+    label: Servicios
+    type: group
+    items:
+      - name: paginas-servicio
+        label: Páginas de cada servicio
+        type: collection
+        path: content/servicios
+        format: json
+        operations: { create: false, rename: false, delete: false }
+        view:
+          primary: nombre
+          fields: [nombre, titulo]
+          default: { sort: nombre, order: asc }
+        fields:
+          - name: nombre
+            label: Nombre en el menú
+            type: string
+            required: true
+            options: { maxlength: 40 }
+          - name: titulo
+            label: Título grande
+            type: string
+            required: true
+          - name: entradilla
+            label: Frase bajo el título
+            type: text
+            options: { maxlength: 220 }
+          - { name: foto, component: foto }
+          - { name: texto, component: texto }
+          - { name: tipos, component: tipos }
+          - { name: galeria, component: galeria }
+          - name: preguntas
+            label: Preguntas frecuentes
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{pregunta}"
+            fields:
+              - name: pregunta
+                label: Pregunta
+                type: string
+                required: true
+              - name: respuesta
+                label: Respuesta
+                type: text
+                required: true
+          - { name: seo, component: seo }
+
+      - name: categorias
+        label: Páginas generales (Rotulación, Serigrafía, Gran formato)
+        type: collection
+        path: content/categorias
+        format: json
+        operations: { create: false, rename: false, delete: false }
+        view:
+          primary: nombre
+          fields: [nombre, titulo]
+        fields:
+          - name: nombre
+            label: Nombre en el menú
+            type: string
+            required: true
+            options: { maxlength: 40 }
+          - name: titulo
+            label: Título grande
+            type: string
+            required: true
+          - name: entradilla
+            label: Frase bajo el título
+            type: text
+            options: { maxlength: 220 }
+          - { name: foto, component: foto }
+          - { name: texto, component: texto }
+          - { name: tipos, component: tipos }
+          - name: ventajas
+            label: Ventajas ("Por qué Seriart")
+            type: object
+            list:
+              max: 4
+              collapsible:
+                collapsed: true
+                summary: "{titulo}"
+            fields:
+              - name: icono
+                label: Icono
+                type: select
+                options:
+                  values:
+                    - { name: shield, label: "Escudo (resistencia, calidad)" }
+                    - { name: layers, label: "Capas (producción, volumen)" }
+                    - { name: clock, label: "Reloj (plazos)" }
+                    - { name: ruler, label: "Regla (a medida)" }
+                    - { name: truck, label: "Furgoneta (instalación, envíos)" }
+                    - { name: spark, label: "Destello (experiencia)" }
+                    - { name: check, label: "Visto bueno" }
+              - name: titulo
+                label: Título
+                type: string
+                required: true
+              - name: texto
+                label: Explicación corta
+                type: string
+          - { name: galeria, component: galeria }
+          - { name: seo, component: seo }
+
+  # ---------------------------------------------------------------- Nosotros
+  - name: nosotros
+    label: Página "Nosotros"
+    type: file
+    path: content/nosotros.json
+    format: json
+    operations: { delete: false }
+    fields:
+      - name: fotoCabecera
+        label: Foto de cabecera
+        type: image
+        description: La foto grande de arriba. Ideal una del equipo o del taller.
+        options: { media: fotos }
+      - name: fotoInicio
+        label: Foto del taller en la página de inicio
+        type: image
+        description: Se usa en el bloque "El taller" de la página de inicio y en el menú de servicios.
+        options: { media: fotos }
+      - name: historiaTitulo
+        label: Título de la historia
+        type: string
+      - name: historia
+        label: Historia
+        type: text
+        description: Deja una línea en blanco entre párrafos.
+      - name: areas
+        label: Áreas del taller
+        type: object
+        list:
+          max: 3
+          collapsible:
+            collapsed: true
+            summary: "{titulo}"
+        fields:
+          - name: titulo
+            label: Título
+            type: string
+            required: true
+          - name: texto
+            label: Texto
+            type: text
+          - name: imagen
+            label: Foto
+            type: image
+            options: { media: fotos }
+      - name: fotosTaller
+        label: Fotos del taller
+        type: image
+        description: Se muestran 4 en la galería "Nuestro espacio de trabajo".
+        options:
+          media: fotos
+          multiple: { max: 8 }
+
+  # ---------------------------------------------------------------- Datos
+  - name: sitio
+    label: Contacto y portada
+    type: file
+    path: content/sitio.json
+    format: json
+    operations: { delete: false }
+    fields:
+      - name: telefono
+        label: Teléfono
+        type: string
+        required: true
+      - name: whatsapp
+        label: WhatsApp (móvil)
+        type: string
+        required: true
+      - name: email
+        label: Email
+        type: string
+        required: true
+      - name: direccion
+        label: Dirección del taller
+        type: object
+        fields:
+          - { name: calle, label: "Calle y número", type: string }
+          - { name: codigoPostal, label: "Código postal", type: string }
+          - { name: ciudad, label: "Ciudad", type: string }
+          - { name: provincia, label: "Provincia", type: string }
+      - name: horario
+        label: Horario
+        type: string
+        description: Por ejemplo "Lunes a viernes, 8:00–14:00".
+      - name: horarioNota
+        label: Nota del horario
+        type: string
+        description: Por ejemplo "Tardes con cita previa". Puede quedar vacío.
+      - name: portada
+        label: Portada de la página de inicio
+        type: object
+        fields:
+          - name: video
+            label: Vídeo (timelapse)
+            type: file
+            description: MP4 sin sonido, horizontal, de menos de 8 MB. Se reproduce en bucle y sin sonido. Si lo dejas vacío se muestra la foto.
+            options: { media: videos }
+          - name: imagen
+            label: Foto de portada
+            type: image
+            required: true
+            description: Se ve mientras carga el vídeo o si no hay vídeo. Horizontal y de buena calidad.
+            options: { media: fotos }
+          - name: textoVideo
+            label: Texto junto al vídeo
+            type: string
+      - name: empresa
+        label: Datos fiscales (aviso legal)
+        type: object
+        fields:
+          - { name: nombreFiscal, label: "Nombre fiscal o razón social", type: string }
+          - { name: nif, label: "NIF / CIF", type: string }
+      - name: web3formsKey
+        type: string
+        hidden: true

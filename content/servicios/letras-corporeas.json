@@ -1,0 +1,61 @@
+{
+  "nombre": "Letras corpóreas",
+  "titulo": "Letras corpóreas",
+  "entradilla": "Letras en volumen que dan a tu fachada un acabado más sólido y profesional que un simple vinilo impreso.",
+  "foto": "/assets/uploads/channel-letters.jpg",
+  "texto": "Las letras corpóreas aportan profundidad y presencia a una fachada. Las fabricamos a medida en PVC, metacrilato u otros materiales, con o sin iluminación interior, ajustando tamaño y tipografía al espacio disponible.\n\nEs una solución habitual para negocios que quieren un acabado más duradero y de mayor calidad percibida que la rotulación plana, especialmente en fachadas con buena visibilidad.",
+  "tipos": [
+    {
+      "titulo": "Letras sin iluminar",
+      "texto": "PVC o metacrilato con acabado en color corporativo."
+    },
+    {
+      "titulo": "Letras retroiluminadas",
+      "texto": "Efecto halo de luz alrededor de cada letra."
+    },
+    {
+      "titulo": "Letras luminosas frontales",
+      "texto": "Iluminación LED integrada visible de frente."
+    },
+    {
+      "titulo": "Logotipos en volumen",
+      "texto": "Símbolos e iconos corporativos en 3D, a juego con las letras."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/channel-letters.jpg",
+      "pie": "Letras corpóreas iluminadas en fachada"
+    },
+    {
+      "imagen": "/assets/uploads/shop-storefront.jpg",
+      "pie": "Fachada con letras corpóreas"
+    },
+    {
+      "imagen": "/assets/uploads/workshop-machine.jpg",
+      "pie": "Fabricación de letras en taller"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Qué materiales usáis para las letras corpóreas?",
+      "respuesta": "Principalmente PVC y metacrilato, según el acabado y el presupuesto del proyecto."
+    },
+    {
+      "pregunta": "¿Se pueden iluminar todas las letras?",
+      "respuesta": "Sí, podemos incorporar iluminación LED frontal o retroiluminada según el efecto que busques."
+    },
+    {
+      "pregunta": "¿Sirven para interior además de fachada?",
+      "respuesta": "Sí, también se usan en recepciones y espacios interiores como elemento de imagen corporativa."
+    },
+    {
+      "pregunta": "¿Cómo se instalan en la fachada?",
+      "respuesta": "Con anclajes ocultos pensados para cada tipo de superficie, revisando la fachada antes de fabricar para asegurar un buen anclaje."
+    }
+  ],
+  "seo": {
+    "titulo": "Letras corpóreas en Denia | Rótulos 3D para fachadas — Seriart",
+    "descripcion": "Fabricación e instalación de letras corpóreas para fachadas de negocios en Denia, Alicante. Con y sin iluminación, a medida."
+  }
+}

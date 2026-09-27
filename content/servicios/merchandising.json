@@ -1,0 +1,61 @@
+{
+  "nombre": "Merchandising",
+  "titulo": "Merchandising publicitario",
+  "entradilla": "Objetos y textil personalizados para ferias, eventos, campañas de comunicación y regalo de empresa.",
+  "foto": "/assets/uploads/merch-items.jpg",
+  "texto": "El merchandising bien hecho es publicidad que la gente se queda con gusto. Personalizamos bolsas de tela, textil, y otros soportes con tu marca para que sean algo más que un objeto de usar y tirar.\n\nTe ayudamos a elegir soportes que encajen con el presupuesto y el objetivo del proyecto, ya sea una feria puntual, el regalo de fin de año o una campaña de comunicación más amplia.",
+  "tipos": [
+    {
+      "titulo": "Bolsas de tela",
+      "texto": "Totebags serigrafiadas para tiendas, ferias y eventos."
+    },
+    {
+      "titulo": "Textil promocional",
+      "texto": "Camisetas y gorras con el logotipo de campaña."
+    },
+    {
+      "titulo": "Regalo de empresa",
+      "texto": "Selección de objetos personalizados para clientes y equipo."
+    },
+    {
+      "titulo": "Material para ferias",
+      "texto": "Merchandising a juego con la imagen del stand."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/merch-items.jpg",
+      "pie": "Objetos de merchandising personalizados"
+    },
+    {
+      "imagen": "/assets/uploads/screen-printing-process.jpg",
+      "pie": "Textil promocional serigrafiado"
+    },
+    {
+      "imagen": "/assets/uploads/tshirt-stack.jpg",
+      "pie": "Camisetas de campaña"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Tenéis catálogo de objetos personalizables?",
+      "respuesta": "Trabajamos con varios proveedores de artículos promocionales; cuéntanos el objetivo del proyecto y te proponemos opciones."
+    },
+    {
+      "pregunta": "¿Puedo pedir una muestra antes de la tirada completa?",
+      "respuesta": "Sí, para pedidos grandes es habitual preparar una muestra o prueba de color antes de producir el resto."
+    },
+    {
+      "pregunta": "¿Hacéis envíos a toda España?",
+      "respuesta": "Sí, preparamos y enviamos pedidos de merchandising a cualquier punto de España."
+    },
+    {
+      "pregunta": "¿Cuánto tiempo antes debo pedirlo si es para un evento?",
+      "respuesta": "Cuanto antes mejor, sobre todo si el pedido es grande. Indícanos la fecha del evento en el formulario de presupuesto y ajustamos plazos."
+    }
+  ],
+  "seo": {
+    "titulo": "Merchandising publicitario en Denia | Regalos de empresa — Seriart",
+    "descripcion": "Merchandising y regalos publicitarios personalizados en Denia, Alicante: bolsas, textil, tazas y objetos de empresa para eventos y campañas."
+  }
+}

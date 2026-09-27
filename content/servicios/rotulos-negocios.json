@@ -1,0 +1,61 @@
+{
+  "nombre": "Rótulos para negocios",
+  "titulo": "Rótulos para negocios",
+  "entradilla": "El rótulo de fachada es la primera impresión de tu negocio. Lo diseñamos, fabricamos e instalamos para que se vea bien de día y de noche.",
+  "foto": "/assets/uploads/shop-storefront.jpg",
+  "texto": "Un rótulo mal resuelto pasa desapercibido; uno bien pensado hace que un negocio se identifique desde lejos. Trabajamos la fachada como un conjunto: rótulo principal, banderola lateral y señalética complementaria, con materiales adaptados a la exposición al sol y la lluvia.\n\nNos encargamos de la fabricación en taller y de la instalación en el propio local, coordinando horarios para no interferir con la actividad del negocio.",
+  "tipos": [
+    {
+      "titulo": "Rótulos de fachada",
+      "texto": "Placas, cajones luminosos y paneles con el nombre del negocio."
+    },
+    {
+      "titulo": "Banderolas",
+      "texto": "Rótulos perpendiculares a fachada, visibles desde ambos lados de la calle."
+    },
+    {
+      "titulo": "Señalética exterior",
+      "texto": "Indicadores de horario, entrada y otra información práctica."
+    },
+    {
+      "titulo": "Rótulos luminosos",
+      "texto": "Cajones y letreros con iluminación LED para visibilidad nocturna."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/shop-storefront.jpg",
+      "pie": "Fachada de negocio con rótulo"
+    },
+    {
+      "imagen": "/assets/uploads/channel-letters.jpg",
+      "pie": "Rótulo luminoso de negocio"
+    },
+    {
+      "imagen": "/assets/uploads/van-signage.jpg",
+      "pie": "Detalle de acabado de vinilo"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Necesito permiso del ayuntamiento para instalar un rótulo?",
+      "respuesta": "Depende del municipio y del tipo de rótulo. Te orientamos sobre qué suele requerir permiso, aunque la gestión municipal corresponde al titular del negocio."
+    },
+    {
+      "pregunta": "¿Podéis hacer rótulos con iluminación?",
+      "respuesta": "Sí, fabricamos cajones y letras con iluminación LED cuando el proyecto lo requiere."
+    },
+    {
+      "pregunta": "¿Cuánto tarda la fabricación e instalación de un rótulo?",
+      "respuesta": "Depende del tamaño y la complejidad. Te damos un plazo concreto al valorar el proyecto."
+    },
+    {
+      "pregunta": "¿Hacéis el mantenimiento del rótulo con el tiempo?",
+      "respuesta": "Sí, podemos revisar o reparar rótulos que hayamos instalado nosotros."
+    }
+  ],
+  "seo": {
+    "titulo": "Rótulos para negocios en Denia | Fachadas y señalética — Seriart",
+    "descripcion": "Diseño, fabricación e instalación de rótulos para negocios en Denia, Alicante: fachadas, banderolas y señalética exterior."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "nombre": "Gran formato",
+  "titulo": "Impresión de gran formato para eventos y comercios",
+  "entradilla": "Lonas, banners, roll-ups y cartelería impresos a gran tamaño, listos para colgar en fachada, montar en un stand o instalar en la calle.",
+  "foto": "/assets/uploads/large-format-banner.jpg",
+  "texto": "La impresión de gran formato cubre todo lo que necesita verse de lejos: una lona en una fachada, un roll-up en una feria o un cartel en un escaparate. Imprimimos en nuestro propio taller y controlamos el acabado de principio a fin.\n\nTrabajamos tanto proyectos puntuales, como un evento o una feria, como pedidos recurrentes para comercios y empresas que necesitan renovar su cartelería varias veces al año.",
+  "tipos": [
+    {
+      "titulo": "Lonas publicitarias",
+      "texto": "Grandes formatos para fachadas, vallas y obras."
+    },
+    {
+      "titulo": "Banners y pancartas",
+      "texto": "Para eventos, exteriores y campañas puntuales."
+    },
+    {
+      "titulo": "Roll-ups",
+      "texto": "Expositores portátiles para ferias y puntos de venta."
+    },
+    {
+      "titulo": "Cartelería",
+      "texto": "Carteles y paneles para escaparates e interiores."
+    }
+  ],
+  "ventajas": [
+    {
+      "icono": "layers",
+      "titulo": "Impresión propia",
+      "texto": "Producción en nuestro taller, sin intermediarios."
+    },
+    {
+      "icono": "clock",
+      "titulo": "Plazos ajustados",
+      "texto": "Útil para eventos y campañas con fecha fija."
+    },
+    {
+      "icono": "ruler",
+      "titulo": "Grandes formatos",
+      "texto": "Desde un roll-up hasta una lona de fachada."
+    },
+    {
+      "icono": "spark",
+      "titulo": "Desde 2002",
+      "texto": "Un único taller para todo el proyecto gráfico."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/large-format-banner.jpg",
+      "pie": "Impresión de lona de gran formato"
+    },
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Roll-up para feria o evento"
+    },
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Cartelería de gran formato"
+    }
+  ],
+  "seo": {
+    "titulo": "Impresión de gran formato en Denia | Lonas, banners y roll-ups — Seriart",
+    "descripcion": "Impresión de gran formato en Denia, Alicante: lonas publicitarias, banners, roll-ups y cartelería para eventos, comercios y empresas."
+  }
+}

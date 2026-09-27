@@ -1,0 +1,65 @@
+{
+  "nombre": "Serigrafía textil",
+  "titulo": "Serigrafía textil",
+  "entradilla": "Estampamos camisetas, sudaderas, polos y textil promocional con tintas de calidad que aguantan el lavado y el uso diario.",
+  "foto": "/assets/uploads/screen-printing-process.jpg",
+  "texto": "La serigrafía textil sigue siendo, después de más de veinte años, la técnica que mejor resultado da en prendas de uso continuo: el color queda integrado en la fibra y aguanta muchos más lavados que un vinilo o una impresión digital directa.\n\nPreparamos cada pedido a medida: elegimos el tipo de tinta según el tejido, hacemos una prueba de color si el pedido lo requiere y ajustamos el número de pantallas al diseño, desde un logotipo a una tinta hasta ilustraciones más complejas.",
+  "tipos": [
+    {
+      "titulo": "Camisetas de algodón y técnicas",
+      "texto": "Para eventos, comercios, asociaciones y regalo de empresa."
+    },
+    {
+      "titulo": "Sudaderas y chaquetas",
+      "texto": "Estampado grande en espalda o detalle en pecho y manga."
+    },
+    {
+      "titulo": "Polos",
+      "texto": "Logotipo discreto en pecho, ideal para imagen de empresa."
+    },
+    {
+      "titulo": "Textil deportivo",
+      "texto": "Equipaciones con nombres y dorsales numerados."
+    },
+    {
+      "titulo": "Bolsas y totebags",
+      "texto": "Para tiendas, ferias y campañas de comunicación."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/tshirt-stack.jpg",
+      "pie": "Camisetas estampadas en serigrafía"
+    },
+    {
+      "imagen": "/assets/uploads/screen-printing-process.jpg",
+      "pie": "Diseño serigrafiado sobre textil"
+    },
+    {
+      "imagen": "/assets/uploads/workshop-machine.jpg",
+      "pie": "Preparación de pantallas de serigrafía"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Cuál es la cantidad mínima para un pedido?",
+      "respuesta": "Trabajamos tanto tiradas cortas como pedidos grandes. Cuéntanos la cantidad que necesitas y te decimos la técnica y el precio que mejor se ajustan."
+    },
+    {
+      "pregunta": "¿Puedo llevar mis propias prendas?",
+      "respuesta": "Sí, puedes traer tus propias camisetas o sudaderas para que las estampemos, o pedirnos que te las suministremos nosotros."
+    },
+    {
+      "pregunta": "¿Cuánto tarda un pedido de serigrafía textil?",
+      "respuesta": "Depende del volumen y del número de colores del diseño. Te damos un plazo concreto al confirmar el presupuesto."
+    },
+    {
+      "pregunta": "¿Aguanta la impresión muchos lavados?",
+      "respuesta": "Sí, es una de las ventajas principales de la serigrafía frente a otras técnicas de impresión textil."
+    }
+  ],
+  "seo": {
+    "titulo": "Serigrafía textil en Denia | Camisetas y ropa personalizada — Seriart",
+    "descripcion": "Estampación serigráfica sobre camisetas, sudaderas y textil para empresas, comercios y eventos en Denia, Alicante. Tiradas cortas y grandes."
+  }
+}

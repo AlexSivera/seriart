@@ -1,0 +1,61 @@
+{
+  "nombre": "Vehículos",
+  "titulo": "Rotulación de vehículos",
+  "entradilla": "Convierte tu furgoneta, coche o flota en un anuncio que se mueve por toda la ciudad, con vinilo resistente y una instalación cuidada.",
+  "foto": "/assets/uploads/hero-vehicle-wrap.jpg",
+  "texto": "Un vehículo rotulado trabaja para tu marca cada vez que sale a la calle. Diseñamos la composición gráfica adaptada a la carrocería de cada vehículo y usamos vinilo de calidad profesional, resistente al sol, la lluvia y el lavado habitual.\n\nPodemos rotular un vehículo puntual o coordinar la imagen de una flota completa, manteniendo el mismo diseño y los mismos materiales en todas las unidades para que la imagen de empresa sea homogénea.",
+  "tipos": [
+    {
+      "titulo": "Rotulación integral",
+      "texto": "Cobertura completa de la carrocería con diseño a medida."
+    },
+    {
+      "titulo": "Rotulación parcial",
+      "texto": "Logotipo, datos de contacto y elementos gráficos puntuales."
+    },
+    {
+      "titulo": "Flotas de vehículos",
+      "texto": "Mismo diseño replicado en varias unidades."
+    },
+    {
+      "titulo": "Lunas y cristales",
+      "texto": "Vinilo microperforado que no impide la visibilidad desde dentro."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/car-wrap-detail.jpg",
+      "pie": "Vehículo con acabado personalizado"
+    },
+    {
+      "imagen": "/assets/uploads/van-signage.jpg",
+      "pie": "Detalle de vinilo aplicado sobre carrocería"
+    },
+    {
+      "imagen": "/assets/uploads/hero-vehicle-wrap.jpg",
+      "pie": "Ejemplo de rotulación integral de vehículo"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Tengo que dejar el vehículo en el taller?",
+      "respuesta": "Sí, la instalación requiere que el vehículo esté con nosotros durante el tiempo de aplicación, que depende del tamaño del proyecto."
+    },
+    {
+      "pregunta": "¿El vinilo daña la pintura?",
+      "respuesta": "No, es un material pensado para aplicarse y retirarse sin dañar la pintura original si se instala y se retira correctamente."
+    },
+    {
+      "pregunta": "¿Puedo rotular solo una parte del vehículo?",
+      "respuesta": "Sí, hacemos tanto rotulación integral como parcial, según el presupuesto y el efecto que busques."
+    },
+    {
+      "pregunta": "¿Cuánto dura el vinilo instalado?",
+      "respuesta": "Con un uso normal, varios años. Te informamos de la durabilidad del material concreto al hacer el presupuesto."
+    }
+  ],
+  "seo": {
+    "titulo": "Rotulación de vehículos en Denia | Vinilo para furgonetas y coches — Seriart",
+    "descripcion": "Rotulación de vehículos comerciales y particulares en Denia, Alicante. Vinilo integral o parcial, diseño incluido. Trabajamos con flotas de toda España."
+  }
+}

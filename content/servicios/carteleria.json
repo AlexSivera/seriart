@@ -1,0 +1,61 @@
+{
+  "nombre": "Cartelería",
+  "titulo": "Cartelería",
+  "entradilla": "Carteles y paneles impresos a gran tamaño para escaparates, interiores de tienda y puntos de información.",
+  "foto": "/assets/uploads/poster-display.jpg",
+  "texto": "La cartelería resuelve la comunicación puntual: una oferta, una novedad, información de temporada. La imprimimos sobre distintos soportes (papel, cartón pluma, PVC) según dónde se vaya a colocar y cuánto tiempo tenga que aguantar.\n\nEs habitual combinarla con otras piezas de gran formato, como escaparates o roll-ups, para que toda la comunicación de una campaña mantenga la misma imagen.",
+  "tipos": [
+    {
+      "titulo": "Carteles para escaparate",
+      "texto": "Ofertas, novedades y comunicación de temporada."
+    },
+    {
+      "titulo": "Paneles rígidos",
+      "texto": "Sobre cartón pluma o PVC, para interior y exterior protegido."
+    },
+    {
+      "titulo": "Paneles informativos",
+      "texto": "Señalética y puntos de información en comercios y oficinas."
+    },
+    {
+      "titulo": "Displays de mostrador",
+      "texto": "Formato pequeño para punto de venta."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Cartelería impresa de gran formato"
+    },
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Panel informativo en evento"
+    },
+    {
+      "imagen": "/assets/uploads/large-format-banner.jpg",
+      "pie": "Impresión de cartel en taller"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Sobre qué materiales imprimís la cartelería?",
+      "respuesta": "Según el uso: papel para interior de corta duración, o cartón pluma y PVC para piezas más resistentes."
+    },
+    {
+      "pregunta": "¿Puedo pedir varios tamaños del mismo cartel?",
+      "respuesta": "Sí, es habitual combinar formatos distintos para escaparate, mostrador e interior en la misma campaña."
+    },
+    {
+      "pregunta": "¿Hacéis cartelería para exterior?",
+      "respuesta": "Sí, aunque para exterior prolongado solemos recomendar materiales más resistentes, como PVC o lona."
+    },
+    {
+      "pregunta": "¿Puedo enviaros mi propio diseño ya maquetado?",
+      "respuesta": "Sí, puedes adjuntarlo en el formulario de presupuesto o enviárnoslo por email."
+    }
+  ],
+  "seo": {
+    "titulo": "Cartelería en Denia | Carteles y paneles de gran formato — Seriart",
+    "descripcion": "Impresión de cartelería y paneles de gran formato en Denia, Alicante para escaparates, interiores y puntos de información."
+  }
+}

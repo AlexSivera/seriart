@@ -1,14 +1,24 @@
 "use strict";
-/* Builds the whole static site. Run with: node tools/build.js
-   (run tools/optimize-images.js first whenever images change). */
+/* Builds the whole static site into _site/. Run with: node tools/build.js
+   (run tools/optimize-images.js first whenever photos change).
+   Content comes from content/*.json — see tools/content.js. */
+const fs = require("fs");
+const path = require("path");
 const G = require("./generate-site.js");
-const { CATEGORY_CONTENT, ALL_SUBSERVICES, CATEGORY_BENEFITS } = require("./content-data.js");
 const { esc, rel, write, waHref, pic, imgLargest, svgIcon, WHATSAPP_SVG, page, pageHero, sectionHead, arrowLink,
-  introBlock, benefitsRow, galleryBlock, processBlock, faqBlock, relatedBlock, contactCta, BRAND, CATEGORIES } = G;
+  introBlock, benefitsRow, galleryBlock, processBlock, faqBlock, relatedBlock, contactCta, BRAND, CATEGORIES,
+  CONTENT, ROOT, OUT } = G;
 
 console.log("Building Seriart static site...\n");
+fs.rmSync(OUT, { recursive: true, force: true });
 
+const CATEGORY_CONTENT = {};
+CONTENT.categories.forEach((c) => { CATEGORY_CONTENT[c.slug] = c; });
+const ALL_SUBSERVICES = CONTENT.services;
+const svc = (slug) => ALL_SUBSERVICES.find((s) => s.slug === slug) || {};
 const subHref = (s) => s.cat.slug + "/" + s.slug + ".html";
+/* Sections backed by editable lists are left out when the list is empty */
+const when = (cond, html) => (cond ? html : "");
 
 /* ===========================================================================
    Forms — Web3Forms (static-friendly). Without an access key main.js falls
@@ -50,9 +60,9 @@ ALL_SUBSERVICES.forEach(function (sub) {
       secondary: { href: rel(1, "trabajos.html"), label: "Ver trabajos" }
     }),
     introBlock(1, { heading: "Cómo lo hacemos", paragraphs: sub.intro, types: sub.types, listTitle: "Tipos de trabajo" }),
-    benefitsRow(1, CATEGORY_BENEFITS[cat.slug]),
-    galleryBlock(1, { heading: "Trabajos de " + sub.label.toLowerCase(), images: sub.gallery, group: sub.slug }),
-    faqBlock(1, sub.faqs),
+    when(cat.benefits.length, benefitsRow(1, cat.benefits)),
+    when(sub.gallery.length, galleryBlock(1, { heading: "Trabajos de " + sub.label.toLowerCase(), images: sub.gallery, group: sub.slug })),
+    when(sub.faqs.length, faqBlock(1, sub.faqs)),
     relatedBlock(1, "Otros servicios de " + cat.label.toLowerCase(), siblings),
     contactCta(1, { title: "¿Hablamos de tu proyecto de " + sub.label.toLowerCase() + "?", service: sub.slug })
   ].join("\n");
@@ -90,8 +100,8 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
     </div>
   </section>`,
     introBlock(1, { heading: "Un taller, todo el proceso", paragraphs: cat.intro, types: cat.types, kicker: "Cómo trabajamos", listTitle: "Lo que hacemos" }),
-    benefitsRow(1, CATEGORY_BENEFITS[slug]),
-    galleryBlock(1, { heading: "Algunos trabajos", images: cat.gallery, group: slug }),
+    when(cat.benefits.length, benefitsRow(1, cat.benefits)),
+    when(cat.gallery.length, galleryBlock(1, { heading: "Algunos trabajos", images: cat.gallery, group: slug })),
     processBlock(1, { alt: true }),
     contactCta(1, { title: "Hablemos de tu proyecto de " + cat.label.toLowerCase(), service: slug })
   ].join("\n");
@@ -137,7 +147,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
   write("servicios.html", page(0, {
     title: "Servicios | Rotulación, vinilo, serigrafía y gran formato en Dénia — Seriart",
     description: "Rotulación de vehículos y negocios, vinilo, serigrafía textil, ropa laboral e impresión de gran formato en Dénia, Alicante. Un solo taller para todo tu proyecto.",
-    canonical: "servicios.html", current: "servicios", ogImage: "hero-vehicle-wrap.jpg"
+    canonical: "servicios.html", current: "servicios", ogImage: CATEGORY_CONTENT.rotulacion.heroImg
   }, body));
 })();
 
@@ -184,12 +194,13 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
   </section>`;
 
   const tiles = [
-    { label: "Rotulación de vehículos", desc: "Furgonetas, coches y flotas. Integral o parcial, con vinilo de calidad profesional.", href: "rotulacion/vehiculos.html", img: "hero-vehicle-wrap.jpg", size: "xl" },
-    { label: "Rótulos y fachadas", desc: "Rótulos, banderolas y cajones luminosos.", href: "rotulacion/rotulos-negocios.html", img: "shop-storefront.jpg", size: "wide" },
-    { label: "Escaparates y vinilo", href: "rotulacion/escaparates.html", img: "shop-window-vinyl.jpg", size: "sm" },
-    { label: "Letras corpóreas", href: "rotulacion/letras-corporeas.html", img: "channel-letters.jpg", size: "sm" },
-    { label: "Serigrafía y ropa laboral", desc: "Camisetas, uniformes y merchandising.", href: "servicios/serigrafia.html", img: "workwear.jpeg", size: "wide" },
-    { label: "Gran formato", desc: "Lonas, banners, roll-ups y cartelería.", href: "servicios/gran-formato.html", img: "large-format-banner.jpg", size: "wide" }
+    /* Photos follow each service's main photo, so changing it in the panel updates the home too */
+    { label: "Rotulación de vehículos", desc: "Furgonetas, coches y flotas. Integral o parcial, con vinilo de calidad profesional.", href: "rotulacion/vehiculos.html", img: svc("vehiculos").heroImg, size: "xl" },
+    { label: "Rótulos y fachadas", desc: "Rótulos, banderolas y cajones luminosos.", href: "rotulacion/rotulos-negocios.html", img: svc("rotulos-negocios").heroImg, size: "wide" },
+    { label: "Escaparates y vinilo", href: "rotulacion/escaparates.html", img: svc("escaparates").heroImg, size: "sm" },
+    { label: "Letras corpóreas", href: "rotulacion/letras-corporeas.html", img: svc("letras-corporeas").heroImg, size: "sm" },
+    { label: "Serigrafía y ropa laboral", desc: "Camisetas, uniformes y merchandising.", href: "servicios/serigrafia.html", img: svc("ropa-laboral").heroImg, size: "wide" },
+    { label: "Gran formato", desc: "Lonas, banners, roll-ups y cartelería.", href: "servicios/gran-formato.html", img: CATEGORY_CONTENT["gran-formato"].heroImg, size: "wide" }
   ].map((t) => `<a class="tile tile-${t.size} reveal-wipe" href="${rel(0, t.href)}">
         ${pic(0, t.img, "", { sizes: t.size === "xl" ? "(min-width: 960px) 50vw, 100vw" : t.size === "wide" ? "(min-width: 960px) 50vw, 100vw" : "(min-width: 960px) 25vw, 50vw" })}
         <span class="tile-body">
@@ -199,13 +210,9 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
         <span class="tile-arrow">${svgIcon("arrow", 20)}</span>
       </a>`).join("");
 
-  const works = [
-    { src: "hero-vehicle-wrap.jpg", title: "Rotulación integral de camión de reparto", tag: "Vehículos" },
-    { src: "shop-storefront.jpg", title: "Rótulo de fachada para comercio", tag: "Fachadas" },
-    { src: "workwear.jpeg", title: "Ropa laboral con logotipo", tag: "Serigrafía" },
-    { src: "channel-letters.jpg", title: "Letras corpóreas iluminadas", tag: "Letras corpóreas" },
-    { src: "outdoor-banner.jpg", title: "Pancarta para exterior", tag: "Gran formato" }
-  ].map((w, i) => `<a class="work${i === 0 ? " work-lead" : ""} reveal" href="${imgLargest(0, w.src)}" data-lightbox-item="home" data-caption="${esc(w.title)}">
+  /* Works marked "mostrar en inicio" first, topped up with the rest, max 5 */
+  const homeWorks = CONTENT.works.filter((w) => w.home).concat(CONTENT.works.filter((w) => !w.home)).slice(0, 5);
+  const works = homeWorks.map((w, i) => `<a class="work${i === 0 ? " work-lead" : ""} reveal" href="${imgLargest(0, w.src)}" data-lightbox-item="home" data-caption="${esc(w.title)}">
         <span class="work-media">${pic(0, w.src, w.title, { sizes: i === 0 ? "(min-width: 960px) 58vw, 100vw" : "(min-width: 960px) 20vw, 50vw" })}</span>
         <span class="work-meta"><span class="tag">${esc(w.tag)}</span><strong>${esc(w.title)}</strong></span>
       </a>`).join("");
@@ -222,15 +229,15 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
     </div>
   </section>`,
     processBlock(0, { alt: true }),
-    `  <section class="section">
+    when(homeWorks.length, `  <section class="section">
     <div class="container">
       ${sectionHead({ kicker: "Trabajos", title: "Recién salido del taller", link: arrowLink(rel(0, "trabajos.html"), "Ver todos los trabajos", "section-head-link") })}
       <div class="works">${works}</div>
     </div>
-  </section>`,
+  </section>`),
     `  <section class="section section-alt">
     <div class="container about-split">
-      <div class="about-media reveal-wipe">${pic(0, "workshop-machine.jpg", "Taller de Seriart en Dénia", { sizes: "(min-width: 960px) 50vw, 100vw" })}</div>
+      <div class="about-media reveal-wipe">${pic(0, CONTENT.about.homeImg, "Taller de Seriart en Dénia", { sizes: "(min-width: 960px) 50vw, 100vw" })}</div>
       <div class="about-copy reveal">
         <p class="kicker">El taller</p>
         <h2>Un taller de Dénia con más de 20 años de oficio</h2>
@@ -252,7 +259,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
     title: "Seriart | Rotulación, vinilo y serigrafía en Dénia, Alicante",
     description: "Rotulación de vehículos y negocios, vinilo, serigrafía textil y gran formato en Dénia, Alicante. Diseño, fabricación e instalación desde 2002.",
     canonical: "", current: "inicio", overHero: true, bodyClass: "is-home",
-    ogImage: "hero-vehicle-wrap.jpg", preload: video.poster, preloadSizes: "100vw"
+    ogImage: video.poster, preload: video.poster, preloadSizes: "100vw"
   }, body));
 })();
 
@@ -261,34 +268,14 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
    =========================================================================== */
 (function buildTrabajos() {
   const crumbs = [{ label: "Inicio", href: "index.html" }, { label: "Trabajos" }];
-  /* Replace with real projects: title, tag (visible label) and filter keys. */
-  const items = [
-    { src: "hero-vehicle-wrap.jpg", title: "Rotulación integral de camión de reparto", tag: "Vehículos", cats: ["vehiculos"] },
-    { src: "car-wrap-detail.jpg", title: "Vinilo de color en turismo", tag: "Vehículos", cats: ["vehiculos"] },
-    { src: "van-signage.jpg", title: "Rotulación parcial con logotipo", tag: "Vehículos", cats: ["vehiculos"] },
-    { src: "shop-storefront.jpg", title: "Rótulo de fachada para comercio", tag: "Fachadas", cats: ["fachadas"] },
-    { src: "channel-letters.jpg", title: "Letras corpóreas iluminadas", tag: "Letras corpóreas", cats: ["fachadas"] },
-    { src: "shop-window-vinyl.jpg", title: "Vinilo decorativo en escaparate", tag: "Escaparates", cats: ["escaparates"] },
-    { src: "tshirt-stack.jpg", title: "Camisetas serigrafiadas para evento", tag: "Serigrafía", cats: ["serigrafia"] },
-    { src: "workwear.jpeg", title: "Ropa laboral con logotipo", tag: "Ropa laboral", cats: ["serigrafia"] },
-    { src: "screen-printing-process.jpg", title: "Estampación textil a una tinta", tag: "Serigrafía", cats: ["serigrafia"] },
-    { src: "merch-items.jpg", title: "Merchandising personalizado", tag: "Merchandising", cats: ["serigrafia"] },
-    { src: "large-format-banner.jpg", title: "Lona publicitaria de gran formato", tag: "Gran formato", cats: ["gran-formato"] },
-    { src: "outdoor-banner.jpg", title: "Pancarta para exterior", tag: "Gran formato", cats: ["gran-formato"] }
-  ];
-  const grid = items.map((it) => `<a class="work reveal" href="${imgLargest(0, it.src)}" data-lightbox-item="trabajos" data-caption="${esc(it.title)}" data-filter-item="${it.cats.join(" ")}">
+  const items = CONTENT.works; // content/trabajos.json, in the order set in the panel
+  const grid = items.map((it) => `<a class="work reveal" href="${imgLargest(0, it.src)}" data-lightbox-item="trabajos" data-caption="${esc(it.title)}" data-filter-item="${it.cat}">
         <span class="work-media">${pic(0, it.src, it.title, { sizes: "(min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" })}</span>
         <span class="work-meta"><span class="tag">${esc(it.tag)}</span><strong>${esc(it.title)}</strong></span>
       </a>`).join("");
 
-  const filters = [
-    { key: "all", label: "Todos" },
-    { key: "vehiculos", label: "Vehículos" },
-    { key: "fachadas", label: "Fachadas y letras" },
-    { key: "escaparates", label: "Escaparates y vinilo" },
-    { key: "serigrafia", label: "Serigrafía" },
-    { key: "gran-formato", label: "Gran formato" }
-  ].map((f, i) => `<button class="chip${i === 0 ? " is-active" : ""}" type="button" data-filter="${f.key}" aria-pressed="${i === 0}">${esc(f.label)}</button>`).join("");
+  const filters = [{ key: "all", filter: "Todos" }].concat(CONTENT.WORK_CATEGORIES.filter((c) => items.some((it) => it.cat === c.key)))
+    .map((f) => ({ key: f.key, label: f.filter })).map((f, i) => `<button class="chip${i === 0 ? " is-active" : ""}" type="button" data-filter="${f.key}" aria-pressed="${i === 0}">${esc(f.label)}</button>`).join("");
 
   const body = [
     pageHero(0, {
@@ -299,7 +286,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
     <div class="container">
       <div class="filter-bar" data-filter-bar role="group" aria-label="Filtrar trabajos por tipo">${filters}</div>
       <div class="works-grid" data-filter-grid>${grid}</div>
-      <p class="filter-empty" data-filter-empty hidden>Todavía no hay trabajos publicados en esta categoría.</p>
+      <p class="filter-empty" data-filter-empty${items.length ? " hidden" : ""}>Todavía no hay trabajos publicados en esta categoría.</p>
     </div>
   </section>`,
     contactCta(0, { title: "¿Quieres un resultado así?", text: "Cuéntanos tu proyecto y te decimos cómo lo haríamos y cuánto costaría." })
@@ -308,7 +295,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
   write("trabajos.html", page(0, {
     title: "Trabajos realizados | Rotulación y serigrafía — Seriart Dénia",
     description: "Trabajos de rotulación de vehículos, fachadas, escaparates, serigrafía textil y gran formato realizados por Seriart en Dénia, Alicante.",
-    canonical: "trabajos.html", current: "trabajos", ogImage: "car-wrap-detail.jpg"
+    canonical: "trabajos.html", current: "trabajos", ogImage: items.length ? items[0].src : undefined
   }, body));
 })();
 
@@ -317,60 +304,56 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
    =========================================================================== */
 (function buildNosotros() {
   const crumbs = [{ label: "Inicio", href: "index.html" }, { label: "Nosotros" }];
-  const areas = [
-    { title: "Diseño y preparación", desc: "Adaptamos tu logotipo o diseñamos desde cero, medimos el soporte y preparamos los archivos para producción.", img: "screen-printing-process.jpg" },
-    { title: "Producción en taller", desc: "Impresión, corte de vinilo, serigrafía y montaje, con control de calidad antes de que nada salga por la puerta.", img: "workshop-machine.jpg" },
-    { title: "Instalación", desc: "Aplicamos el vinilo en vehículos y cristales, y montamos rótulos y lonas en fachadas, en Dénia y alrededores.", img: "van-signage.jpg" }
-  ].map((a) => `<article class="area reveal">
+  const A = CONTENT.about; // content/nosotros.json
+  const areas = A.areas.map((a) => `<article class="area reveal">
         <div class="area-media">${pic(0, a.img, "", { sizes: "(min-width: 960px) 30vw, 100vw" })}</div>
         <h3>${esc(a.title)}</h3>
         <p>${esc(a.desc)}</p>
       </article>`).join("");
 
-  const workshop = ["workshop-machine.jpg", "shop-storefront.jpg", "about-team.jpg", "channel-letters.jpg"].map((im) =>
+  const workshop = A.workshop.map((im) =>
     `<a class="gallery-item reveal-wipe" href="${imgLargest(0, im)}" data-lightbox-item="taller" data-caption="El taller de Seriart en Dénia">${pic(0, im, "El taller de Seriart en Dénia", { sizes: "(min-width: 960px) 25vw, 50vw" })}</a>`).join("");
 
   const body = [
     pageHero(0, {
       crumbs, kicker: "Nosotros", title: "Un taller de Dénia con más de 20 años de oficio",
       lead: "Desde 2002 ayudamos a empresas, comercios y particulares a mejorar su imagen con rotulación, vinilo, serigrafía e impresión de gran formato.",
-      image: "about-team.jpg", imageAlt: "Equipo de Seriart preparando un proyecto"
+      image: A.heroImg, imageAlt: "Equipo de Seriart en el taller"
     }),
     `  <section class="section">
     <div class="container story">
       <div class="story-copy reveal">
         <p class="kicker">Nuestra historia</p>
-        <h2>Empezamos con la serigrafía. Hoy rotulamos de todo.</h2>
-        <p>Seriart nació en Dénia en ${BRAND.founded} como taller de serigrafía textil. Con los años, los mismos clientes que nos pedían camisetas empezaron a pedirnos el rótulo de la tienda, el vinilo de la furgoneta o la lona para el próximo evento, y el taller creció para darles respuesta.</p>
-        <p>Hoy seguimos en Dénia, con un equipo especializado y colaboradores externos cuando el proyecto lo pide, trabajando para clientes de toda España. Lo que no ha cambiado es la forma de trabajar: un mismo taller que se encarga de todo, de principio a fin.</p>
+        <h2>${esc(A.storyTitle)}</h2>
+        ${A.story.map((p) => `<p>${esc(p)}</p>`).join("\n        ")}
       </div>
       <dl class="story-facts reveal">
         <div><dt>${BRAND.founded}</dt><dd>Año en que abrimos el taller en Dénia</dd></div>
-        <div><dt>12</dt><dd>Servicios de rotulación, serigrafía y gran formato</dd></div>
+        <div><dt>${ALL_SUBSERVICES.length}</dt><dd>Servicios de rotulación, serigrafía y gran formato</dd></div>
         <div><dt>1</dt><dd>Único interlocutor para todo tu proyecto</dd></div>
       </dl>
     </div>
   </section>`,
-    `  <section class="section section-alt">
+    when(A.areas.length, `  <section class="section section-alt">
     <div class="container">
-      ${sectionHead({ kicker: "Cómo nos organizamos", title: "Tres áreas, un mismo equipo" })}
+      ${sectionHead({ kicker: "Cómo nos organizamos", title: "Un mismo equipo, de principio a fin" })}
       <div class="areas">${areas}</div>
     </div>
-  </section>`,
-    `  <section class="section">
+  </section>`),
+    when(A.workshop.length, `  <section class="section">
     <div class="container">
       ${sectionHead({ kicker: "El taller", title: "Nuestro espacio de trabajo", text: "Impresión textil, corte de vinilo e impresión de gran formato bajo el mismo techo: así controlamos cada fase sin depender de terceros." })}
       <div class="gallery-grid is-four">${workshop}</div>
     </div>
-  </section>`,
-    contactCta(0, { title: "Pásate por el taller", text: "Estamos en " + BRAND.street + ", " + BRAND.city + ". " + BRAND.hours + " (" + BRAND.hoursNote.toLowerCase() + "). O escríbenos y hablamos de tu proyecto." })
+  </section>`),
+    contactCta(0, { title: "Pásate por el taller", text: "Estamos en " + BRAND.street + ", " + BRAND.city + ". " + BRAND.hours + (BRAND.hoursNote ? " (" + BRAND.hoursNote.toLowerCase() + ")" : "") + ". O escríbenos y hablamos de tu proyecto." })
   ].join("\n");
 
   write("nosotros.html", page(0, {
     title: "Nosotros | Taller de rotulación y serigrafía en Dénia — Seriart",
     description: "Seriart es un taller de rotulación, vinilo, serigrafía e impresión de gran formato en Dénia, Alicante, con más de 20 años de experiencia.",
-    canonical: "nosotros.html", current: "nosotros", ogImage: "about-team.jpg",
-    preload: "about-team.jpg", preloadSizes: "(min-width: 960px) 46vw, 100vw"
+    canonical: "nosotros.html", current: "nosotros", ogImage: A.heroImg,
+    preload: A.heroImg, preloadSizes: "(min-width: 960px) 46vw, 100vw"
   }, body));
 })();
 
@@ -408,7 +391,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
         </div>
         <div class="method is-static reveal">
           <span class="method-icon">${svgIcon("clock", 22)}</span>
-          <span><strong>Horario</strong><span>${esc(BRAND.hours)}. ${esc(BRAND.hoursNote)}.</span></span>
+          <span><strong>Horario</strong><span>${esc(BRAND.hours)}${BRAND.hoursNote ? ". " + esc(BRAND.hoursNote) : ""}.</span></span>
         </div>
       </div>
       <div class="form-card reveal">
@@ -450,7 +433,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
   write("contacto.html", page(0, {
     title: "Contacto | Seriart — Taller de rotulación en Dénia, Alicante",
     description: "Contacta con Seriart: taller en Ronda de les Muralles 20, Dénia (Alicante). Teléfono, WhatsApp, email y horario.",
-    canonical: "contacto.html", current: "contacto", ogImage: "workshop-machine.jpg"
+    canonical: "contacto.html", current: "contacto", ogImage: CONTENT.about.homeImg
   }, body));
 })();
 
@@ -540,7 +523,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
   write("presupuesto.html", page(0, {
     title: "Pedir presupuesto | Seriart — Rotulación, serigrafía y gran formato",
     description: "Solicita presupuesto sin compromiso a Seriart: rotulación de vehículos y negocios, vinilo, serigrafía o impresión de gran formato en Dénia, Alicante.",
-    canonical: "presupuesto.html", current: "presupuesto", ogImage: "workshop-machine.jpg"
+    canonical: "presupuesto.html", current: "presupuesto", ogImage: CONTENT.about.homeImg
   }, body));
 })();
 
@@ -591,7 +574,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
     `  <section class="section">
     <div class="container prose">
       <h2 id="aviso-legal">Aviso legal</h2>
-      <p>Titular del sitio web: Seriart — [Nombre fiscal y NIF/CIF pendientes de completar]. Domicilio: ${esc(BRAND.address)}. Email de contacto: ${esc(BRAND.email)}. Teléfono: ${esc(BRAND.phoneDisplay)}.</p>
+      <p>Titular del sitio web: ${esc(BRAND.legalName || "Seriart")}${BRAND.taxId ? ", NIF/CIF " + esc(BRAND.taxId) : ""}. Domicilio: ${esc(BRAND.address)}. Email de contacto: ${esc(BRAND.email)}. Teléfono: ${esc(BRAND.phoneDisplay)}.</p>
       <p>Este sitio web tiene carácter informativo y comercial. El acceso y uso del mismo atribuye la condición de usuario e implica la aceptación de las condiciones aquí recogidas.</p>
 
       <h2 id="privacidad">Política de privacidad</h2>
@@ -647,4 +630,29 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
   G.writeRuntimeConfig();
 })();
 
-console.log("\nDone: " + (ALL_SUBSERVICES.length + Object.keys(CATEGORY_CONTENT).length + 10) + " HTML pages + sitemap.xml + robots.txt");
+/* ===========================================================================
+   Static files → _site/
+   =========================================================================== */
+(function copyStatic() {
+  const copy = (from, to) => {
+    const src = path.join(ROOT, from);
+    if (!fs.existsSync(src)) return;
+    fs.cpSync(src, path.join(OUT, to || from), { recursive: true });
+  };
+  ["styles.css", "main.js", ".htaccess", "CNAME", "assets/fonts", "assets/credits.json", "assets/video",
+    "assets/img/favicon.svg", "assets/img/logo-trim.png", "assets/img/logo-white.png"].forEach((f) => copy(f));
+  /* Optimised WebP versions of every photo that still exists */
+  Object.keys(G.IMG_MANIFEST).forEach((src) => {
+    const m = G.IMG_MANIFEST[src];
+    if (!fs.existsSync(path.join(ROOT, src))) return;
+    m.widths.forEach((w) => copy(path.join(".cache", "img", m.base + "-" + w + ".webp"), "assets/opt/" + m.base + "-" + w + ".webp"));
+  });
+  /* Originals only when a page links to them directly (no optimised version yet) */
+  G.usedOriginals.forEach((f) => copy(f));
+})();
+
+console.log("Done: " + (ALL_SUBSERVICES.length + Object.keys(CATEGORY_CONTENT).length + 10) + " páginas en _site/");
+if (CONTENT.warnings.length) {
+  console.log("\nAvisos del contenido (la web se ha generado igualmente):");
+  CONTENT.warnings.forEach((w) => console.log("  - " + w));
+}

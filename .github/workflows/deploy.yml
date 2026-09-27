@@ -1,0 +1,55 @@
+# Builds the site and publishes it to GitHub Pages on every change to main,
+# including every save made from the Pages CMS panel.
+name: Publicar web
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Several saves in a row: only the latest pending build runs.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # Optimised WebP versions are cached, so only new or changed photos are processed
+      - uses: actions/cache@v6
+        with:
+          path: .cache/img
+          key: img-${{ hashFiles('assets/uploads/**') }}
+          restore-keys: img-
+
+      - name: Optimizar fotos
+        run: node tools/optimize-images.js
+
+      - name: Generar web
+        run: node tools/build.js
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

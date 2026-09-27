@@ -1,0 +1,61 @@
+{
+  "nombre": "Roll-ups",
+  "titulo": "Roll-ups",
+  "entradilla": "Expositores enrollables, ligeros y fáciles de transportar, listos para montar en cualquier feria, tienda o presentación.",
+  "foto": "/assets/uploads/poster-display.jpg",
+  "texto": "El roll-up es el soporte más práctico para quien necesita comunicar en distintos sitios: cabe en su propia bolsa de transporte, se monta en menos de un minuto y se puede reutilizar tantas veces como haga falta.\n\nImprimimos la lona y montamos el mecanismo, listo para usar nada más recibirlo. También podemos preparar varias unidades con el mismo diseño para stands o puntos de venta múltiples.",
+  "tipos": [
+    {
+      "titulo": "Roll-up estándar",
+      "texto": "Tamaño habitual para ferias y presentaciones, con bolsa de transporte."
+    },
+    {
+      "titulo": "Roll-up de gran formato",
+      "texto": "Mayor anchura para presencia destacada en stands."
+    },
+    {
+      "titulo": "Roll-up de doble cara",
+      "texto": "Visible desde ambos lados en pasillos y zonas de paso."
+    },
+    {
+      "titulo": "Packs para varios puntos de venta",
+      "texto": "Mismo diseño replicado en varias unidades."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Roll-up montado en feria"
+    },
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Expositor de gran formato"
+    },
+    {
+      "imagen": "/assets/uploads/outdoor-banner.jpg",
+      "pie": "Soporte publicitario portátil"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿El roll-up incluye el mecanismo o solo la lona?",
+      "respuesta": "Incluye el mecanismo completo, listo para montar y transportar en su bolsa."
+    },
+    {
+      "pregunta": "¿Puedo cambiar solo la lona más adelante?",
+      "respuesta": "Sí, si conservas el mecanismo podemos imprimir solo la lona de recambio."
+    },
+    {
+      "pregunta": "¿Es fácil de montar sin ayuda?",
+      "respuesta": "Sí, el mecanismo está pensado para montarse en menos de un minuto sin herramientas."
+    },
+    {
+      "pregunta": "¿Cuánto tarda la fabricación de un roll-up?",
+      "respuesta": "Suele ser uno de nuestros plazos más cortos dentro de gran formato; te lo confirmamos al presupuestar."
+    }
+  ],
+  "seo": {
+    "titulo": "Roll-ups en Denia | Expositores para ferias y eventos — Seriart",
+    "descripcion": "Impresión de roll-ups en Denia, Alicante. Expositores portátiles para ferias, puntos de venta y presentaciones, listos en su estuche."
+  }
+}

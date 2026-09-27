@@ -1,46 +1,47 @@
-/* Dev-time build helpers — shared partials for every page.
-   Pages are assembled in tools/build.js; copy lives in tools/content-data.js.
-   Output is plain, hardcoded HTML (no runtime templating). Only the generated
-   .html files + styles.css + main.js + lib/ + assets/ are deployed. */
+/* Build helpers — shared partials for every page.
+   Pages are assembled in tools/build.js. Editable content lives in content/
+   (edited from Pages CMS) and is loaded by tools/content.js.
+   Output is plain, static HTML written to _site/ (the folder that is deployed). */
 "use strict";
 const fs = require("fs");
 const path = require("path");
+const { load } = require("./content.js");
 
 const ROOT = path.join(__dirname, "..");
-const V = "20260926"; // cache-buster, bump on every deploy
+const OUT = path.join(ROOT, "_site");
+const V = String(Date.now()).slice(0, 10); // cache-buster, new on every build
+
+const CONTENT = load();
+const S = CONTENT.site;
 
 /* ---------------------------------------------------------------------------
-   Business data — single source of truth (also written to lib/manifest.js)
+   Business data — from content/sitio.json (also written to lib/manifest.js)
    --------------------------------------------------------------------------- */
 const BRAND = {
   name: "Seriart",
-  email: "alexitosivera@gmail.com",
-  phoneDisplay: "966 43 30 33",
-  phoneHref: "+34966433033",
-  whatsappNumber: "34651358822",
-  whatsappDisplay: "651 35 88 22",
+  email: S.email,
+  phoneDisplay: S.phoneDisplay,
+  phoneHref: S.phoneHref,
+  whatsappNumber: S.whatsappNumber,
+  whatsappDisplay: S.whatsappDisplay,
   whatsappText: "Hola, me gustaría pedir presupuesto para un proyecto.",
-  street: "Ronda de les Muralles, 20",
-  postalCode: "03700",
-  city: "Dénia",
-  province: "Alicante",
-  address: "Ronda de les Muralles, 20, 03700 Dénia (Alicante)",
-  hours: "Lunes a viernes, 8:00–14:00",
-  hoursNote: "Tardes con cita previa",
+  street: S.street,
+  postalCode: S.postalCode,
+  city: S.city,
+  province: S.province,
+  address: S.address,
+  hours: S.hours,
+  hoursNote: S.hoursNote,
+  legalName: S.legalName,
+  taxId: S.taxId,
   founded: 2002,
   siteUrl: "https://www.seriart.es",
-  /* Web3Forms access key (https://web3forms.com → create key with the email
-     that must receive the requests). While empty, forms fall back to opening
-     the visitor's mail app with the message already written. */
-  web3formsKey: "",
-  /* Hero timelapse. Put the file in assets/video/ and fill `src` (mp4, H.264,
-     1920px wide max, no audio, ideally < 8 MB). `poster` is shown until it
-     plays and whenever the visitor prefers reduced motion. */
-  heroVideo: {
-    src: "",
-    poster: "hero-vehicle-wrap.jpg",
-    caption: "Timelapse: rotulación de una furgoneta en el taller"
-  }
+  /* Web3Forms access key (https://web3forms.com). While empty, forms fall back
+     to opening the visitor's mail app with the message already written. */
+  web3formsKey: S.web3formsKey,
+  /* Hero timelapse: `src` is shown muted and looped; `poster` until it plays
+     and whenever the visitor prefers reduced motion. */
+  heroVideo: S.heroVideo
 };
 
 /* ---------------------------------------------------------------------------
@@ -53,74 +54,56 @@ function esc(s) {
 }
 function rel(depth, p) { return (depth > 0 ? "../".repeat(depth) : "") + p; }
 function write(filePath, html) {
-  const full = path.join(ROOT, filePath);
+  const full = path.join(OUT, filePath);
   fs.mkdirSync(path.dirname(full), { recursive: true });
   fs.writeFileSync(full, html, "utf8");
-  console.log("  wrote", filePath);
 }
 function waHref(text) {
   return "https://wa.me/" + BRAND.whatsappNumber + "?text=" + encodeURIComponent(text || BRAND.whatsappText);
 }
 
-/* Responsive images: reads the manifest written by tools/optimize-images.js */
+/* Responsive images: manifest written by tools/optimize-images.js, keyed by
+   source path ("assets/uploads/foto.jpg"). WebP files end up in assets/opt/. */
 let IMG_MANIFEST = {};
-try { IMG_MANIFEST = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/img/opt/manifest.json"), "utf8")); } catch (e) { /* not generated yet */ }
+try { IMG_MANIFEST = JSON.parse(fs.readFileSync(path.join(ROOT, ".cache/img/manifest.json"), "utf8")); } catch (e) { /* not generated yet */ }
+const usedOriginals = new Set();
 
-function imgBase(file) { return file.replace(/\.(jpe?g|png)$/i, ""); }
+function optUrl(depth, m, w) { return rel(depth, "assets/opt/" + m.base + "-" + w + ".webp"); }
+function srcUrl(depth, file) { usedOriginals.add(file); return rel(depth, file.split("/").map(encodeURIComponent).join("/")); }
 function imgLargest(depth, file) {
   const m = IMG_MANIFEST[file];
-  if (!m || !m.widths.length) return rel(depth, "assets/img/" + file);
-  return rel(depth, "assets/img/opt/" + imgBase(file) + "-" + m.widths[m.widths.length - 1] + ".webp");
+  if (!m || !m.widths.length) return srcUrl(depth, file);
+  return optUrl(depth, m, m.widths[m.widths.length - 1]);
 }
-/* <img> with srcset. opts: sizes, eager, cls, attrs */
+/* Absolute URL for og:image (social previews) */
+function imgAbsolute(file) {
+  const m = IMG_MANIFEST[file];
+  if (!m || !m.widths.length) { usedOriginals.add(file); return BRAND.siteUrl + "/" + file; }
+  return BRAND.siteUrl + "/assets/opt/" + m.base + "-" + m.widths[Math.min(1, m.widths.length - 1)] + ".webp";
+}
+/* <img> with srcset. file = repo path; opts: sizes, eager, cls, attrs */
 function pic(depth, file, alt, opts) {
   opts = opts || {};
+  if (!file) return "";
   const m = IMG_MANIFEST[file];
   const load = opts.eager ? 'fetchpriority="high"' : 'loading="lazy"';
   const cls = opts.cls ? ` class="${opts.cls}"` : "";
   const extra = opts.attrs ? " " + opts.attrs : "";
   if (!m || !m.widths.length) {
-    return `<img${cls} src="${rel(depth, "assets/img/" + file)}" alt="${esc(alt)}" ${load} decoding="async"${extra}>`;
+    return `<img${cls} src="${srcUrl(depth, file)}" alt="${esc(alt)}" ${load} decoding="async"${extra}>`;
   }
-  const b = imgBase(file);
-  const srcset = m.widths.map((w) => `${rel(depth, "assets/img/opt/" + b + "-" + w + ".webp")} ${w}w`).join(", ");
-  const small = rel(depth, "assets/img/opt/" + b + "-" + m.widths[0] + ".webp");
-  return `<img${cls} src="${small}" srcset="${srcset}" sizes="${opts.sizes || "100vw"}" width="${m.w}" height="${m.h}" alt="${esc(alt)}" ${load} decoding="async"${extra}>`;
+  const srcset = m.widths.map((w) => `${optUrl(depth, m, w)} ${w}w`).join(", ");
+  return `<img${cls} src="${optUrl(depth, m, m.widths[0])}" srcset="${srcset}" sizes="${opts.sizes || "100vw"}" width="${m.w}" height="${m.h}" alt="${esc(alt)}" ${load} decoding="async"${extra}>`;
 }
 
 /* ---------------------------------------------------------------------------
    Navigation data (header mega-menu, mobile nav, footer, sitemap)
-   Rotulación first: it's the core of the business.
+   Structure fixed in tools/content.js; labels come from the content files.
    --------------------------------------------------------------------------- */
-const CATEGORIES = [
-  {
-    slug: "rotulacion", label: "Rotulación y vinilo", overview: "servicios/rotulacion.html",
-    items: [
-      { label: "Vehículos", href: "rotulacion/vehiculos.html" },
-      { label: "Rótulos para negocios", href: "rotulacion/rotulos-negocios.html" },
-      { label: "Letras corpóreas", href: "rotulacion/letras-corporeas.html" },
-      { label: "Escaparates", href: "rotulacion/escaparates.html" },
-      { label: "Vinilos decorativos", href: "rotulacion/vinilos.html" }
-    ]
-  },
-  {
-    slug: "serigrafia", label: "Serigrafía", overview: "servicios/serigrafia.html",
-    items: [
-      { label: "Serigrafía textil", href: "serigrafia/textil.html" },
-      { label: "Ropa laboral personalizada", href: "serigrafia/ropa-laboral.html" },
-      { label: "Merchandising", href: "serigrafia/merchandising.html" }
-    ]
-  },
-  {
-    slug: "gran-formato", label: "Gran formato", overview: "servicios/gran-formato.html",
-    items: [
-      { label: "Lonas publicitarias", href: "gran-formato/lonas.html" },
-      { label: "Banners y pancartas", href: "gran-formato/banners.html" },
-      { label: "Roll-ups", href: "gran-formato/roll-ups.html" },
-      { label: "Cartelería", href: "gran-formato/carteleria.html" }
-    ]
-  }
-];
+const CATEGORIES = CONTENT.categories.map((cat) => ({
+  slug: cat.slug, label: cat.label, overview: "servicios/" + cat.slug + ".html",
+  items: cat.subs.map((s) => ({ label: s.label, href: cat.slug + "/" + s.slug + ".html" }))
+}));
 
 /* ---------------------------------------------------------------------------
    Icons — one stroke weight (1.75) for the whole set
@@ -159,13 +142,12 @@ const WHATSAPP_SVG = '<svg viewBox="0 0 32 32" width="22" height="22" fill="curr
    --------------------------------------------------------------------------- */
 function headBlock(depth, opts) {
   const canonical = BRAND.siteUrl + "/" + (opts.canonical || "");
-  const ogImage = BRAND.siteUrl + "/assets/img/" + (opts.ogImage || "hero-vehicle-wrap.jpg");
+  const ogImage = imgAbsolute(opts.ogImage || BRAND.heroVideo.poster);
   const preload = opts.preload
     ? (() => {
         const m = IMG_MANIFEST[opts.preload];
-        if (!m || !m.widths.length) return `\n  <link rel="preload" as="image" href="${rel(depth, "assets/img/" + opts.preload)}" fetchpriority="high">`;
-        const b = imgBase(opts.preload);
-        const set = m.widths.map((w) => `${rel(depth, "assets/img/opt/" + b + "-" + w + ".webp")} ${w}w`).join(", ");
+        if (!m || !m.widths.length) return `\n  <link rel="preload" as="image" href="${srcUrl(depth, opts.preload)}" fetchpriority="high">`;
+        const set = m.widths.map((w) => `${optUrl(depth, m, w)} ${w}w`).join(", ");
         return `\n  <link rel="preload" as="image" type="image/webp" imagesrcset="${set}" imagesizes="${opts.preloadSizes || "100vw"}" fetchpriority="high">`;
       })()
     : "";
@@ -197,7 +179,7 @@ ${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Seriart",
-    "image": BRAND.siteUrl + "/assets/img/hero-vehicle-wrap.jpg",
+    "image": imgAbsolute(BRAND.heroVideo.poster),
     "logo": BRAND.siteUrl + "/assets/img/logo-trim.png",
     "url": BRAND.siteUrl + "/",
     "telephone": BRAND.phoneHref,
@@ -275,7 +257,7 @@ function headerNav(depth, current, overHero) {
       <div class="mega-inner">
         ${megaCols}
         <a class="mega-promo" href="${L("servicios.html")}">
-          ${pic(depth, "workshop-machine.jpg", "", { sizes: "320px" })}
+          ${pic(depth, CONTENT.about.homeImg || CONTENT.categories[0].heroImg, "", { sizes: "320px" })}
           <span class="mega-promo-body"><strong>Todos los servicios</strong><span>Rotulación, vinilo, serigrafía y gran formato desde un mismo taller.</span></span>
         </a>
       </div>
@@ -575,13 +557,13 @@ function writeRuntimeConfig() {
     whatsappNumber: BRAND.whatsappNumber,
     web3formsKey: BRAND.web3formsKey
   };
-  write("lib/manifest.js", `/* Generated by tools/build.js from BRAND in tools/generate-site.js — do not edit by hand. */
+  write("lib/manifest.js", `/* Generated by tools/build.js from content/sitio.json — do not edit by hand. */
 window.__SERIART__ = ${JSON.stringify(cfg, null, 2)};
 `);
 }
 
 module.exports = {
-  ROOT, V, BRAND, CATEGORIES, IMG_MANIFEST, esc, rel, write, waHref, pic, imgLargest, svgIcon, WHATSAPP_SVG,
+  ROOT, OUT, V, BRAND, CONTENT, CATEGORIES, IMG_MANIFEST, usedOriginals, esc, rel, write, waHref, pic, imgLargest, svgIcon, WHATSAPP_SVG,
   page, pageHero, sectionHead, arrowLink, introBlock, benefitsRow, galleryBlock, processBlock, faqBlock,
   relatedBlock, contactCta, breadcrumb, writeRuntimeConfig
 };

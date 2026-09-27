@@ -1,0 +1,29 @@
+{
+  "fotoCabecera": "/assets/uploads/about-team.jpg",
+  "fotoInicio": "/assets/uploads/workshop-machine.jpg",
+  "historiaTitulo": "Empezamos con la serigrafía. Hoy rotulamos de todo.",
+  "historia": "Seriart nació en Dénia en 2002 como taller de serigrafía textil. Con los años, los mismos clientes que nos pedían camisetas empezaron a pedirnos el rótulo de la tienda, el vinilo de la furgoneta o la lona para el próximo evento, y el taller creció para darles respuesta.\n\nHoy seguimos en Dénia, con un equipo especializado y colaboradores externos cuando el proyecto lo pide, trabajando para clientes de toda España. Lo que no ha cambiado es la forma de trabajar: un mismo taller que se encarga de todo, de principio a fin.",
+  "areas": [
+    {
+      "titulo": "Diseño y preparación",
+      "texto": "Adaptamos tu logotipo o diseñamos desde cero, medimos el soporte y preparamos los archivos para producción.",
+      "imagen": "/assets/uploads/screen-printing-process.jpg"
+    },
+    {
+      "titulo": "Producción en taller",
+      "texto": "Impresión, corte de vinilo, serigrafía y montaje, con control de calidad antes de que nada salga por la puerta.",
+      "imagen": "/assets/uploads/workshop-machine.jpg"
+    },
+    {
+      "titulo": "Instalación",
+      "texto": "Aplicamos el vinilo en vehículos y cristales, y montamos rótulos y lonas en fachadas, en Dénia y alrededores.",
+      "imagen": "/assets/uploads/van-signage.jpg"
+    }
+  ],
+  "fotosTaller": [
+    "/assets/uploads/workshop-machine.jpg",
+    "/assets/uploads/shop-storefront.jpg",
+    "/assets/uploads/about-team.jpg",
+    "/assets/uploads/channel-letters.jpg"
+  ]
+}

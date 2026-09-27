@@ -1,0 +1,61 @@
+{
+  "nombre": "Lonas publicitarias",
+  "titulo": "Lonas publicitarias",
+  "entradilla": "Lonas de gran tamaño para fachadas, vallas y obras, impresas con materiales pensados para aguantar sol, lluvia y viento.",
+  "foto": "/assets/uploads/large-format-banner.jpg",
+  "texto": "Una lona bien impresa cubre una fachada entera con la imagen de una campaña, una obra o un evento. Usamos lonas de PVC con ojales reforzados, preparadas para instalarse a la intemperie durante semanas o meses sin perder color.\n\nNos encargamos del diseño, la impresión y, si el proyecto lo requiere, del montaje en altura con los medios adecuados.",
+  "tipos": [
+    {
+      "titulo": "Lonas de fachada",
+      "texto": "Grandes formatos para reformas, aperturas o campañas."
+    },
+    {
+      "titulo": "Lonas para andamios y obras",
+      "texto": "Cubren el andamiaje mientras dura la obra."
+    },
+    {
+      "titulo": "Lonas para eventos",
+      "texto": "Identidad visual de un evento en su acceso principal."
+    },
+    {
+      "titulo": "Vallas publicitarias",
+      "texto": "Formato horizontal para exterior y grandes superficies."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/large-format-banner.jpg",
+      "pie": "Lona publicitaria de gran formato"
+    },
+    {
+      "imagen": "/assets/uploads/outdoor-banner.jpg",
+      "pie": "Lona instalada en fachada"
+    },
+    {
+      "imagen": "/assets/uploads/workshop-machine.jpg",
+      "pie": "Impresión de gran formato en taller"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Qué material lleva la lona?",
+      "respuesta": "Trabajamos principalmente con PVC de gran formato con ojales reforzados, adecuado para instalación en exterior."
+    },
+    {
+      "pregunta": "¿Aguanta la lluvia y el sol durante meses?",
+      "respuesta": "Sí, es un material pensado para exterior, aunque la durabilidad exacta depende del tiempo de exposición y la orientación."
+    },
+    {
+      "pregunta": "¿Podéis encargaros del montaje?",
+      "respuesta": "Sí, coordinamos el montaje cuando el proyecto lo requiere, incluyendo instalaciones en altura."
+    },
+    {
+      "pregunta": "¿Cuál es el tamaño máximo que podéis imprimir?",
+      "respuesta": "Trabajamos con equipos de gran formato; cuéntanos las medidas exactas y te confirmamos la viabilidad."
+    }
+  ],
+  "seo": {
+    "titulo": "Lonas publicitarias en Denia | Impresión de gran formato — Seriart",
+    "descripcion": "Impresión y montaje de lonas publicitarias en Denia, Alicante: fachadas, vallas, andamios y obras. Materiales resistentes a la intemperie."
+  }
+}

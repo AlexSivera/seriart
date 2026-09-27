@@ -1,0 +1,61 @@
+{
+  "nombre": "Escaparates",
+  "titulo": "Rotulación de escaparates",
+  "entradilla": "Comunicación directa sobre el cristal de tu comercio: horarios, campañas de temporada, ofertas o simplemente tu imagen de marca.",
+  "foto": "/assets/uploads/shop-window-vinyl.jpg",
+  "texto": "El escaparate es el espacio publicitario más visitado de cualquier comercio: lo ve todo el que pasa por la calle. Con vinilo de corte o impreso, comunicamos lo que necesites sin tapar el interior de la tienda más de lo necesario.\n\nPreparamos tanto piezas permanentes, como el nombre del comercio o el horario, como campañas puntuales de temporada o rebajas que se pueden retirar sin dejar marca en el cristal.",
+  "tipos": [
+    {
+      "titulo": "Vinilo de corte",
+      "texto": "Textos y logotipos recortados en color liso, sin fondo."
+    },
+    {
+      "titulo": "Vinilo impreso",
+      "texto": "Composiciones a todo color para campañas de temporada."
+    },
+    {
+      "titulo": "Horarios y datos de contacto",
+      "texto": "Información práctica siempre visible desde la calle."
+    },
+    {
+      "titulo": "Vinilo microperforado",
+      "texto": "Grandes superficies de cristal sin perder visibilidad interior."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/shop-window-vinyl.jpg",
+      "pie": "Escaparate con vinilo rotulado"
+    },
+    {
+      "imagen": "/assets/uploads/shop-storefront.jpg",
+      "pie": "Comercio con escaparate personalizado"
+    },
+    {
+      "imagen": "/assets/uploads/channel-letters.jpg",
+      "pie": "Rotulación de escaparate con letras"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿El vinilo se puede quitar sin dañar el cristal?",
+      "respuesta": "Sí, está pensado para retirarse sin dejar residuos si se aplica correctamente."
+    },
+    {
+      "pregunta": "¿Puedo cambiar el vinilo del escaparate en cada temporada?",
+      "respuesta": "Sí, es habitual renovar campañas de temporada o rebajas varias veces al año."
+    },
+    {
+      "pregunta": "¿El vinilo impide ver el interior de la tienda?",
+      "respuesta": "Depende del tipo. El vinilo microperforado permite ver desde dentro casi con normalidad."
+    },
+    {
+      "pregunta": "¿Diseñáis vosotros la composición del escaparate?",
+      "respuesta": "Sí, te proponemos una composición o adaptamos tu diseño al tamaño real del cristal."
+    }
+  ],
+  "seo": {
+    "titulo": "Rotulación de escaparates en Denia | Vinilos para comercios — Seriart",
+    "descripcion": "Rotulación de escaparates y vinilos para comercios en Denia, Alicante: horarios, ofertas, temporada y comunicación de tienda."
+  }
+}

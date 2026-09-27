@@ -1,0 +1,69 @@
+{
+  "nombre": "Rotulación y vinilo",
+  "titulo": "Rotulación para vehículos, negocios y espacios",
+  "entradilla": "Diseñamos, fabricamos e instalamos la rotulación de tu vehículo, tu fachada o tu escaparate, con materiales pensados para durar a la intemperie.",
+  "foto": "/assets/uploads/hero-vehicle-wrap.jpg",
+  "texto": "La rotulación es la parte más visible de una imagen de marca: un vehículo, una fachada o un escaparate bien rotulado comunica antes de que nadie lea una sola palabra. Nos encargamos de todo el proceso, desde el diseño hasta la instalación final.\n\nTrabajamos con vinilos, PVC, metacrilato y otros materiales resistentes a la intemperie, y nos desplazamos para instalar en Denia y alrededores, además de coordinar envíos e instalaciones en otros puntos de España.",
+  "tipos": [
+    {
+      "titulo": "Rotulación de vehículos",
+      "texto": "Vinilo integral o parcial para flotas y vehículos individuales."
+    },
+    {
+      "titulo": "Rótulos para negocios",
+      "texto": "Fachadas, banderolas y señalética exterior."
+    },
+    {
+      "titulo": "Letras corpóreas",
+      "texto": "Letras 3D con y sin iluminación para fachadas."
+    },
+    {
+      "titulo": "Escaparates",
+      "texto": "Vinilos para cristal, horarios y comunicación de temporada."
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "texto": "Interiores de oficina, comercio y espacios de trabajo."
+    }
+  ],
+  "ventajas": [
+    {
+      "icono": "shield",
+      "titulo": "Materiales de exterior",
+      "texto": "Pensados para aguantar sol, lluvia y uso diario."
+    },
+    {
+      "icono": "ruler",
+      "titulo": "Diseño a medida",
+      "texto": "Medimos y adaptamos el diseño al soporte real."
+    },
+    {
+      "icono": "truck",
+      "titulo": "Instalación incluida",
+      "texto": "Fabricamos e instalamos, no solo entregamos."
+    },
+    {
+      "icono": "spark",
+      "titulo": "Desde 2002",
+      "texto": "Experiencia en proyectos de todos los tamaños."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/hero-vehicle-wrap.jpg",
+      "pie": "Rotulación de vehículo comercial"
+    },
+    {
+      "imagen": "/assets/uploads/channel-letters.jpg",
+      "pie": "Letras corpóreas iluminadas"
+    },
+    {
+      "imagen": "/assets/uploads/shop-storefront.jpg",
+      "pie": "Rótulo de negocio"
+    }
+  ],
+  "seo": {
+    "titulo": "Rotulación en Denia | Vehículos, negocios y escaparates — Seriart",
+    "descripcion": "Rotulación de vehículos, rótulos para negocios, letras corpóreas, escaparates y vinilos en Denia, Alicante. Diseño, fabricación e instalación."
+  }
+}

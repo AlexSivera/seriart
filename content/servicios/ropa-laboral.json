@@ -1,0 +1,61 @@
+{
+  "nombre": "Ropa laboral personalizada",
+  "titulo": "Ropa laboral personalizada",
+  "entradilla": "Uniformes y prendas de trabajo con el logotipo de tu empresa, pensados para durar tantas jornadas como haga falta.",
+  "foto": "/assets/uploads/workwear.jpeg",
+  "texto": "Una plantilla con la imagen de empresa bien puesta transmite algo que ningún cartel consigue: profesionalidad de un vistazo. Personalizamos polos, camisas, chaquetas, chalecos y ropa técnica con tu logotipo, en la posición y el tamaño que mejor encaje con cada prenda.\n\nTrabajamos tanto con prendas que nos facilita el cliente como con proveedores de ropa laboral, para que un mismo pedido incluya la prenda y la personalización sin que tengas que gestionar dos proveedores distintos.",
+  "tipos": [
+    {
+      "titulo": "Polos y camisas de empresa",
+      "texto": "Logotipo en pecho, con acabado discreto y resistente."
+    },
+    {
+      "titulo": "Chalecos y chaquetas técnicas",
+      "texto": "Para trabajo en exterior, almacén o reparto."
+    },
+    {
+      "titulo": "Ropa de hostelería",
+      "texto": "Delantales, gorros y camisas para cocina y sala."
+    },
+    {
+      "titulo": "Equipos de mantenimiento y obra",
+      "texto": "Prendas resistentes con logotipo de alta durabilidad."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/workwear.jpeg",
+      "pie": "Trabajadores con ropa laboral personalizada"
+    },
+    {
+      "imagen": "/assets/uploads/about-team.jpg",
+      "pie": "Equipo con uniforme de empresa"
+    },
+    {
+      "imagen": "/assets/uploads/workshop-machine.jpg",
+      "pie": "Taller de personalización textil"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Podéis personalizar la ropa que ya usa mi equipo?",
+      "respuesta": "Sí, si nos traes las prendas nosotros nos encargamos de la personalización."
+    },
+    {
+      "pregunta": "¿Podéis suministrar también las prendas?",
+      "respuesta": "Sí, trabajamos con proveedores de ropa laboral y te asesoramos sobre el tejido más adecuado según el uso."
+    },
+    {
+      "pregunta": "¿Qué técnica usáis, serigrafía o bordado?",
+      "respuesta": "Depende de la prenda y del acabado que busques. Te recomendamos la técnica más adecuada al pedirnos presupuesto."
+    },
+    {
+      "pregunta": "¿Puedo pedir tallas distintas dentro del mismo pedido?",
+      "respuesta": "Sí, es habitual en pedidos de uniformidad. Indícanoslo en el formulario de presupuesto."
+    }
+  ],
+  "seo": {
+    "titulo": "Ropa laboral personalizada en Denia | Uniformes con logo — Seriart",
+    "descripcion": "Personalizamos ropa laboral y uniformes de empresa con serigrafía o bordado en Denia. Imagen homogénea para tu equipo, en toda España."
+  }
+}

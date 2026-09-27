@@ -1,12 +1,11 @@
-/* Dev-only static file server for local preview. Not shipped to production —
-   deploy the plain HTML/CSS/JS/assets folder to Hostinger (or any static host)
-   instead. Usage: node tools/dev-server.js [port] */
+/* Dev-only static file server for local preview of the built site (_site/).
+   Run `node tools/build.js` first. Usage: node tools/dev-server.js [port] */
 "use strict";
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const root = path.join(__dirname, "..");
+const root = path.join(__dirname, "..", "_site");
 const port = Number(process.argv[2] || process.env.PORT || 8765);
 
 const TYPES = {
@@ -21,7 +20,10 @@ const TYPES = {
   ".webp": "image/webp",
   ".xml": "application/xml",
   ".txt": "text/plain; charset=utf-8",
-  ".ico": "image/x-icon"
+  ".ico": "image/x-icon",
+  ".woff2": "font/woff2",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm"
 };
 
 http.createServer(function (req, res) {
