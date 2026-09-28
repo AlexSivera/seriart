@@ -106,7 +106,8 @@ function load() {
     hoursNote: str(s.horarioNota),
     legalName: str(empresa.nombreFiscal),
     taxId: str(empresa.nif),
-    web3formsKey: str(s.web3formsKey),
+    /* Kept in config.json, outside the panel: Pages CMS drops hidden fields on save */
+    web3formsKey: str(readJson("config.json", {}).web3formsKey),
     heroVideo: {
       src: media(portada.video, "Datos generales (vídeo de portada)") || "",
       poster: media(portada.imagen, "Datos generales (imagen de portada)") || "assets/uploads/hero-vehicle-wrap.jpg",

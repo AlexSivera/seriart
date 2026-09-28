@@ -344,6 +344,3 @@ content:
         fields:
           - { name: nombreFiscal, label: "Nombre fiscal o razón social", type: string }
           - { name: nif, label: "NIF / CIF", type: string }
-      - name: web3formsKey
-        type: string
-        hidden: true

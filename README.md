@@ -47,8 +47,8 @@ Necesita Node 22 y Chrome instalado (se usa en modo headless para convertir las 
 ## Pendiente
 
 - **Web3Forms**: crea la clave en <https://web3forms.com> con el email que recibirá
-  las solicitudes y ponla en `web3formsKey` de `content/sitio.json` (está oculta en el
-  panel a propósito). Sin clave, los formularios abren el correo del visitante.
+  las solicitudes y ponla en `web3formsKey` de `config.json` (fuera del panel a propósito,
+  para que nadie la borre al guardar). Sin clave, los formularios abren el correo del visitante.
 - **Dominio**: cuando tengáis `seriart.es`, crea un archivo `CNAME` en la raíz con
   `www.seriart.es` y configura el dominio en *Settings → Pages*. Las URLs canónicas y
   el sitemap ya apuntan a `https://www.seriart.es`.
