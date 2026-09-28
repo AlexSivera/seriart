@@ -11,13 +11,8 @@
   "horario": "Lunes a viernes, 8:00–14:00",
   "horarioNota": "Tardes con cita previa",
   "portada": {
-    "video": "",
+    "video": "/assets/video/timelapse-rotulacion-furgoneta.mp4",
     "imagen": "/assets/uploads/hero-vehicle-wrap.jpg",
     "textoVideo": "Timelapse: rotulación de una furgoneta en el taller"
-  },
-  "empresa": {
-    "nombreFiscal": "",
-    "nif": ""
-  },
-  "web3formsKey": ""
+  }
 }
