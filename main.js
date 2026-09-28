@@ -377,6 +377,8 @@
         submit.textContent = "Enviando…";
         setStatus("", "");
         var data = new FormData(form);
+        // Skip optional fields left empty so the email only shows what was filled in
+        Array.from(data.keys()).forEach(function (k) { if (!String(data.get(k)).trim()) data.delete(k); });
         data.set("access_key", key);
         var replyTo = $("input[type=email]", form);
         if (replyTo) data.set("replyto", replyTo.value);

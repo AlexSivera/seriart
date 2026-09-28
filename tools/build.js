@@ -401,7 +401,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
           ${formHidden("Nuevo mensaje desde la web (contacto)")}
           <div class="form-row">
             <div class="field"><label for="c-nombre">Nombre</label><input id="c-nombre" name="Nombre" type="text" autocomplete="name" required></div>
-            <div class="field"><label for="c-telefono">Teléfono <span class="opt">(opcional)</span></label><input id="c-telefono" name="Teléfono" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="c-telefono">Teléfono <span class="opt">(opcional)</span></label><input id="c-telefono" name="Telefono" type="tel" autocomplete="tel"></div>
           </div>
           <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="c-mensaje">Mensaje</label><textarea id="c-mensaje" name="Mensaje" rows="5" required></textarea></div>
@@ -468,7 +468,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
             </div>
             <div class="form-row">
               <div class="field"><label for="p-email">Email</label><input id="p-email" name="email" type="email" autocomplete="email" required></div>
-              <div class="field"><label for="p-telefono">Teléfono</label><input id="p-telefono" name="Teléfono" type="tel" autocomplete="tel" required></div>
+              <div class="field"><label for="p-telefono">Teléfono</label><input id="p-telefono" name="Telefono" type="tel" autocomplete="tel" required></div>
             </div>
           </fieldset>
           <fieldset>
@@ -481,7 +481,7 @@ Object.keys(CATEGORY_CONTENT).forEach(function (slug) {
                 <option value="No lo tengo claro" data-slug="otro">No lo tengo claro / varios servicios</option>
               </select>
             </div>
-            <div class="field"><label for="p-descripcion">Descríbelo</label><textarea id="p-descripcion" name="Descripción" rows="5" placeholder="Por ejemplo: rotular los laterales y la puerta trasera de una Renault Kangoo con nuestro logo y teléfono." required></textarea></div>
+            <div class="field"><label for="p-descripcion">Descríbelo</label><textarea id="p-descripcion" name="Descripcion" rows="5" placeholder="Por ejemplo: rotular los laterales y la puerta trasera de una Renault Kangoo con nuestro logo y teléfono." required></textarea></div>
             <div class="form-row is-three">
               <div class="field"><label for="p-cantidad">Cantidad <span class="opt">(opcional)</span></label><input id="p-cantidad" name="Cantidad" type="text" placeholder="50 camisetas, 2 furgonetas…"></div>
               <div class="field"><label for="p-medidas">Medidas <span class="opt">(opcional)</span></label><input id="p-medidas" name="Medidas" type="text" placeholder="3 × 2 m…"></div>
