@@ -1,9 +1,9 @@
 {
   "nombre": "Serigrafía",
-  "titulo": "*Serigrafía*, textil y merchandising",
-  "entradilla": "Ropa de trabajo, camisetas de fiesta, bolsas, placas y trofeos. El oficio con el que empezó el taller.",
-  "foto": "/assets/uploads/textil-camiseta-plancha.jpg",
-  "texto": "La serigrafía es nuestro oficio desde 2002: el logo del taller todavía lo dice. Estampamos camisetas, sudaderas, polos y bolsas, y combinamos la serigrafía con transfer, vinilo termosoldable y tampografía según la prenda y la cantidad.\n\nTrabajamos para empresas, comercios, asociaciones, clubes, peñas y fallas, y para particulares con una idea concreta.",
+  "titulo": "Serigrafía textil y merchandising con acabado de taller",
+  "entradilla": "Impresión serigráfica sobre prendas y objetos promocionales, pensada para que la imagen de tu marca aguante lavados, uso diario y jornadas de trabajo.",
+  "foto": "/assets/uploads/screen-printing-process.jpg",
+  "texto": "La serigrafía es nuestro oficio desde 2002. Trabajamos con tintas de calidad textil e industrial que resisten el lavado y el roce, y con procesos que se adaptan tanto a una tirada de diez camisetas como a un pedido de varios cientos de prendas.\n\nCada encargo pasa por el mismo taller de Denia donde preparamos las pantallas, ajustamos los colores y revisamos la calidad prenda a prenda antes de entregarlo. Trabajamos con comercios, empresas, asociaciones, clubes y particulares de toda España.",
   "tipos": [
     {
       "titulo": "Camisetas y polos",
@@ -30,22 +30,44 @@
       "texto": "Equipaciones de clubes y grupos con numeración."
     }
   ],
+  "ventajas": [
+    {
+      "icono": "shield",
+      "titulo": "Tintas resistentes",
+      "texto": "Aguantan lavados y uso diario sin perder color."
+    },
+    {
+      "icono": "layers",
+      "titulo": "Tiradas cortas y largas",
+      "texto": "Nos adaptamos al volumen real de tu pedido."
+    },
+    {
+      "icono": "clock",
+      "titulo": "Plazos claros",
+      "texto": "Sabes desde el presupuesto cuándo estará listo."
+    },
+    {
+      "icono": "spark",
+      "titulo": "Desde 2002",
+      "texto": "Un taller físico que controla cada fase del proceso."
+    }
+  ],
   "galeria": [
     {
-      "imagen": "/assets/uploads/textil-camiseta-plancha.jpg",
-      "pie": "Chaqueta con logotipo en la plancha"
+      "imagen": "/assets/uploads/tshirt-stack.jpg",
+      "pie": "Camisetas serigrafiadas apiladas"
     },
     {
-      "imagen": "/assets/uploads/textil-bolso-transfer.jpg",
-      "pie": "Bolso con transfer «Marins Corsaris»"
+      "imagen": "/assets/uploads/screen-printing-process.jpg",
+      "pie": "Detalle de estampación textil"
     },
     {
-      "imagen": "/assets/uploads/placas-rally-borgia.jpg",
-      "pie": "Trofeos del IV Rally Clásico Territorio Borgia"
+      "imagen": "/assets/uploads/workshop-machine.jpg",
+      "pie": "Taller de serigrafía de Seriart"
     }
   ],
   "seo": {
     "titulo": "Serigrafía en Denia | Textil, ropa laboral y merchandising — Seriart",
-    "descripcion": "Serigrafía textil, ropa laboral personalizada, merchandising, placas y trofeos en Denia, Alicante. Taller de serigrafía desde 2002."
+    "descripcion": "Serigrafía textil, ropa laboral personalizada y merchandising publicitario en Denia, Alicante. Más de 20 años imprimiendo para empresas de toda España."
   }
 }

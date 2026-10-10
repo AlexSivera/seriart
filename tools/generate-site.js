@@ -14,15 +14,6 @@ const V = String(Date.now()).slice(0, 10); // cache-buster, new on every build
 const CONTENT = load();
 const S = CONTENT.site;
 
-/* Public URL: the custom domain once a CNAME file exists, GitHub Pages until then */
-function siteUrl() {
-  try {
-    const cname = fs.readFileSync(path.join(ROOT, "CNAME"), "utf8").trim();
-    if (cname) return "https://" + cname.replace(/^https?:\/\//, "").replace(/\/+$/, "");
-  } catch (e) { /* no custom domain yet */ }
-  return "https://alexsivera.github.io/seriart";
-}
-
 /* ---------------------------------------------------------------------------
    Business data — from content/sitio.json (also written to lib/manifest.js)
    --------------------------------------------------------------------------- */
@@ -33,7 +24,7 @@ const BRAND = {
   phoneHref: S.phoneHref,
   whatsappNumber: S.whatsappNumber,
   whatsappDisplay: S.whatsappDisplay,
-  whatsappText: "Hola, me gustaría pedir presupuesto para un trabajo.",
+  whatsappText: "Hola, me gustaría pedir presupuesto para un proyecto.",
   street: S.street,
   postalCode: S.postalCode,
   city: S.city,
@@ -44,16 +35,14 @@ const BRAND = {
   legalName: S.legalName,
   taxId: S.taxId,
   founded: 2002,
-  geo: { lat: 38.840666, lng: 0.1021857 }, // Google Maps pin of the shop
-  instagram: "https://www.instagram.com/seriart_denia/",
-  facebook: "https://www.facebook.com/SeriartDenia/",
-  siteUrl: siteUrl(),
+  siteUrl: "https://www.seriart.es",
   /* Web3Forms access key (https://web3forms.com). While empty, forms fall back
      to opening the visitor's mail app with the message already written. */
   web3formsKey: S.web3formsKey,
+  /* Hero timelapse: `src` is shown muted and looped; `poster` until it plays
+     and whenever the visitor prefers reduced motion. */
   heroVideo: S.heroVideo
 };
-BRAND.mapsLink = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Seriart, " + BRAND.address);
 
 /* ---------------------------------------------------------------------------
    Helpers
@@ -63,10 +52,6 @@ function esc(s) {
     return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
   });
 }
-/* Titles from the panel mark the heavy word with *asterisks* (the logo's
-   "seri" light / "art" heavy contrast). em() renders it, plain() strips it. */
-function em(s) { return esc(s).replace(/\*([^*]+)\*/g, "<strong>$1</strong>"); }
-function plain(s) { return String(s == null ? "" : s).replace(/\*/g, ""); }
 function rel(depth, p) { return (depth > 0 ? "../".repeat(depth) : "") + p; }
 function write(filePath, html) {
   const full = path.join(OUT, filePath);
@@ -76,7 +61,6 @@ function write(filePath, html) {
 function waHref(text) {
   return "https://wa.me/" + BRAND.whatsappNumber + "?text=" + encodeURIComponent(text || BRAND.whatsappText);
 }
-const pad = (n) => String(n).padStart(2, "0");
 
 /* Responsive images: manifest written by tools/optimize-images.js, keyed by
    source path ("assets/uploads/foto.jpg"). WebP files end up in assets/opt/. */
@@ -113,52 +97,45 @@ function pic(depth, file, alt, opts) {
 }
 
 /* ---------------------------------------------------------------------------
-   Navigation data (mobile nav, footer, services sheet, sitemap)
+   Navigation data (header mega-menu, mobile nav, footer, sitemap)
    Structure fixed in tools/content.js; labels come from the content files.
    --------------------------------------------------------------------------- */
-const CODES = { rotulacion: "R", serigrafia: "S", "gran-formato": "G" };
 const CATEGORIES = CONTENT.categories.map((cat) => ({
-  slug: cat.slug, label: cat.label, overview: "servicios/" + cat.slug + ".html", code: CODES[cat.slug] || "X",
-  items: cat.subs.map((s, i) => ({ slug: s.slug, label: s.label, lead: s.lead, href: cat.slug + "/" + s.slug + ".html", code: (CODES[cat.slug] || "X") + pad(i + 1) }))
+  slug: cat.slug, label: cat.label, overview: "servicios/" + cat.slug + ".html",
+  items: cat.subs.map((s) => ({ label: s.label, href: cat.slug + "/" + s.slug + ".html" }))
 }));
 
 /* ---------------------------------------------------------------------------
-   Icons — only functional ones (one stroke weight for the whole set)
+   Icons — one stroke weight (1.75) for the whole set
    --------------------------------------------------------------------------- */
 const ICONS = {
-  arrow: '<path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/>',
+  shirt: '<path d="M8 3 3 7l3 3 2-1.5V21h8V8.5L18 10l3-3-5-4-2 2h-4L8 3Z" stroke-linejoin="round"/>',
+  check: '<path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/>',
+  pin: '<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
   phone: '<path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z" stroke-linejoin="round"/>',
-  close: '<path d="M6 6l12 12M18 6 6 18" stroke-linecap="square"/>',
-  prev: '<path d="m15 6-6 6 6 6" stroke-linecap="square"/>',
-  next: '<path d="m9 6 6 6-6 6" stroke-linecap="square"/>',
+  truck: '<path d="M2 6h12v10H2zM14 9h4l4 4v3h-8z" stroke-linejoin="round"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>',
+  layers: '<path d="m12 3 9 5-9 5-9-5 9-5Z" stroke-linejoin="round"/><path d="m3 13 9 5 9-5" stroke-linejoin="round"/>',
+  ruler: '<path d="M3 16 16 3l5 5L8 21 3 16Z" stroke-linejoin="round"/><path d="m9 10 2 2M12 7l2 2M6 13l2 2" stroke-linecap="round"/>',
+  shield: '<path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6l-8-3Z" stroke-linejoin="round"/>',
+  spark: '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" stroke-linecap="round"/>',
+  arrow: '<path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>',
+  chevron: '<path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>',
+  close: '<path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/>',
+  prev: '<path d="m15 6-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>',
+  next: '<path d="m9 6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>',
   play: '<path d="M8 5.5v13l10.5-6.5L8 5.5Z" fill="currentColor" stroke-linejoin="round"/>',
-  pause: '<path d="M8 5v14M16 5v14" stroke-width="2.5"/>',
-  plus: '<path d="M12 5v14M5 12h14" stroke-linecap="square"/>',
-  mail: '<path d="M3 5h18v14H3z"/><path d="m3.5 6 8.5 7 8.5-7"/>',
-  pin: '<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/>'
+  pause: '<path d="M8 5v14M16 5v14" stroke-linecap="round" stroke-width="2.5"/>',
+  pen: '<path d="M4 20h4L19 9l-4-4L4 16v4Z" stroke-linejoin="round"/><path d="m13.5 6.5 4 4"/>',
+  chat: '<path d="M4 5h16v11H9l-5 4V5Z" stroke-linejoin="round"/>',
+  map: '<path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z" stroke-linejoin="round"/><path d="M9 4v14M15 6v14"/>'
 };
 function svgIcon(name, size) {
   const s = size || 20;
-  return `<svg class="icon" viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">${ICONS[name] || ICONS.arrow}</svg>`;
+  return `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">${ICONS[name] || ICONS.check}</svg>`;
 }
-const WHATSAPP_SVG = '<svg class="icon" viewBox="0 0 32 32" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3 9 3 16c0 2.4.7 4.7 1.9 6.7L3 29l6.5-1.8A13 13 0 0 0 16 29c7 0 13-6 13-13S23 3 16 3Zm0 23.6c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 26.6 16 10.6 10.6 0 0 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C10 11 9.5 12 9.5 13.4S10.6 16.3 10.8 16.6c.1.2 2.2 3.4 5.4 4.7 2 .8 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg>';
-
-/* ---------------------------------------------------------------------------
-   Brand devices
-   --------------------------------------------------------------------------- */
-/* Livery band: cyan / ink / orange stripes, wiped in like a squeegee */
-function livery(cls) {
-  return `<div class="livery${cls ? " " + cls : ""}" aria-hidden="true"><i class="livery-c"></i><i class="livery-k"></i><i class="livery-o"></i></div>`;
-}
-/* Rally door roundel */
-function roundel(n, cls) {
-  return `<span class="roundel${cls ? " " + cls : ""}" aria-hidden="true">${esc(n)}</span>`;
-}
-/* Technical caption on photos */
-function tag(parts) {
-  const p = parts.filter(Boolean).map(esc);
-  return p.length ? `<span class="photo-tag">${p.join('<span class="photo-tag-sep">·</span>')}</span>` : "";
-}
+const WHATSAPP_SVG = '<svg viewBox="0 0 32 32" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3 9 3 16c0 2.4.7 4.7 1.9 6.7L3 29l6.5-1.8A13 13 0 0 0 16 29c7 0 13-6 13-13S23 3 16 3Zm0 23.6c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 26.6 16 10.6 10.6 0 0 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C10 11 9.5 12 9.5 13.4S10.6 16.3 10.8 16.6c.1.2 2.2 3.4 5.4 4.7 2 .8 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg>';
 
 /* ---------------------------------------------------------------------------
    <head>
@@ -166,7 +143,6 @@ function tag(parts) {
 function headBlock(depth, opts) {
   const canonical = BRAND.siteUrl + "/" + (opts.canonical || "");
   const ogImage = imgAbsolute(opts.ogImage || BRAND.heroVideo.poster);
-  const title = plain(opts.title);
   const preload = opts.preload
     ? (() => {
         const m = IMG_MANIFEST[opts.preload];
@@ -177,21 +153,22 @@ function headBlock(depth, opts) {
     : "";
   return `<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(title)}</title>
+  <title>${esc(opts.title)}</title>
   <meta name="description" content="${esc(opts.description)}">
   <link rel="canonical" href="${canonical}">
   <meta name="robots" content="${opts.noindex ? "noindex, follow" : "index, follow"}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Seriart">
   <meta property="og:url" content="${canonical}">
-  <meta property="og:title" content="${esc(title)}">
+  <meta property="og:title" content="${esc(opts.title)}">
   <meta property="og:description" content="${esc(opts.description)}">
   <meta property="og:image" content="${ogImage}">
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#f2f0eb">
+  <meta name="theme-color" content="#0d1822">
   <link rel="icon" href="${rel(depth, "assets/img/favicon.svg")}" type="image/svg+xml">
-  <link rel="preload" href="${rel(depth, "assets/fonts/archivo-var.woff2")}" as="font" type="font/woff2" crossorigin>${preload}
+  <link rel="preload" href="${rel(depth, "assets/fonts/barlow-sc-700.woff2")}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="${rel(depth, "assets/fonts/barlow-400.woff2")}" as="font" type="font/woff2" crossorigin>${preload}
   <link rel="stylesheet" href="${rel(depth, "styles.css")}?v=${V}">
   <script>document.documentElement.classList.add("js")</script>`;
 }
@@ -202,12 +179,12 @@ ${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Seriart",
-    "alternateName": "Seriart Taller de Serigrafía",
     "image": imgAbsolute(BRAND.heroVideo.poster),
     "logo": BRAND.siteUrl + "/assets/img/logo-trim.png",
     "url": BRAND.siteUrl + "/",
     "telephone": BRAND.phoneHref,
     "email": BRAND.email,
+    "priceRange": "€€",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": BRAND.street,
@@ -216,8 +193,7 @@ ${JSON.stringify({
       "postalCode": BRAND.postalCode,
       "addressCountry": "ES"
     },
-    "geo": { "@type": "GeoCoordinates", "latitude": BRAND.geo.lat, "longitude": BRAND.geo.lng },
-    "areaServed": { "@type": "City", "name": BRAND.city },
+    "areaServed": "ES",
     "foundingDate": String(BRAND.founded),
     "openingHoursSpecification": [{
       "@type": "OpeningHoursSpecification",
@@ -225,56 +201,78 @@ ${JSON.stringify({
       "opens": "08:00",
       "closes": "14:00"
     }],
-    "sameAs": [BRAND.instagram, BRAND.facebook],
-    "description": "Taller de rotulación, vinilo y serigrafía en Dénia (Alicante) desde 2002: vehículos, escaparates, rótulos, textil y gran formato."
+    "description": "Rotulación de vehículos y negocios, vinilo, serigrafía textil, ropa laboral e impresión de gran formato en Dénia, Alicante. Diseño, fabricación e instalación desde 2002."
   }, null, 2)}
   </script>`;
 }
 
 /* ---------------------------------------------------------------------------
-   Header + mobile panel. `current` = top-level section key for aria-current
+   Header + mega menu + mobile panel
+   `current` = top-level section key for aria-current
    --------------------------------------------------------------------------- */
-function headerNav(depth, current) {
+function headerNav(depth, current, overHero) {
   const L = (p) => rel(depth, p);
   const cur = (k) => (current === k ? ' aria-current="page"' : "");
-  const links = [
-    { k: "trabajos", label: "Trabajos", href: "trabajos.html" },
-    { k: "servicios", label: "Servicios", href: "servicios.html" },
-    { k: "nosotros", label: "El taller", href: "nosotros.html" },
-    { k: "contacto", label: "Contacto", href: "contacto.html" }
-  ];
-  const mobileServices = CATEGORIES.map((cat) => `<div class="mnav-group">
-          <a class="mnav-cat" href="${L(cat.overview)}">${esc(cat.label)}</a>
-          <ul>${cat.items.map((it) => `<li><a href="${L(it.href)}">${esc(it.label)}</a></li>`).join("")}</ul>
-        </div>`).join("");
+  const megaCols = CATEGORIES.map(function (cat) {
+    const links = cat.items.map((it) => `<li><a href="${L(it.href)}">${esc(it.label)}</a></li>`).join("");
+    return `<div class="mega-col">
+          <a class="mega-title" href="${L(cat.overview)}">${esc(cat.label)} ${svgIcon("arrow", 16)}</a>
+          <ul>${links}</ul>
+        </div>`;
+  }).join("");
+
+  const mobileGroups = CATEGORIES.map(function (cat, i) {
+    const links = cat.items.map((it) => `<a href="${L(it.href)}">${esc(it.label)}</a>`).join("");
+    return `<div class="mnav-group">
+        <button class="mnav-link" type="button" data-mnav-sub aria-expanded="false" aria-controls="mnav-sub-${i}">${esc(cat.label)} ${svgIcon("chevron", 18)}</button>
+        <div class="mnav-sub" id="mnav-sub-${i}" hidden>
+          <a href="${L(cat.overview)}">Todo ${esc(cat.label.toLowerCase())}</a>${links}
+        </div>
+      </div>`;
+  }).join("");
 
   return `<a class="skip-link" href="#main">Ir al contenido</a>
-  <header class="site-header" data-header>
-    <div class="wrap header-inner">
+  <header class="site-header${overHero ? " is-over-hero" : ""}" data-header>
+    <div class="header-inner">
       <a class="brand" href="${L("index.html")}" aria-label="Seriart, ir al inicio">
-        <img src="${L("assets/img/logo-trim.png")}" alt="" width="177" height="160">
+        <img class="brand-logo brand-logo--color" src="${L("assets/img/logo-trim.png")}" alt="" width="177" height="160">
+        <img class="brand-logo brand-logo--white" src="${L("assets/img/logo-white.png")}" alt="" width="177" height="160">
+        <span class="brand-text"><strong>Rotulación y serigrafía</strong><span>Dénia · desde ${BRAND.founded}</span></span>
       </a>
       <nav class="nav-primary" aria-label="Principal">
-        ${links.map((l) => `<a class="nav-link" href="${L(l.href)}"${cur(l.k)}>${l.label}</a>`).join("\n        ")}
+        <button class="nav-link" type="button" data-mega-trigger aria-expanded="false" aria-controls="mega"${current === "servicios" ? ' data-current="true"' : ""}>Servicios ${svgIcon("chevron", 16)}</button>
+        <a class="nav-link" href="${L("trabajos.html")}"${cur("trabajos")}>Trabajos</a>
+        <a class="nav-link" href="${L("nosotros.html")}"${cur("nosotros")}>Nosotros</a>
+        <a class="nav-link" href="${L("contacto.html")}"${cur("contacto")}>Contacto</a>
       </nav>
       <div class="header-actions">
-        <a class="header-phone" href="tel:${BRAND.phoneHref}">${svgIcon("phone", 16)}<span>${esc(BRAND.phoneDisplay)}</span></a>
-        <a class="btn btn-sm" href="${L("presupuesto.html")}"${cur("presupuesto")}>Presupuesto</a>
+        <a class="header-phone" href="tel:${BRAND.phoneHref}">${svgIcon("phone", 18)}<span>${esc(BRAND.phoneDisplay)}</span></a>
+        <a class="btn btn-primary btn-sm" href="${L("presupuesto.html")}"><span class="hide-sm">Pedir presupuesto</span><span class="show-sm">Presupuesto</span></a>
         <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav">
           <span></span><span></span>
         </button>
       </div>
     </div>
+    <div class="mega" id="mega" data-mega hidden>
+      <div class="mega-inner">
+        ${megaCols}
+        <a class="mega-promo" href="${L("servicios.html")}">
+          ${pic(depth, CONTENT.about.homeImg || CONTENT.categories[0].heroImg, "", { sizes: "320px" })}
+          <span class="mega-promo-body"><strong>Todos los servicios</strong><span>Rotulación, vinilo, serigrafía y gran formato desde un mismo taller.</span></span>
+        </a>
+      </div>
+    </div>
   </header>
   <div class="mnav" id="mnav" data-mnav hidden>
-    <nav class="mnav-inner wrap" aria-label="Menú móvil">
-      <ul class="mnav-main">
-        ${links.map((l, i) => `<li><a href="${L(l.href)}"${cur(l.k)}><span class="mnav-num">${pad(i + 1)}</span>${l.label}</a></li>`).join("\n        ")}
-      </ul>
-      <div class="mnav-services">${mobileServices}</div>
+    <nav class="mnav-inner" aria-label="Menú móvil">
+      ${mobileGroups}
+      <a class="mnav-link" href="${L("servicios.html")}">Todos los servicios</a>
+      <a class="mnav-link" href="${L("trabajos.html")}">Trabajos</a>
+      <a class="mnav-link" href="${L("nosotros.html")}">Nosotros</a>
+      <a class="mnav-link" href="${L("contacto.html")}">Contacto</a>
       <div class="mnav-actions">
-        <a class="btn btn-block" href="${waHref()}" target="_blank" rel="noopener">${WHATSAPP_SVG} WhatsApp</a>
-        <a class="btn btn-line btn-block" href="tel:${BRAND.phoneHref}">${svgIcon("phone", 18)} ${esc(BRAND.phoneDisplay)}</a>
+        <a class="btn btn-primary btn-block" href="${L("presupuesto.html")}">Pedir presupuesto</a>
+        <a class="btn btn-outline btn-block" href="tel:${BRAND.phoneHref}">${svgIcon("phone", 18)} Llamar al ${esc(BRAND.phoneDisplay)}</a>
       </div>
     </nav>
   </div>`;
@@ -285,55 +283,55 @@ function headerNav(depth, current) {
    --------------------------------------------------------------------------- */
 function footer(depth) {
   const L = (p) => rel(depth, p);
-  const cols = CATEGORIES.map((cat) => `<div class="footer-col">
-          <h2><a href="${L(cat.overview)}">${esc(cat.label)}</a></h2>
-          <ul>${cat.items.map((it) => `<li><a href="${L(it.href)}">${esc(it.label)}</a></li>`).join("")}</ul>
-        </div>`).join("");
+  const services = CATEGORIES.map((cat) => `<li><a href="${L(cat.overview)}">${esc(cat.label)}</a></li>`).join("")
+    + `<li><a href="${L("rotulacion/vehiculos.html")}">Rotulación de vehículos</a></li>`
+    + `<li><a href="${L("serigrafia/ropa-laboral.html")}">Ropa laboral</a></li>`;
   return `<footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-top">
-        <div class="footer-visit">
-          <p class="label">La tienda</p>
-          <p class="footer-address"><a href="${BRAND.mapsLink}" target="_blank" rel="noopener">${esc(BRAND.street)}<br>${esc(BRAND.postalCode)} ${esc(BRAND.city)} (${esc(BRAND.province)})</a></p>
-          <p class="footer-hours">${esc(BRAND.hours)}${BRAND.hoursNote ? "<br>" + esc(BRAND.hoursNote) : ""}</p>
-          <ul class="footer-contact">
-            <li><a href="tel:${BRAND.phoneHref}">${esc(BRAND.phoneDisplay)}</a></li>
-            <li><a href="${waHref()}" target="_blank" rel="noopener">WhatsApp ${esc(BRAND.whatsappDisplay)}</a></li>
-            <li><a href="mailto:${BRAND.email}">${esc(BRAND.email)}</a></li>
-          </ul>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img class="footer-logo" src="${L("assets/img/logo-white.png")}" alt="Seriart" width="177" height="160" loading="lazy">
+          <p>Rotulación, vinilo, serigrafía e impresión de gran formato. Diseñamos, fabricamos e instalamos desde nuestro taller de Dénia desde ${BRAND.founded}.</p>
         </div>
-        ${cols}
+        <div class="footer-col">
+          <h2>Servicios</h2>
+          <ul>${services}</ul>
+        </div>
         <div class="footer-col">
           <h2>Seriart</h2>
           <ul>
             <li><a href="${L("trabajos.html")}">Trabajos</a></li>
-            <li><a href="${L("nosotros.html")}">El taller</a></li>
+            <li><a href="${L("nosotros.html")}">Nosotros</a></li>
             <li><a href="${L("presupuesto.html")}">Pedir presupuesto</a></li>
-            <li><a href="${L("contacto.html")}">Contacto</a></li>
-            <li><a href="${BRAND.instagram}" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="${BRAND.facebook}" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="${L("contacto.html")}">Contacto y cómo llegar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Contacto</h2>
+          <ul class="footer-contact">
+            <li><a href="tel:${BRAND.phoneHref}">${svgIcon("phone", 16)} ${esc(BRAND.phoneDisplay)}</a></li>
+            <li><a href="${waHref()}" target="_blank" rel="noopener">${svgIcon("chat", 16)} WhatsApp ${esc(BRAND.whatsappDisplay)}</a></li>
+            <li><a href="mailto:${BRAND.email}">${svgIcon("mail", 16)} ${esc(BRAND.email)}</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BRAND.address)}" target="_blank" rel="noopener">${svgIcon("pin", 16)} ${esc(BRAND.street)}, ${esc(BRAND.city)}</a></li>
+            <li class="footer-hours">${svgIcon("clock", 16)} ${esc(BRAND.hours)}</li>
           </ul>
         </div>
       </div>
-      <p class="wordmark" aria-hidden="true"><span>seri</span><strong>art</strong></p>
       <div class="footer-bottom">
-        <span>© ${new Date().getFullYear()} Seriart · Taller de rotulación y serigrafía · ${esc(BRAND.city)} desde ${BRAND.founded}</span>
+        <span>© ${new Date().getFullYear()} Seriart · ${esc(BRAND.city)}, ${esc(BRAND.province)}</span>
         <nav class="footer-legal" aria-label="Legal">
           <a href="${L("legal.html")}#aviso-legal">Aviso legal</a>
           <a href="${L("legal.html")}#privacidad">Privacidad</a>
           <a href="${L("legal.html")}#cookies">Cookies</a>
+          <a href="${L("creditos.html")}">Créditos</a>
         </nav>
       </div>
     </div>
   </footer>`;
 }
 
-/* Mobile-only action bar (WhatsApp + call). The page reserves its height. */
-function actionBar() {
-  return `<div class="action-bar" data-action-bar>
-    <a href="${waHref()}" target="_blank" rel="noopener">${WHATSAPP_SVG}<span>WhatsApp</span></a>
-    <a href="tel:${BRAND.phoneHref}">${svgIcon("phone", 18)}<span>Llamar</span></a>
-  </div>`;
+function whatsappFloat() {
+  return `<a class="wa-float" href="${waHref()}" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">${WHATSAPP_SVG}</a>`;
 }
 
 function lightboxMarkup() {
@@ -355,14 +353,14 @@ function scriptsBlock(depth) {
 
 function breadcrumb(depth, items) {
   const parts = items.map(function (it, i) {
-    if (i === items.length - 1) return `<li><span aria-current="page">${esc(plain(it.label))}</span></li>`;
-    return `<li><a href="${rel(depth, it.href)}">${esc(plain(it.label))}</a></li>`;
+    if (i === items.length - 1) return `<li><span aria-current="page">${esc(it.label)}</span></li>`;
+    return `<li><a href="${rel(depth, it.href)}">${esc(it.label)}</a></li>`;
   });
   return `<nav class="breadcrumb" aria-label="Migas de pan"><ol>${parts.join("")}</ol></nav>`;
 }
 
 /* Full page shell. opts: title, description, canonical, ogImage, preload,
-   preloadSizes, current, noindex, bodyClass */
+   preloadSizes, current, overHero, noindex, bodyClass */
 function page(depth, opts, bodyHtml) {
   return `<!doctype html>
 <html lang="es">
@@ -371,12 +369,12 @@ function page(depth, opts, bodyHtml) {
   ${schemaBlock()}
 </head>
 <body${opts.bodyClass ? ` class="${opts.bodyClass}"` : ""}>
-  ${headerNav(depth, opts.current)}
+  ${headerNav(depth, opts.current, opts.overHero)}
   <main id="main">
 ${bodyHtml}
   </main>
   ${footer(depth)}
-  ${actionBar()}
+  ${whatsappFloat()}
   ${lightboxMarkup()}
   ${scriptsBlock(depth)}
 </body>
@@ -388,34 +386,34 @@ ${bodyHtml}
    Reusable content blocks
    --------------------------------------------------------------------------- */
 function sectionHead(opts) {
-  return `<header class="section-head${opts.split ? " is-split" : ""}">
-        <div class="section-head-main">
-          ${opts.label ? `<p class="label">${esc(opts.label)}</p>` : ""}
-          <h2 class="title">${em(opts.title)}</h2>
+  return `<div class="section-head${opts.center ? " is-center" : ""}${opts.split ? " is-split" : ""}">
+        <div>
+          ${opts.kicker ? `<p class="kicker">${esc(opts.kicker)}</p>` : ""}
+          <h2>${opts.title}</h2>
         </div>
-        ${opts.text ? `<p class="section-lead">${esc(opts.text)}</p>` : ""}${opts.link || ""}
-      </header>`;
+        ${opts.text ? `<p class="section-lead">${esc(opts.text)}</p>` : ""}${opts.link ? opts.link : ""}
+      </div>`;
 }
 
 function arrowLink(href, label, cls) {
-  return `<a class="link-arrow${cls ? " " + cls : ""}" href="${href}"><span>${esc(label)}</span>${svgIcon("arrow", 18)}</a>`;
+  return `<a class="link-arrow${cls ? " " + cls : ""}" href="${href}">${esc(label)} ${svgIcon("arrow", 18)}</a>`;
 }
 
-/* Interior page hero. opts: crumbs, label, title (may contain *heavy*), lead,
-   image, imageAlt, imageTag: [parts], cta: {href,label} | false, secondary */
+/* Interior page hero. opts: crumbs, kicker, title, lead, image, imageAlt,
+   cta: {href,label} | false, secondary: {href,label} */
 function pageHero(depth, opts) {
-  const cta = opts.cta === false ? "" : `<a class="btn" href="${opts.cta ? opts.cta.href : rel(depth, "presupuesto.html")}">${esc(opts.cta ? opts.cta.label : "Pedir presupuesto")}</a>`;
-  const sec = opts.secondary ? `<a class="btn btn-line" href="${opts.secondary.href}"${opts.secondary.external ? ' target="_blank" rel="noopener"' : ""}>${opts.secondary.icon || ""}${esc(opts.secondary.label)}</a>` : "";
+  const cta = opts.cta === false ? "" : `<a class="btn btn-primary" href="${opts.cta ? opts.cta.href : rel(depth, "presupuesto.html")}">${esc(opts.cta ? opts.cta.label : "Pedir presupuesto")}</a>`;
+  const sec = opts.secondary ? `<a class="btn btn-outline" href="${opts.secondary.href}">${esc(opts.secondary.label)}</a>` : "";
   const actions = cta || sec ? `<div class="page-hero-actions">${cta}${sec}</div>` : "";
   const media = opts.image
-    ? `<figure class="page-hero-media">${pic(depth, opts.image, opts.imageAlt || "", { eager: true, sizes: "(min-width: 960px) 42vw, 100vw" })}${tag(opts.imageTag || [])}</figure>`
-    : `<div class="page-hero-livery">${livery("is-hero")}</div>`;
-  return `  <section class="page-hero${opts.image ? " has-media" : " no-media"}">
-    <div class="wrap page-hero-grid">
+    ? `<div class="page-hero-media">${pic(depth, opts.image, opts.imageAlt || "", { eager: true, sizes: "(min-width: 960px) 46vw, 100vw" })}</div>`
+    : "";
+  return `  <section class="page-hero${opts.image ? " has-media" : ""}">
+    <div class="container page-hero-grid">
       <div class="page-hero-text">
         ${breadcrumb(depth, opts.crumbs)}
-        ${opts.label ? `<p class="label">${esc(opts.label)}</p>` : ""}
-        <h1 class="display">${em(opts.title)}</h1>
+        ${opts.kicker ? `<p class="kicker">${esc(opts.kicker)}</p>` : ""}
+        <h1>${opts.title}</h1>
         ${opts.lead ? `<p class="page-hero-lead">${esc(opts.lead)}</p>` : ""}
         ${actions}
       </div>
@@ -424,121 +422,129 @@ function pageHero(depth, opts) {
   </section>`;
 }
 
-/* Copy on the left, "qué incluye" spec rows on the right */
+/* Two columns: copy on the left, "qué incluye" checklist on the right */
 function introBlock(depth, opts) {
-  const paras = opts.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("\n        ");
-  const rows = (opts.types || []).map((t, i) => `<li><span class="spec-code">${pad(i + 1)}</span><div><strong>${esc(t.title)}</strong>${t.desc ? `<span>${esc(t.desc)}</span>` : ""}</div></li>`).join("");
+  const paras = opts.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("");
+  const list = (opts.types || []).map((t) => `<li>${svgIcon("check", 20)}<div><strong>${esc(t.title)}</strong><span>${esc(t.desc)}</span></div></li>`).join("");
   return `  <section class="section">
-    <div class="wrap intro-split">
+    <div class="container intro-split">
       <div class="intro-copy reveal">
-        <p class="label">${esc(opts.label || "Cómo lo hacemos")}</p>
-        <h2 class="title">${em(opts.heading)}</h2>
+        <p class="kicker">${esc(opts.kicker || "En qué consiste")}</p>
+        <h2>${esc(opts.heading)}</h2>
         ${paras}
       </div>
-      ${rows ? `<div class="intro-list reveal">
-        <h3 class="label">${esc(opts.listTitle || "Qué hacemos")}</h3>
-        <ul class="spec-list">${rows}</ul>
+      ${list ? `<div class="intro-list reveal">
+        <h3>${esc(opts.listTitle || "Qué hacemos")}</h3>
+        <ul class="checklist">${list}</ul>
       </div>` : ""}
     </div>
   </section>`;
 }
 
-/* Gallery that opens in the lightbox. images: [{src, alt}] */
-/* Closed compositions only: 1–5 photos (more live on /trabajos.html) */
-function galleryBlock(depth, opts) {
-  const group = opts.group || "g";
-  const images = opts.images.slice(0, 5);
-  const hasLead = images.length === 3 || images.length === 5;
-  const items = images.map((im, i) => `<a class="gallery-item${i === 0 && hasLead ? " is-lead" : ""} reveal" href="${imgLargest(depth, im.src)}" data-lightbox-item="${group}" data-caption="${esc(im.alt)}">
-        ${pic(depth, im.src, im.alt, { sizes: i === 0 ? "(min-width: 960px) 50vw, 100vw" : "(min-width: 960px) 25vw, 50vw" })}
-        <span class="gallery-cap">${esc(im.alt)}</span>
-      </a>`).join("");
-  return `  <section class="section">
-    <div class="wrap">
-      ${sectionHead({ label: "Trabajos reales", title: opts.heading, link: arrowLink(rel(depth, "trabajos.html"), "Todos los trabajos", "section-head-link") })}
-      <div class="gallery-grid is-n${images.length}">${items}</div>
+function benefitsRow(depth, items, heading) {
+  const cells = items.map((it) => `<div class="benefit reveal">
+        <span class="benefit-icon">${svgIcon(it.icon, 22)}</span>
+        <h3>${esc(it.title)}</h3>
+        <p>${esc(it.desc)}</p>
+      </div>`).join("");
+  return `  <section class="section section-alt">
+    <div class="container">
+      ${sectionHead({ kicker: "Por qué Seriart", title: esc(heading || "Un solo taller, de principio a fin") })}
+      <div class="benefits">${cells}</div>
     </div>
   </section>`;
 }
 
-/* The process, told with the workshop's own photos */
+/* Gallery that opens in the lightbox. images: [{src, alt}] */
+function galleryBlock(depth, opts) {
+  const group = opts.group || "g";
+  const items = opts.images.map((im) => `<a class="gallery-item reveal-wipe" href="${imgLargest(depth, im.src)}" data-lightbox-item="${group}" data-caption="${esc(im.alt)}">
+        ${pic(depth, im.src, im.alt, { sizes: "(min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" })}
+      </a>`).join("");
+  return `  <section class="section">
+    <div class="container">
+      ${sectionHead({ kicker: "Galería", title: esc(opts.heading), link: arrowLink(rel(depth, "trabajos.html"), "Ver todos los trabajos", "section-head-link") })}
+      <div class="gallery-grid">${items}</div>
+    </div>
+  </section>`;
+}
+
 const PROCESS_STEPS = [
-  { title: "Nos cuentas la idea", desc: "Por WhatsApp, por teléfono o en la tienda. Con el logo y una foto de lo que hay que rotular ya podemos empezar.", img: "assets/uploads/martini-vinilo-impreso.jpg", tag: ["Librea Martini", "diseño listo"] },
-  { title: "Diseño y prueba", desc: "Adaptamos el diseño a la medida real del soporte y te lo enseñamos antes de producir nada.", img: "assets/uploads/sellagas-caddy-replanteo.jpg", tag: ["Caddy Sellagas", "replanteo"] },
-  { title: "Impresión en el taller", desc: "Imprimimos y cortamos el vinilo en nuestra propia impresora. Sin intermediarios.", img: "assets/uploads/martini-impresion-mimaki.jpg", tag: ["Mimaki del taller"] },
-  { title: "Aplicación", desc: "Lo aplicamos nosotros: en el taller, en la acera de la tienda o en tu local.", img: "assets/uploads/sellagas-caddy-aplicacion.jpg", tag: ["Caddy Sellagas", "franja roja"] },
-  { title: "Listo para salir", desc: "Revisamos cada borde y te lo entregamos. A partir de ahí, a trabajar.", img: "assets/uploads/sellagas-caddy-tienda.jpg", tag: ["Caddy Sellagas", "terminada"] }
+  { title: "Nos cuentas la idea", desc: "Qué necesitas, en qué cantidad y para cuándo. Si hace falta, medimos o vemos el vehículo o la fachada." },
+  { title: "Diseño y prueba", desc: "Preparamos o adaptamos el diseño y te enseñamos una prueba antes de producir nada." },
+  { title: "Fabricación en taller", desc: "Producimos en nuestro taller de Dénia, con control de calidad en cada pieza." },
+  { title: "Instalación y entrega", desc: "Instalamos en Dénia y alrededores o lo enviamos a cualquier punto de España." }
 ];
 function processBlock(depth, opts) {
   opts = opts || {};
   const steps = PROCESS_STEPS.map((s, i) => `<li class="step reveal">
-          <figure class="step-media">${pic(depth, fs.existsSync(path.join(ROOT, s.img)) ? s.img : "", s.title, { sizes: "(min-width: 1100px) 20vw, (min-width: 640px) 40vw, 78vw" })}${tag(s.tag)}</figure>
-          <div class="step-body">
-            ${roundel(i + 1)}
-            <h3>${esc(s.title)}</h3>
-            <p>${esc(s.desc)}</p>
-          </div>
-        </li>`).join("");
-  return `  <section class="section section-process${opts.alt ? " section-alt" : ""}" aria-labelledby="proceso-title">
-    <div class="wrap">
-      <header class="section-head is-split">
-        <div class="section-head-main">
-          <p class="label">Cómo trabajamos</p>
-          <h2 class="title" id="proceso-title">Del archivo <strong>a&nbsp;la carrocería</strong></h2>
-        </div>
-        <p class="section-lead">${esc(opts.text || "Un mismo taller se encarga de todo, así que siempre sabes con quién hablar. Te lo contamos con fotos de dos encargos reales: la Caddy de Sellagas y la librea Martini.")}</p>
-      </header>
+        <span class="step-num">${String(i + 1).padStart(2, "0")}</span>
+        <h3>${esc(s.title)}</h3>
+        <p>${esc(s.desc)}</p>
+      </li>`).join("");
+  return `  <section class="section${opts.alt ? " section-alt" : ""}">
+    <div class="container">
+      ${sectionHead({ kicker: "Cómo trabajamos", title: "De la idea a la instalación", text: opts.text || "Un único equipo se encarga de todo el proceso, así que siempre sabes con quién hablar." })}
+      <ol class="steps">${steps}</ol>
     </div>
-    <ol class="steps" tabindex="0" aria-label="Pasos del proceso">${steps}</ol>
   </section>`;
 }
 
 function faqBlock(depth, items) {
   const list = items.map((it) => `<details class="faq-item">
-          <summary><span>${esc(it.q)}</span>${svgIcon("plus", 20)}</summary>
+          <summary>${esc(it.q)}<span class="faq-icon" aria-hidden="true"></span></summary>
           <div class="faq-answer"><p>${esc(it.a)}</p></div>
         </details>`).join("");
   return `  <section class="section section-alt">
-    <div class="wrap faq-split">
+    <div class="container faq-split">
       <div class="faq-aside">
-        <p class="label">Preguntas frecuentes</p>
-        <h2 class="title">Lo que <strong>suelen preguntarnos</strong></h2>
-        <p>¿Tienes otra duda? Pregúntanos sin compromiso.</p>
-        <a class="btn btn-line" href="${waHref("Hola, tengo una duda sobre un trabajo.")}" target="_blank" rel="noopener">${WHATSAPP_SVG} Preguntar por WhatsApp</a>
+        <p class="kicker">Preguntas frecuentes</p>
+        <h2>Lo que suelen preguntarnos</h2>
+        <p>¿Tienes otra duda? Escríbenos y te contestamos lo antes posible.</p>
+        <a class="btn btn-outline" href="${waHref("Hola, tengo una duda sobre un trabajo.")}" target="_blank" rel="noopener">${WHATSAPP_SVG} Preguntar por WhatsApp</a>
       </div>
       <div class="faq-list">${list}</div>
     </div>
   </section>`;
 }
 
-/* Related services as a ruled list. items: [{label, href, code}] */
+/* Related services strip. items: [{label, href, img}] */
 function relatedBlock(depth, title, items) {
-  if (!items.length) return "";
-  const rows = items.map((it) => `<li><a href="${rel(depth, it.href)}"><span class="spec-code">${esc(it.code || "")}</span><span class="related-label">${esc(it.label)}</span>${svgIcon("arrow", 18)}</a></li>`).join("");
-  return `  <section class="section section-tight">
-    <div class="wrap related">
-      <p class="label">${esc(title)}</p>
-      <ul class="related-list">${rows}</ul>
+  const cards = items.map((it) => `<a class="related-card" href="${rel(depth, it.href)}">
+        ${pic(depth, it.img, "", { sizes: "(min-width: 960px) 22vw, 50vw" })}
+        <span>${esc(it.label)} ${svgIcon("arrow", 16)}</span>
+      </a>`).join("");
+  return `  <section class="section">
+    <div class="container">
+      ${sectionHead({ kicker: "Relacionado", title: esc(title) })}
+      <div class="related-grid">${cards}</div>
     </div>
   </section>`;
 }
 
-/* Closing call to action, cyan plate. opts: title, text, service */
+/* Closing contact block, same on every page. opts: title, text, service */
 function contactCta(depth, opts) {
   opts = opts || {};
   const q = opts.service ? "?servicio=" + opts.service : "";
-  return `  <section class="plate" aria-labelledby="plate-title">
-    ${livery("is-plate")}
-    <div class="wrap plate-inner">
-      <div class="plate-copy reveal">
-        <p class="label">Presupuesto sin compromiso</p>
-        <h2 class="display" id="plate-title">${em(opts.title || "¿Tienes el logo? *Mándanoslo.*")}</h2>
-        <p class="plate-text">${esc(opts.text || "Escríbenos por WhatsApp con el logotipo y una foto de lo que quieres rotular: la furgoneta, el escaparate, la prenda. Con eso empezamos a preparar el presupuesto.")}</p>
-      </div>
-      <div class="plate-actions reveal">
-        <a class="plate-action is-main" href="${waHref()}" target="_blank" rel="noopener">${WHATSAPP_SVG}<span><strong>WhatsApp</strong><small>${esc(BRAND.whatsappDisplay)} · manda fotos y logo</small></span>${svgIcon("arrow", 20)}</a>
-        <a class="plate-action" href="${rel(depth, "presupuesto.html")}${q}"><span><strong>Formulario de presupuesto</strong><small>Medidas, cantidad y fecha</small></span>${svgIcon("arrow", 20)}</a>
-        <a class="plate-action" href="tel:${BRAND.phoneHref}">${svgIcon("phone", 20)}<span><strong>${esc(BRAND.phoneDisplay)}</strong><small>${esc(BRAND.hours)}</small></span>${svgIcon("arrow", 20)}</a>
+  return `  <section class="section section-cta">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="cta-copy">
+          <p class="kicker">Presupuesto sin compromiso</p>
+          <h2>${esc(opts.title || "Cuéntanos tu proyecto")}</h2>
+          <p>${esc(opts.text || "Te respondemos con un presupuesto claro, detallado y sin compromiso.")}</p>
+        </div>
+        <div class="cta-actions">
+          <a class="cta-action is-primary" href="${rel(depth, "presupuesto.html")}${q}">
+            ${svgIcon("pen", 22)}<span><strong>Pedir presupuesto</strong><small>Formulario, 2 minutos</small></span>${svgIcon("arrow", 18)}
+          </a>
+          <a class="cta-action" href="${waHref()}" target="_blank" rel="noopener">
+            ${WHATSAPP_SVG}<span><strong>WhatsApp</strong><small>${esc(BRAND.whatsappDisplay)}</small></span>${svgIcon("arrow", 18)}
+          </a>
+          <a class="cta-action" href="tel:${BRAND.phoneHref}">
+            ${svgIcon("phone", 22)}<span><strong>Llamar</strong><small>${esc(BRAND.phoneDisplay)} · ${esc(BRAND.hours.replace("Lunes a viernes", "L–V"))}</small></span>${svgIcon("arrow", 18)}
+          </a>
+        </div>
       </div>
     </div>
   </section>`;
@@ -557,7 +563,7 @@ window.__SERIART__ = ${JSON.stringify(cfg, null, 2)};
 }
 
 module.exports = {
-  ROOT, OUT, V, BRAND, CONTENT, CATEGORIES, IMG_MANIFEST, usedOriginals, esc, em, plain, pad, rel, write, waHref, pic, imgLargest, svgIcon, WHATSAPP_SVG,
-  livery, roundel, tag, page, pageHero, sectionHead, arrowLink, introBlock, galleryBlock, processBlock, faqBlock,
+  ROOT, OUT, V, BRAND, CONTENT, CATEGORIES, IMG_MANIFEST, usedOriginals, esc, rel, write, waHref, pic, imgLargest, svgIcon, WHATSAPP_SVG,
+  page, pageHero, sectionHead, arrowLink, introBlock, benefitsRow, galleryBlock, processBlock, faqBlock,
   relatedBlock, contactCta, breadcrumb, writeRuntimeConfig
 };

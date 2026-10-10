@@ -1,8 +1,8 @@
 {
   "nombre": "Escaparates",
-  "titulo": "Rotulación de *escaparates*",
+  "titulo": "Rotulación de escaparates",
   "entradilla": "Comunicación directa sobre el cristal de tu comercio: horarios, campañas de temporada, ofertas o simplemente tu imagen de marca.",
-  "foto": "/assets/uploads/mueble-feria-floral.jpg",
+  "foto": "/assets/uploads/shop-window-vinyl.jpg",
   "texto": "El escaparate es el espacio publicitario más visitado de cualquier comercio: lo ve todo el que pasa por la calle. Con vinilo de corte o impreso, comunicamos lo que necesites sin tapar el interior de la tienda más de lo necesario.\n\nPreparamos tanto piezas permanentes, como el nombre del comercio o el horario, como campañas puntuales de temporada o rebajas que se pueden retirar sin dejar marca en el cristal.",
   "tipos": [
     {
@@ -20,24 +20,20 @@
     {
       "titulo": "Vinilo microperforado",
       "texto": "Grandes superficies de cristal sin perder visibilidad interior."
-    },
-    {
-      "titulo": "Mobiliario de tienda y stand",
-      "texto": "Muebles y expositores forrados con vinilo impreso."
     }
   ],
   "galeria": [
     {
-      "imagen": "/assets/uploads/mueble-feria-floral.jpg",
-      "pie": "Mueble de stand forrado con vinilo impreso floral"
+      "imagen": "/assets/uploads/shop-window-vinyl.jpg",
+      "pie": "Escaparate con vinilo rotulado"
     },
     {
-      "imagen": "/assets/uploads/mueble-feria-hojas.jpg",
-      "pie": "Vinilo impreso con motivo de hojas"
+      "imagen": "/assets/uploads/shop-storefront.jpg",
+      "pie": "Comercio con escaparate personalizado"
     },
     {
-      "imagen": "/assets/uploads/mueble-feria-bosque.jpg",
-      "pie": "Vinilo impreso con paisaje de bosque"
+      "imagen": "/assets/uploads/channel-letters.jpg",
+      "pie": "Rotulación de escaparate con letras"
     }
   ],
   "preguntas": [

@@ -8,8 +8,6 @@ content/            ← textos y datos editables (JSON), los edita Pages CMS
 assets/uploads/     ← fotos (las sube Pages CMS)
 assets/video/       ← vídeo de portada (lo sube Pages CMS)
 assets/img/         ← logo y favicon
-assets/fonts/       ← Archivo e IBM Plex Mono (alojadas aquí, sin Google Fonts)
-docs/               ← brief del negocio, referencias, dirección artística y contenido
 styles.css, main.js ← diseño y comportamiento
 tools/              ← generador de la web
 .pages.yml          ← qué se puede editar en el panel y cómo
@@ -27,13 +25,6 @@ La **estructura** (qué servicios existen, sus URLs y el diseño) está en el c�
 (`tools/content.js`, `tools/generate-site.js`, `tools/build.js`). El panel solo
 edita contenido, así que no se puede romper la maqueta desde ahí. Si falta una
 foto o un campo, la web se genera igualmente y el aviso sale en el log del workflow.
-
-## Diseño
-
-La dirección artística («La librea de Seriart») está explicada en `docs/design-direction.md`.
-En los títulos editables, la palabra entre asteriscos sale en negrita, como en el logo:
-`Rotulación de *vehículos*`. Todas las fotos son trabajos reales del taller (Instagram
-@seriart_denia); no se usan imágenes de bancos ni de otras empresas.
 
 ## Trabajar en local
 
@@ -55,18 +46,11 @@ Necesita Node 22 y Chrome instalado (se usa en modo headless para convertir las 
 
 ## Pendiente
 
-- **Web3Forms**: la clave ya está en `web3formsKey` de `config.json` (fuera del panel a
-  propósito, para que nadie la borre al guardar). Las solicitudes llegan al email con el que
-  se creó la clave en <https://web3forms.com>: conviene enviar un formulario de prueba y
-  comprobar que llega. Sin clave, los formularios abren el correo del visitante.
-- **Dominio**: cuando tengáis dominio propio (p. ej. `seriart.es`), crea un archivo `CNAME`
-  en la raíz con `www.seriart.es` y configúralo en *Settings → Pages*. Las URLs canónicas, el
-  sitemap y los datos estructurados cambian solos al dominio del `CNAME`; mientras no exista,
-  apuntan a `https://alexsivera.github.io/seriart`.
-- **Contacto**: Instagram y Facebook publican otro WhatsApp (649 864 462) y otro email
-  (javiseriart@gmail.com). Conviene unificarlos con los de la web (panel → Contacto y portada).
-- **Fotos que faltan**: letras corpóreas, lonas, banners, roll-ups, cartelería, rótulos de
-  fachada y merchandising no tienen fotos propias; esas páginas se muestran sin galería hasta
-  que se suban desde el panel.
+- **Web3Forms**: crea la clave en <https://web3forms.com> con el email que recibirá
+  las solicitudes y ponla en `web3formsKey` de `config.json` (fuera del panel a propósito,
+  para que nadie la borre al guardar). Sin clave, los formularios abren el correo del visitante.
+- **Dominio**: cuando tengáis `seriart.es`, crea un archivo `CNAME` en la raíz con
+  `www.seriart.es` y configura el dominio en *Settings → Pages*. Las URLs canónicas y
+  el sitemap ya apuntan a `https://www.seriart.es`.
 - Si algún día se aloja en otro sitio (p. ej. Hostinger), basta con subir el
   contenido de `_site/`.

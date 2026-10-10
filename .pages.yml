@@ -45,7 +45,7 @@ components:
   tipos:
     type: object
     label: Tipos de trabajo
-    description: La lista numerada que aparece junto al texto principal.
+    description: La lista con ✓ que aparece junto al texto principal.
     list:
       collapsible:
         collapsed: true
@@ -61,7 +61,7 @@ components:
   galeria:
     type: object
     label: Galería de fotos
-    description: Fotos de trabajos de este servicio. Se muestran las 5 primeras y se pueden ampliar al pulsarlas. Arrastra para cambiar el orden.
+    description: Fotos de trabajos de este servicio. Se pueden ampliar al pulsarlas. Arrastra para cambiar el orden.
     list:
       collapsible:
         collapsed: true
@@ -105,12 +105,7 @@ content:
         label: Título
         type: string
         required: true
-        description: Qué es y para quién, corto. Por ejemplo "VW Caddy · Sellagas" o "Rótulo de fachada · Panadería Marí".
-      - name: descripcion
-        label: Qué se hizo
-        type: text
-        description: Una o dos frases. Por ejemplo "Franjas, logotipo y teléfono en los laterales, aplicados frente a la tienda".
-        options: { maxlength: 240 }
+        description: Qué es el trabajo, por ejemplo "Rotulación integral de furgoneta de reparto".
       - name: categoria
         label: Categoría
         type: select
@@ -118,37 +113,15 @@ content:
         description: Sirve para los filtros de la página Trabajos.
         options:
           values:
-            - { name: vehiculos, label: "Vehículos de empresa" }
-            - { name: motor, label: "Rally y clásicos" }
-            - { name: espacios, label: "Locales, escaparates, stands y paredes" }
-            - { name: textil, label: "Textil (serigrafía, ropa laboral)" }
-            - { name: piezas, label: "Placas, trofeos y merchandising" }
+            - { name: vehiculos, label: "Vehículos" }
+            - { name: fachadas, label: "Fachadas, rótulos y letras corpóreas" }
+            - { name: escaparates, label: "Escaparates y vinilos" }
+            - { name: serigrafia, label: "Serigrafía, ropa laboral y merchandising" }
             - { name: gran-formato, label: "Gran formato (lonas, banners, carteles)" }
-      - name: ano
-        label: Año
-        type: string
-        options: { maxlength: 4 }
-      - name: fotos
-        label: Más fotos de este trabajo
-        type: object
-        description: Proceso, detalles u otros ángulos. Se ven en la página Trabajos y se pueden ampliar.
-        list:
-          collapsible:
-            collapsed: true
-            summary: "{pie}"
-        fields:
-          - name: imagen
-            label: Foto
-            type: image
-            required: true
-            options: { media: fotos }
-          - name: pie
-            label: Qué se ve en la foto
-            type: string
       - name: inicio
         label: Mostrar en la página de inicio
         type: boolean
-        description: En el inicio salen como máximo 6 trabajos, en el orden de esta lista.
+        description: En el inicio salen como máximo 5 trabajos, en el orden de esta lista.
 
   # ---------------------------------------------------------------- Servicios
   - name: servicios
@@ -175,7 +148,6 @@ content:
             label: Título grande
             type: string
             required: true
-            description: "La palabra entre asteriscos sale en negrita, como en el logo: Rotulación de *vehículos*."
           - name: entradilla
             label: Frase bajo el título
             type: text
@@ -221,7 +193,6 @@ content:
             label: Título grande
             type: string
             required: true
-            description: "La palabra entre asteriscos sale en negrita, como en el logo: Rotulación de *vehículos*."
           - name: entradilla
             label: Frase bajo el título
             type: text
@@ -229,12 +200,40 @@ content:
           - { name: foto, component: foto }
           - { name: texto, component: texto }
           - { name: tipos, component: tipos }
+          - name: ventajas
+            label: Ventajas ("Por qué Seriart")
+            type: object
+            list:
+              max: 4
+              collapsible:
+                collapsed: true
+                summary: "{titulo}"
+            fields:
+              - name: icono
+                label: Icono
+                type: select
+                options:
+                  values:
+                    - { name: shield, label: "Escudo (resistencia, calidad)" }
+                    - { name: layers, label: "Capas (producción, volumen)" }
+                    - { name: clock, label: "Reloj (plazos)" }
+                    - { name: ruler, label: "Regla (a medida)" }
+                    - { name: truck, label: "Furgoneta (instalación, envíos)" }
+                    - { name: spark, label: "Destello (experiencia)" }
+                    - { name: check, label: "Visto bueno" }
+              - name: titulo
+                label: Título
+                type: string
+                required: true
+              - name: texto
+                label: Explicación corta
+                type: string
           - { name: galeria, component: galeria }
           - { name: seo, component: seo }
 
   # ---------------------------------------------------------------- Nosotros
   - name: nosotros
-    label: Página "El taller"
+    label: Página "Nosotros"
     type: file
     path: content/nosotros.json
     format: json
@@ -248,12 +247,11 @@ content:
       - name: fotoInicio
         label: Foto del taller en la página de inicio
         type: image
-        description: Se usa en el bloque "La tienda" (inicio y página El taller). Mejor una foto donde se vea la fachada.
+        description: Se usa en el bloque "El taller" de la página de inicio y en el menú de servicios.
         options: { media: fotos }
       - name: historiaTitulo
         label: Título de la historia
         type: string
-        description: "La palabra entre asteriscos sale en negrita."
       - name: historia
         label: Historia
         type: text
@@ -281,7 +279,7 @@ content:
       - name: fotosTaller
         label: Fotos del taller
         type: image
-        description: Se muestran en la galería "Nuestro espacio de trabajo". Mejor 4.
+        description: Se muestran 4 en la galería "Nuestro espacio de trabajo".
         options:
           media: fotos
           multiple: { max: 8 }
@@ -326,23 +324,19 @@ content:
         label: Portada de la página de inicio
         type: object
         fields:
+          - name: video
+            label: Vídeo (timelapse)
+            type: file
+            description: MP4 sin sonido, horizontal, de menos de 8 MB. Se reproduce en bucle y sin sonido. Si lo dejas vacío se muestra la foto.
+            options: { media: videos }
           - name: imagen
             label: Foto de portada
             type: image
             required: true
-            description: La foto grande de arriba en la página de inicio. Se recorta en cuadrado, así que mejor un trabajo terminado con el motivo centrado.
+            description: Se ve mientras carga el vídeo o si no hay vídeo. Horizontal y de buena calidad.
             options: { media: fotos }
-          - name: pieImagen
-            label: Qué se ve en la foto de portada
-            type: string
-            description: Sale en una etiqueta sobre la foto. Por ejemplo "VW Caddy de Sellagas, terminada frente a la tienda".
-          - name: video
-            label: Vídeo (timelapse)
-            type: file
-            description: MP4 sin sonido, horizontal, de menos de 8 MB. Sale en el bloque "En tiempo real" de la página de inicio. Si lo dejas vacío, el bloque no aparece.
-            options: { media: videos }
           - name: textoVideo
-            label: Texto del vídeo
+            label: Texto junto al vídeo
             type: string
       - name: empresa
         label: Datos fiscales (aviso legal)

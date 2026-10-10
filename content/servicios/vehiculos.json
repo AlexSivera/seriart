@@ -1,8 +1,8 @@
 {
   "nombre": "Vehículos",
-  "titulo": "Rotulación de *vehículos*",
-  "entradilla": "Furgonetas de reparto, coches de empresa, flotas y también coches de rally y clásicos. Diseñamos la gráfica sobre tu carrocería, la imprimimos y la aplicamos.",
-  "foto": "/assets/uploads/sellagas-caddy-lateral.jpg",
+  "titulo": "Rotulación de vehículos",
+  "entradilla": "Convierte tu furgoneta, coche o flota en un anuncio que se mueve por toda la ciudad, con vinilo resistente y una instalación cuidada.",
+  "foto": "/assets/uploads/hero-vehicle-wrap.jpg",
   "texto": "Un vehículo rotulado trabaja para tu marca cada vez que sale a la calle. Diseñamos la composición gráfica adaptada a la carrocería de cada vehículo y usamos vinilo de calidad profesional, resistente al sol, la lluvia y el lavado habitual.\n\nPodemos rotular un vehículo puntual o coordinar la imagen de una flota completa, manteniendo el mismo diseño y los mismos materiales en todas las unidades para que la imagen de empresa sea homogénea.",
   "tipos": [
     {
@@ -20,66 +20,42 @@
     {
       "titulo": "Lunas y cristales",
       "texto": "Vinilo microperforado que no impide la visibilidad desde dentro."
-    },
-    {
-      "titulo": "Rally y clásicos",
-      "texto": "Liberas de competición, franjas, dorsales y patrocinadores."
     }
   ],
   "galeria": [
     {
-      "imagen": "/assets/uploads/sellagas-caddy-replanteo.jpg",
-      "pie": "VW Caddy de Sellagas: replanteo de las franjas con cinta"
+      "imagen": "/assets/uploads/car-wrap-detail.jpg",
+      "pie": "Vehículo con acabado personalizado"
     },
     {
-      "imagen": "/assets/uploads/sellagas-caddy-aplicacion.jpg",
-      "pie": "Aplicación de la franja roja frente a la tienda"
+      "imagen": "/assets/uploads/van-signage.jpg",
+      "pie": "Detalle de vinilo aplicado sobre carrocería"
     },
     {
-      "imagen": "/assets/uploads/sellagas-caddy-frontal.jpg",
-      "pie": "La Caddy terminada"
-    },
-    {
-      "imagen": "/assets/uploads/seat-124-martini-lateral.jpg",
-      "pie": "SEAT 124 con librea Martini"
-    },
-    {
-      "imagen": "/assets/uploads/peugeot-106-rally-capo.jpg",
-      "pie": "Peugeot 106 de rally con los patrocinadores del equipo"
-    },
-    {
-      "imagen": "/assets/uploads/vw-t2-lbs-lateral.jpg",
-      "pie": "VW T2 de Los Baños Sunshine"
-    },
-    {
-      "imagen": "/assets/uploads/bmw-e21-frontal.jpg",
-      "pie": "BMW Serie 3 (E21) con franjas tricolor"
+      "imagen": "/assets/uploads/hero-vehicle-wrap.jpg",
+      "pie": "Ejemplo de rotulación integral de vehículo"
     }
   ],
   "preguntas": [
     {
-      "pregunta": "¿Tengo que dejar el vehículo?",
-      "respuesta": "Sí, mientras se aplica el vinilo el vehículo tiene que estar con nosotros. El tiempo depende del trabajo y te lo decimos al hacer el presupuesto."
+      "pregunta": "¿Tengo que dejar el vehículo en el taller?",
+      "respuesta": "Sí, la instalación requiere que el vehículo esté con nosotros durante el tiempo de aplicación, que depende del tamaño del proyecto."
     },
     {
       "pregunta": "¿El vinilo daña la pintura?",
-      "respuesta": "No, si la pintura está en buen estado y el vinilo se aplica y se retira correctamente."
+      "respuesta": "No, es un material pensado para aplicarse y retirarse sin dañar la pintura original si se instala y se retira correctamente."
     },
     {
-      "pregunta": "¿Puedo rotular solo una parte?",
-      "respuesta": "Sí. Hacemos desde un logotipo con el teléfono en las puertas hasta la carrocería completa."
+      "pregunta": "¿Puedo rotular solo una parte del vehículo?",
+      "respuesta": "Sí, hacemos tanto rotulación integral como parcial, según el presupuesto y el efecto que busques."
     },
     {
-      "pregunta": "¿Decoráis coches de rally o clásicos?",
-      "respuesta": "Sí. Hemos hecho liberas de rally, franjas para clásicos y una librea Martini impresa en el taller. Puedes verlos en Trabajos."
-    },
-    {
-      "pregunta": "¿Qué os tengo que mandar?",
-      "respuesta": "El logotipo en el formato que tengas y fotos del vehículo por los cuatro lados. Si no tienes el logo en buena calidad, lo preparamos nosotros."
+      "pregunta": "¿Cuánto dura el vinilo instalado?",
+      "respuesta": "Con un uso normal, varios años. Te informamos de la durabilidad del material concreto al hacer el presupuesto."
     }
   ],
   "seo": {
     "titulo": "Rotulación de vehículos en Denia | Vinilo para furgonetas y coches — Seriart",
-    "descripcion": "Rotulación de furgonetas, coches de empresa, flotas, coches de rally y clásicos en Denia, Alicante. Diseño, impresión y aplicación de vinilo en taller propio."
+    "descripcion": "Rotulación de vehículos comerciales y particulares en Denia, Alicante. Vinilo integral o parcial, diseño incluido. Trabajamos con flotas de toda España."
   }
 }

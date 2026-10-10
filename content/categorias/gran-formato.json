@@ -1,9 +1,9 @@
 {
   "nombre": "Gran formato",
-  "titulo": "Impresión de *gran formato*",
+  "titulo": "Impresión de gran formato para eventos y comercios",
   "entradilla": "Lonas, banners, roll-ups y cartelería impresos a gran tamaño, listos para colgar en fachada, montar en un stand o instalar en la calle.",
-  "foto": "/assets/uploads/martini-impresion-mimaki.jpg",
-  "texto": "La impresión de gran formato cubre todo lo que tiene que verse de lejos: una lona en una fachada, un roll-up en una feria, un cartel en un escaparate o una librea completa para un coche. Imprimimos en nuestra propia impresora, en el taller.\n\nTrabajamos encargos puntuales, como un evento o una feria, y pedidos que se repiten cada temporada.",
+  "foto": "/assets/uploads/large-format-banner.jpg",
+  "texto": "La impresión de gran formato cubre todo lo que necesita verse de lejos: una lona en una fachada, un roll-up en una feria o un cartel en un escaparate. Imprimimos en nuestro propio taller y controlamos el acabado de principio a fin.\n\nTrabajamos tanto proyectos puntuales, como un evento o una feria, como pedidos recurrentes para comercios y empresas que necesitan renovar su cartelería varias veces al año.",
   "tipos": [
     {
       "titulo": "Lonas publicitarias",
@@ -22,14 +22,40 @@
       "texto": "Carteles y paneles para escaparates e interiores."
     }
   ],
-  "galeria": [
+  "ventajas": [
     {
-      "imagen": "/assets/uploads/martini-impresion-mimaki.jpg",
-      "pie": "Librea Martini saliendo de la Mimaki del taller"
+      "icono": "layers",
+      "titulo": "Impresión propia",
+      "texto": "Producción en nuestro taller, sin intermediarios."
     },
     {
-      "imagen": "/assets/uploads/martini-vinilo-impreso.jpg",
-      "pie": "El vinilo impreso, antes de cortar y aplicar"
+      "icono": "clock",
+      "titulo": "Plazos ajustados",
+      "texto": "Útil para eventos y campañas con fecha fija."
+    },
+    {
+      "icono": "ruler",
+      "titulo": "Grandes formatos",
+      "texto": "Desde un roll-up hasta una lona de fachada."
+    },
+    {
+      "icono": "spark",
+      "titulo": "Desde 2002",
+      "texto": "Un único taller para todo el proyecto gráfico."
+    }
+  ],
+  "galeria": [
+    {
+      "imagen": "/assets/uploads/large-format-banner.jpg",
+      "pie": "Impresión de lona de gran formato"
+    },
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Roll-up para feria o evento"
+    },
+    {
+      "imagen": "/assets/uploads/poster-display.jpg",
+      "pie": "Cartelería de gran formato"
     }
   ],
   "seo": {

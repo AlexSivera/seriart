@@ -1,28 +1,29 @@
 {
-  "fotoCabecera": "/assets/uploads/martini-impresion-mimaki.jpg",
-  "fotoInicio": "/assets/uploads/sellagas-caddy-replanteo.jpg",
-  "historiaTitulo": "Empezamos *serigrafiando* camisetas. Hoy rotulamos casi de todo.",
-  "historia": "Seriart abrió en Dénia en 2002 como taller de serigrafía textil, y el logo todavía lo dice. Con los años, los mismos clientes que nos pedían camisetas empezaron a pedirnos el vinilo de la furgoneta, el rótulo de la tienda o la decoración del coche de rally, y el taller fue creciendo para hacerlo todo.\n\nHoy diseñamos, imprimimos en nuestra propia impresora, cortamos y aplicamos desde la tienda de Ronda de les Muralles. Muchos trabajos se terminan en la misma acera, delante de la puerta.",
+  "fotoCabecera": "/assets/uploads/about-team.jpg",
+  "fotoInicio": "/assets/uploads/workshop-machine.jpg",
+  "historiaTitulo": "Empezamos con la serigrafía. Hoy rotulamos de todo.",
+  "historia": "Seriart nació en Dénia en 2002 como taller de serigrafía textil. Con los años, los mismos clientes que nos pedían camisetas empezaron a pedirnos el rótulo de la tienda, el vinilo de la furgoneta o la lona para el próximo evento, y el taller creció para darles respuesta.\n\nHoy seguimos en Dénia, con un equipo especializado y colaboradores externos cuando el proyecto lo pide, trabajando para clientes de toda España. Lo que no ha cambiado es la forma de trabajar: un mismo taller que se encarga de todo, de principio a fin.",
   "areas": [
     {
       "titulo": "Diseño y preparación",
-      "texto": "Adaptamos tu logotipo o diseñamos desde cero, medimos el soporte y preparamos los archivos para producir.",
-      "imagen": "/assets/uploads/sellagas-caddy-replanteo.jpg"
+      "texto": "Adaptamos tu logotipo o diseñamos desde cero, medimos el soporte y preparamos los archivos para producción.",
+      "imagen": "/assets/uploads/screen-printing-process.jpg"
     },
     {
-      "titulo": "Impresión y corte",
-      "texto": "Imprimimos el vinilo en el taller, lo cortamos y lo dejamos listo para aplicar. La serigrafía y el transfer textil también se hacen aquí.",
-      "imagen": "/assets/uploads/martini-vinilo-impreso.jpg"
+      "titulo": "Producción en taller",
+      "texto": "Impresión, corte de vinilo, serigrafía y montaje, con control de calidad antes de que nada salga por la puerta.",
+      "imagen": "/assets/uploads/workshop-machine.jpg"
     },
     {
-      "titulo": "Aplicación",
-      "texto": "Aplicamos el vinilo en vehículos, cristales, paredes y muebles, en el taller o en tu local, en Dénia y alrededores.",
-      "imagen": "/assets/uploads/sellagas-caddy-aplicacion.jpg"
+      "titulo": "Instalación",
+      "texto": "Aplicamos el vinilo en vehículos y cristales, y montamos rótulos y lonas en fachadas, en Dénia y alrededores.",
+      "imagen": "/assets/uploads/van-signage.jpg"
     }
   ],
   "fotosTaller": [
-    "/assets/uploads/placas-rally-borgia-serie.jpg",
-    "/assets/uploads/textil-camiseta-plancha.jpg",
-    "/assets/uploads/textil-bolso-transfer.jpg"
+    "/assets/uploads/workshop-machine.jpg",
+    "/assets/uploads/shop-storefront.jpg",
+    "/assets/uploads/about-team.jpg",
+    "/assets/uploads/channel-letters.jpg"
   ]
 }
