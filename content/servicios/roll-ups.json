@@ -1,9 +1,9 @@
 {
   "nombre": "Roll-ups",
-  "titulo": "Roll-ups",
+  "titulo": "*Roll-ups*",
   "entradilla": "Expositores enrollables, ligeros y fáciles de transportar, listos para montar en cualquier feria, tienda o presentación.",
-  "foto": "/assets/uploads/poster-display.jpg",
-  "texto": "El roll-up es el soporte más práctico para quien necesita comunicar en distintos sitios: cabe en su propia bolsa de transporte, se monta en menos de un minuto y se puede reutilizar tantas veces como haga falta.\n\nImprimimos la lona y montamos el mecanismo, listo para usar nada más recibirlo. También podemos preparar varias unidades con el mismo diseño para stands o puntos de venta múltiples.",
+  "foto": "",
+  "texto": "El roll-up es el soporte más práctico para quien necesita comunicar en distintos sitios: cabe en su propia bolsa de transporte, se monta en menos de un minuto y se puede reutilizar tantas veces como haga falta.\n\nImprimimos la lona y la montamos en su mecanismo, lista para usar. También podemos preparar varias unidades con el mismo diseño para stands o puntos de venta múltiples.",
   "tipos": [
     {
       "titulo": "Roll-up estándar",
@@ -22,20 +22,7 @@
       "texto": "Mismo diseño replicado en varias unidades."
     }
   ],
-  "galeria": [
-    {
-      "imagen": "/assets/uploads/poster-display.jpg",
-      "pie": "Roll-up montado en feria"
-    },
-    {
-      "imagen": "/assets/uploads/poster-display.jpg",
-      "pie": "Expositor de gran formato"
-    },
-    {
-      "imagen": "/assets/uploads/outdoor-banner.jpg",
-      "pie": "Soporte publicitario portátil"
-    }
-  ],
+  "galeria": [],
   "preguntas": [
     {
       "pregunta": "¿El roll-up incluye el mecanismo o solo la lona?",
@@ -48,10 +35,6 @@
     {
       "pregunta": "¿Es fácil de montar sin ayuda?",
       "respuesta": "Sí, el mecanismo está pensado para montarse en menos de un minuto sin herramientas."
-    },
-    {
-      "pregunta": "¿Cuánto tarda la fabricación de un roll-up?",
-      "respuesta": "Suele ser uno de nuestros plazos más cortos dentro de gran formato; te lo confirmamos al presupuestar."
     }
   ],
   "seo": {

@@ -1,8 +1,8 @@
 {
   "nombre": "Vinilos decorativos",
-  "titulo": "Vinilos decorativos",
-  "entradilla": "Vinilo para paredes y superficies interiores: logotipos de recepción, frases corporativas o elementos decorativos a medida.",
-  "foto": "/assets/uploads/shop-window-vinyl.jpg",
+  "titulo": "Vinilos *decorativos*",
+  "entradilla": "Vinilo para paredes, muebles y superficies: logotipos, frases, estampados y murales a medida.",
+  "foto": "/assets/uploads/pared-vinilo-michelin.jpg",
   "texto": "Un vinilo bien colocado en una pared puede sustituir a un cuadro, un mural o un rótulo de recepción, con un coste y un tiempo de instalación mucho menores. Lo usamos tanto en oficinas como en comercios y espacios de trabajo.\n\nTrabajamos a partir de tu logotipo o de un diseño que preparamos a medida, adaptado al tamaño y al color de la pared o superficie donde se va a instalar.",
   "tipos": [
     {
@@ -20,20 +20,24 @@
     {
       "titulo": "Señalética interior",
       "texto": "Identificación de salas y zonas dentro de un edificio."
+    },
+    {
+      "titulo": "Muebles y cabinas",
+      "texto": "Mostradores, expositores y cabinas forrados con vinilo impreso."
     }
   ],
   "galeria": [
     {
-      "imagen": "/assets/uploads/shop-window-vinyl.jpg",
-      "pie": "Vinilo decorativo en pared de oficina"
+      "imagen": "/assets/uploads/pared-vinilo-michelin.jpg",
+      "pie": "Pared de azulejo vinilada para un taller de neumáticos, con los tramos de un rally"
     },
     {
-      "imagen": "/assets/uploads/shop-window-vinyl.jpg",
-      "pie": "Vinilo aplicado en interior"
+      "imagen": "/assets/uploads/mueble-feria-bosque.jpg",
+      "pie": "Mueble de feria forrado con vinilo impreso"
     },
     {
-      "imagen": "/assets/uploads/channel-letters.jpg",
-      "pie": "Logotipo en vinilo para recepción"
+      "imagen": "/assets/uploads/cabina-dj-lbs.jpg",
+      "pie": "Cabina de DJ rotulada para Los Baños Sunshine"
     }
   ],
   "preguntas": [
@@ -51,7 +55,7 @@
     },
     {
       "pregunta": "¿Instaláis vosotros el vinilo?",
-      "respuesta": "Sí, nos desplazamos para instalar en Denia y alrededores, y coordinamos instalaciones en otras zonas cuando el proyecto lo requiere."
+      "respuesta": "Sí, lo instalamos nosotros en Dénia y alrededores."
     }
   ],
   "seo": {

@@ -1,9 +1,9 @@
 {
   "nombre": "Serigrafía textil",
-  "titulo": "Serigrafía textil",
-  "entradilla": "Estampamos camisetas, sudaderas, polos y textil promocional con tintas de calidad que aguantan el lavado y el uso diario.",
-  "foto": "/assets/uploads/screen-printing-process.jpg",
-  "texto": "La serigrafía textil sigue siendo, después de más de veinte años, la técnica que mejor resultado da en prendas de uso continuo: el color queda integrado en la fibra y aguanta muchos más lavados que un vinilo o una impresión digital directa.\n\nPreparamos cada pedido a medida: elegimos el tipo de tinta según el tejido, hacemos una prueba de color si el pedido lo requiere y ajustamos el número de pantallas al diseño, desde un logotipo a una tinta hasta ilustraciones más complejas.",
+  "titulo": "Serigrafía *textil*",
+  "entradilla": "Camisetas, sudaderas, polos y bolsas con tu diseño: para tu empresa, tu club, tu peña o tu falla.",
+  "foto": "/assets/uploads/textil-camiseta-plancha.jpg",
+  "texto": "La serigrafía es el origen del taller: empezamos en 2002 estampando prendas y seguimos haciéndolo. Cuando la serigrafía no compensa por cantidad o por diseño, trabajamos también con transfer y vinilo termosoldable.\n\nPreparamos cada pedido a medida: elegimos la técnica según la prenda, la cantidad y el diseño, y te enseñamos una prueba antes de producir.",
   "tipos": [
     {
       "titulo": "Camisetas de algodón y técnicas",
@@ -28,16 +28,12 @@
   ],
   "galeria": [
     {
-      "imagen": "/assets/uploads/tshirt-stack.jpg",
-      "pie": "Camisetas estampadas en serigrafía"
+      "imagen": "/assets/uploads/textil-camiseta-plancha.jpg",
+      "pie": "Chaqueta con logotipo en la plancha del taller"
     },
     {
-      "imagen": "/assets/uploads/screen-printing-process.jpg",
-      "pie": "Diseño serigrafiado sobre textil"
-    },
-    {
-      "imagen": "/assets/uploads/workshop-machine.jpg",
-      "pie": "Preparación de pantallas de serigrafía"
+      "imagen": "/assets/uploads/textil-bolso-transfer.jpg",
+      "pie": "Bolso con transfer «Marins Corsaris»"
     }
   ],
   "preguntas": [
@@ -54,8 +50,8 @@
       "respuesta": "Depende del volumen y del número de colores del diseño. Te damos un plazo concreto al confirmar el presupuesto."
     },
     {
-      "pregunta": "¿Aguanta la impresión muchos lavados?",
-      "respuesta": "Sí, es una de las ventajas principales de la serigrafía frente a otras técnicas de impresión textil."
+      "pregunta": "¿Qué técnica usáis?",
+      "respuesta": "Serigrafía, transfer o vinilo termosoldable, según la prenda, la cantidad y el diseño. Te recomendamos la más adecuada al presupuestar."
     }
   ],
   "seo": {

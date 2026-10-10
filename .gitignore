@@ -10,3 +10,7 @@ _site/
 assets/img/cartel.png
 assets/img/coche.jpg
 assets/img/ropa.png
+
+# Local working files from browser automation (screenshots, research)
+.playwright-mcp/
+.claude/

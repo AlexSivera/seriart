@@ -22,12 +22,15 @@ const STRUCTURE = [
 
 /* Portfolio categories (keys must match the select in .pages.yml) */
 const WORK_CATEGORIES = [
-  { key: "vehiculos", label: "Vehículos", filter: "Vehículos" },
-  { key: "fachadas", label: "Fachadas y letras", filter: "Fachadas y letras" },
-  { key: "escaparates", label: "Escaparates y vinilo", filter: "Escaparates y vinilo" },
-  { key: "serigrafia", label: "Serigrafía y textil", filter: "Serigrafía" },
+  { key: "vehiculos", label: "Vehículos de empresa", filter: "Vehículos" },
+  { key: "motor", label: "Rally y clásicos", filter: "Rally y clásicos" },
+  { key: "espacios", label: "Locales, stands y paredes", filter: "Locales y stands" },
+  { key: "textil", label: "Textil", filter: "Textil" },
+  { key: "piezas", label: "Placas y trofeos", filter: "Placas y trofeos" },
   { key: "gran-formato", label: "Gran formato", filter: "Gran formato" }
 ];
+/* Keys used before the 2026 redesign, so old entries still land somewhere sensible */
+const LEGACY_WORK_KEYS = { fachadas: "espacios", escaparates: "espacios", serigrafia: "textil" };
 
 function readJson(rel, fallback) {
   const file = path.join(ROOT, rel);
@@ -110,7 +113,8 @@ function load() {
     web3formsKey: str(readJson("config.json", {}).web3formsKey),
     heroVideo: {
       src: media(portada.video, "Datos generales (vídeo de portada)") || "",
-      poster: media(portada.imagen, "Datos generales (imagen de portada)") || "assets/uploads/hero-vehicle-wrap.jpg",
+      poster: media(portada.imagen, "Datos generales (imagen de portada)") || "assets/uploads/sellagas-caddy-lateral.jpg",
+      posterAlt: str(portada.pieImagen),
       caption: str(portada.textoVideo)
     }
   };
@@ -136,9 +140,16 @@ function load() {
       if (!str(w && w.imagen)) warn("Trabajos (nº " + (i + 1) + "): no tiene foto y no se muestra");
       return null;
     }
-    const key = catKeys.indexOf(str(w.categoria)) !== -1 ? str(w.categoria) : "vehiculos";
+    const raw = LEGACY_WORK_KEYS[str(w.categoria)] || str(w.categoria);
+    const key = catKeys.indexOf(raw) !== -1 ? raw : "vehiculos";
     const cat = WORK_CATEGORIES.find((c) => c.key === key);
-    return { src, title: str(w.titulo) || cat.label, cat: key, tag: cat.label, home: Boolean(w.inicio) };
+    const title = str(w.titulo) || cat.label;
+    return {
+      src, title, cat: key, tag: cat.label, home: Boolean(w.inicio),
+      desc: str(w.descripcion), year: str(w.ano),
+      slug: title.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+      photos: gallery(w.fotos, "Trabajos (nº " + (i + 1) + ")").map((p) => ({ src: p.src, alt: p.alt === "Trabajo de Seriart" ? title : p.alt }))
+    };
   }).filter(Boolean);
 
   /* About page */

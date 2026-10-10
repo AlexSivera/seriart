@@ -1,8 +1,8 @@
 {
   "nombre": "Cartelería",
-  "titulo": "Cartelería",
+  "titulo": "*Cartelería*",
   "entradilla": "Carteles y paneles impresos a gran tamaño para escaparates, interiores de tienda y puntos de información.",
-  "foto": "/assets/uploads/poster-display.jpg",
+  "foto": "",
   "texto": "La cartelería resuelve la comunicación puntual: una oferta, una novedad, información de temporada. La imprimimos sobre distintos soportes (papel, cartón pluma, PVC) según dónde se vaya a colocar y cuánto tiempo tenga que aguantar.\n\nEs habitual combinarla con otras piezas de gran formato, como escaparates o roll-ups, para que toda la comunicación de una campaña mantenga la misma imagen.",
   "tipos": [
     {
@@ -22,20 +22,7 @@
       "texto": "Formato pequeño para punto de venta."
     }
   ],
-  "galeria": [
-    {
-      "imagen": "/assets/uploads/poster-display.jpg",
-      "pie": "Cartelería impresa de gran formato"
-    },
-    {
-      "imagen": "/assets/uploads/poster-display.jpg",
-      "pie": "Panel informativo en evento"
-    },
-    {
-      "imagen": "/assets/uploads/large-format-banner.jpg",
-      "pie": "Impresión de cartel en taller"
-    }
-  ],
+  "galeria": [],
   "preguntas": [
     {
       "pregunta": "¿Sobre qué materiales imprimís la cartelería?",

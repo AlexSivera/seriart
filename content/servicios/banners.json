@@ -1,8 +1,8 @@
 {
   "nombre": "Banners y pancartas",
-  "titulo": "Banners y pancartas",
-  "entradilla": "Banners y pancartas para eventos, competiciones y campañas puntuales, listos para colgar o instalar el mismo día.",
-  "foto": "/assets/uploads/outdoor-banner.jpg",
+  "titulo": "*Banners* y pancartas",
+  "entradilla": "Banners y pancartas para eventos, competiciones y campañas de pocos días, con el acabado listo para colgar.",
+  "foto": "",
   "texto": "Para un evento, una carrera popular o una campaña de pocos días, un banner o una pancarta resuelven la comunicación sin necesidad de una instalación permanente. Los preparamos con materiales ligeros, fáciles de transportar y de montar.\n\nAjustamos el acabado (ojales, dobladillo, varilla) al tipo de instalación que vayas a hacer, para que el montaje sea sencillo el día del evento.",
   "tipos": [
     {
@@ -22,20 +22,7 @@
       "texto": "Fácil montaje en soportes verticales."
     }
   ],
-  "galeria": [
-    {
-      "imagen": "/assets/uploads/outdoor-banner.jpg",
-      "pie": "Pancarta de gran formato instalada"
-    },
-    {
-      "imagen": "/assets/uploads/large-format-banner.jpg",
-      "pie": "Impresión de banner en taller"
-    },
-    {
-      "imagen": "/assets/uploads/poster-display.jpg",
-      "pie": "Banner para evento"
-    }
-  ],
+  "galeria": [],
   "preguntas": [
     {
       "pregunta": "¿Puedo pedir un banner con urgencia para un evento próximo?",

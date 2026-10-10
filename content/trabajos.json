@@ -1,74 +1,121 @@
 [
   {
-    "imagen": "/assets/uploads/hero-vehicle-wrap.jpg",
-    "titulo": "Rotulación integral de camión de reparto",
+    "imagen": "/assets/uploads/seat-124-martini-frontal.jpg",
+    "titulo": "SEAT 124 · Librea Martini",
+    "descripcion": "Librea Martini Racing impresa en la Mimaki del taller y aplicada sobre capó, techo y laterales de un SEAT 124 de rally.",
+    "categoria": "motor",
+    "ano": "2021",
+    "inicio": true,
+    "fotos": [
+      { "imagen": "/assets/uploads/martini-impresion-mimaki.jpg", "pie": "El vinilo saliendo de la impresora del taller" },
+      { "imagen": "/assets/uploads/martini-vinilo-impreso.jpg", "pie": "Franjas impresas, antes de cortar" },
+      { "imagen": "/assets/uploads/seat-124-martini-lateral.jpg", "pie": "Lateral con dorsal y franjas" },
+      { "imagen": "/assets/uploads/seat-124-martini-cenital.jpg", "pie": "Vista desde arriba" }
+    ]
+  },
+  {
+    "imagen": "/assets/uploads/sellagas-caddy-lateral.jpg",
+    "titulo": "VW Caddy · Sellagas",
+    "descripcion": "Furgoneta de reparto con franjas diagonales en rojo y gris, logotipo y datos de contacto. Replanteada con cinta y aplicada frente a la tienda.",
     "categoria": "vehiculos",
-    "inicio": true
+    "ano": "2021",
+    "inicio": true,
+    "fotos": [
+      { "imagen": "/assets/uploads/sellagas-caddy-replanteo.jpg", "pie": "Replanteo de las franjas con cinta" },
+      { "imagen": "/assets/uploads/sellagas-caddy-aplicacion.jpg", "pie": "Aplicación de la franja roja" },
+      { "imagen": "/assets/uploads/sellagas-caddy-frontal.jpg", "pie": "Frontal terminado" },
+      { "imagen": "/assets/uploads/sellagas-caddy-tienda.jpg", "pie": "Lista para entregar" }
+    ]
   },
   {
-    "imagen": "/assets/uploads/shop-storefront.jpg",
-    "titulo": "Rótulo de fachada para comercio",
-    "categoria": "fachadas",
-    "inicio": true
+    "imagen": "/assets/uploads/peugeot-106-rally-capo.jpg",
+    "titulo": "Peugeot 106 · Rally",
+    "descripcion": "Decoración de rally con los colores y patrocinadores del equipo en capó, laterales y luneta.",
+    "categoria": "motor",
+    "ano": "2021",
+    "inicio": true,
+    "fotos": [
+      { "imagen": "/assets/uploads/peugeot-106-rally-lateral.jpg", "pie": "Frontal y lateral" },
+      { "imagen": "/assets/uploads/peugeot-106-rally-trasera.jpg", "pie": "Trasera y luneta" },
+      { "imagen": "/assets/uploads/peugeot-106-rally-detalle.jpg", "pie": "Detalle del capó" }
+    ]
   },
   {
-    "imagen": "/assets/uploads/workwear.jpeg",
-    "titulo": "Ropa laboral con logotipo",
-    "categoria": "serigrafia",
-    "inicio": true
-  },
-  {
-    "imagen": "/assets/uploads/channel-letters.jpg",
-    "titulo": "Letras corpóreas iluminadas",
-    "categoria": "fachadas",
-    "inicio": true
-  },
-  {
-    "imagen": "/assets/uploads/outdoor-banner.jpg",
-    "titulo": "Pancarta para exterior",
-    "categoria": "gran-formato",
-    "inicio": true
-  },
-  {
-    "imagen": "/assets/uploads/car-wrap-detail.jpg",
-    "titulo": "Vinilo de color en turismo",
+    "imagen": "/assets/uploads/vw-t2-lbs-frontal.jpg",
+    "titulo": "VW T2 · Los Baños Sunshine",
+    "descripcion": "Furgoneta clásica rotulada con la imagen de Los Baños Sunshine y la campaña #AmarSamar.",
     "categoria": "vehiculos",
-    "inicio": false
+    "ano": "2021",
+    "inicio": true,
+    "fotos": [
+      { "imagen": "/assets/uploads/vw-t2-lbs-lateral.jpg", "pie": "Lateral con logotipo" },
+      { "imagen": "/assets/uploads/vw-t2-lbs-amarsamar.jpg", "pie": "Gráfica #AmarSamar" }
+    ]
   },
   {
-    "imagen": "/assets/uploads/van-signage.jpg",
-    "titulo": "Rotulación parcial con logotipo",
-    "categoria": "vehiculos",
-    "inicio": false
+    "imagen": "/assets/uploads/bmw-e21-frontal.jpg",
+    "titulo": "BMW Serie 3 E21 · Franjas",
+    "descripcion": "Franjas tricolor y rotulación de competición sobre un BMW clásico.",
+    "categoria": "motor",
+    "ano": "2021",
+    "inicio": true,
+    "fotos": [
+      { "imagen": "/assets/uploads/bmw-e21-lateral.jpg", "pie": "Lateral" },
+      { "imagen": "/assets/uploads/bmw-e21-trasera.jpg", "pie": "Trasera" }
+    ]
   },
   {
-    "imagen": "/assets/uploads/shop-window-vinyl.jpg",
-    "titulo": "Vinilo decorativo en escaparate",
-    "categoria": "escaparates",
-    "inicio": false
+    "imagen": "/assets/uploads/mueble-feria-floral.jpg",
+    "titulo": "Mobiliario para feria de comerciantes",
+    "descripcion": "Muebles de stand forrados con vinilo impreso: estampado floral, hojas y paisaje de bosque.",
+    "categoria": "espacios",
+    "ano": "2026",
+    "inicio": true,
+    "fotos": [
+      { "imagen": "/assets/uploads/mueble-feria-hojas.jpg", "pie": "Motivo de hojas" },
+      { "imagen": "/assets/uploads/mueble-feria-bosque.jpg", "pie": "Paisaje de bosque" }
+    ]
   },
   {
-    "imagen": "/assets/uploads/tshirt-stack.jpg",
-    "titulo": "Camisetas serigrafiadas para evento",
-    "categoria": "serigrafia",
-    "inicio": false
+    "imagen": "/assets/uploads/placas-rally-borgia.jpg",
+    "titulo": "IV Rally Clásico Territorio Borgia",
+    "descripcion": "Placas de rally y trofeos personalizados en vinilo para la cuarta edición de la prueba.",
+    "categoria": "piezas",
+    "ano": "2025",
+    "inicio": false,
+    "fotos": [
+      { "imagen": "/assets/uploads/placas-rally-borgia-serie.jpg", "pie": "La serie completa, en el taller" }
+    ]
   },
   {
-    "imagen": "/assets/uploads/screen-printing-process.jpg",
-    "titulo": "Estampación textil a una tinta",
-    "categoria": "serigrafia",
-    "inicio": false
+    "imagen": "/assets/uploads/pared-vinilo-michelin.jpg",
+    "titulo": "Pared vinilada · Taller de neumáticos",
+    "descripcion": "Pared de azulejo vinilada con los tramos de un rally y la gráfica de Neumáticos Michelin.",
+    "categoria": "espacios",
+    "ano": "2025",
+    "inicio": false,
+    "fotos": []
   },
   {
-    "imagen": "/assets/uploads/merch-items.jpg",
-    "titulo": "Merchandising personalizado",
-    "categoria": "serigrafia",
-    "inicio": false
+    "imagen": "/assets/uploads/cabina-dj-lbs.jpg",
+    "titulo": "Cabina de DJ · Los Baños Sunshine",
+    "descripcion": "Cabina de música rotulada con la gráfica #AmarSamar.",
+    "categoria": "espacios",
+    "ano": "2021",
+    "inicio": false,
+    "fotos": [
+      { "imagen": "/assets/uploads/cabina-dj-lbs-montada.jpg", "pie": "Montada y con luz" }
+    ]
   },
   {
-    "imagen": "/assets/uploads/large-format-banner.jpg",
-    "titulo": "Lona publicitaria de gran formato",
-    "categoria": "gran-formato",
-    "inicio": false
+    "imagen": "/assets/uploads/textil-camiseta-plancha.jpg",
+    "titulo": "Ropa y bolsos personalizados",
+    "descripcion": "Logotipos y textos estampados en ropa de trabajo, bolsos y prendas de fiesta.",
+    "categoria": "textil",
+    "ano": "2025",
+    "inicio": false,
+    "fotos": [
+      { "imagen": "/assets/uploads/textil-bolso-transfer.jpg", "pie": "Bolso con transfer «Marins Corsaris»" }
+    ]
   }
 ]
